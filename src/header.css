@@ -1,0 +1,280 @@
+.header-container {
+ box-sizing: border-box;
+ width: 100%;
+  display: flex;
+  padding: 20px 36px; /* 👈 مسافة من اليمين واليسار */
+  justify-content: space-between; /* 👈 السلة شمال واليوزر يمين */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 18px;
+}
+
+/* أيقونات الهيدر */
+.header-container i {
+  font-size: 28px; /* أكبر شوية */
+  cursor: pointer;
+  /* لون ذهبي لامع */
+  color: #cba576;
+  text-shadow:
+    0 0 18px #cea777;
+  transition: transform 0.2s ease;
+}
+
+/* إحساس تفاعلي بسيط */
+.header-container i:hover {
+  transform: scale(1.1);
+}
+
+
+
+.user-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  
+  padding: 40px 100px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+
+  box-shadow: 0 20px 50px rgba(203, 165, 118, 0.35),
+              0 0 40px rgba(203, 165, 118, 0.25);
+
+  z-index: 2000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* العنوان الكبير */
+.modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #b65a2a;
+}
+
+/* العنوان الفرعي */
+.modal-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* الفورم */
+.modal-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* الخانات */
+.modal-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.modal-input:focus {
+  border-color: #b65a2a;
+}
+
+/* الروابط الصغيرة */
+.modal-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+}
+
+.modal-links a {
+  color: #b65a2a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.modal-links a:hover {
+  color: #dc7339;
+}
+
+/* زر الإرسال */
+.modal-submit {
+  padding: 12px 20px;
+  background-color: #b65a2a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-submit:hover {
+  background-color: #dc7339;
+  transform: scale(1.05);
+}
+.cart-icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-icon {
+  font-size: 22px; /* أو الحجم اللي عندك */
+  cursor: pointer;
+}
+
+/* الدائرة */
+.cart-badge {
+  position: absolute;
+  bottom: 14px;   /* تحت */
+  left: 27px;     /* على الشمال */
+  width: 13px;
+  height: 13px;
+  padding: 2px;
+
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0 5px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 1024px){
+  .header-container {
+ 
+  
+  box-shadow: none;
+}
+}
+@media (max-width: 1150px){
+  .user-modal {
+      width: 70%;
+  }
+}
+@media (max-width: 800px){
+  .user-modal {
+       padding: 40px 70px;
+  }
+}
+@media (max-width: 630px) {
+  .user-modal {
+    width: 50%;          /* يستغل العرض كله */
+  }
+
+  /* العنوان الكبير */
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  /* العنوان الفرعي */
+  .modal-subtitle {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+
+  /* الفورم */
+  .modal-form {
+    gap: 10px;
+  }
+
+  /* الخانات */
+  .modal-input {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
+
+  /* الروابط الصغيرة */
+  .modal-links {
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+    flex-direction: column;
+    gap: 5px;
+    align-items: start;
+  }
+
+  .modal-links a {
+    display: block;
+  }
+
+  /* زر الإرسال */
+  .modal-submit {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 500px){
+  .header-container {
+    padding: 12px 18px;   /* تقليل المسافات */
+  }
+
+  /* أيقونات الهيدر */
+  .header-container i {
+    font-size: 24px;      /* تصغير الأيقونات */
+  }
+}
+
+@media (max-width: 410px) {
+  
+  /* العنوان الكبير */
+  .modal-title {
+    font-size: 1.3rem;
+  }
+
+  /* العنوان الفرعي */
+  .modal-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  /* الفورم */
+  .modal-form {
+    gap: 8px;
+  }
+
+  /* الخانات */
+  .modal-input {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  /* الروابط الصغيرة */
+  .modal-links {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+    flex-direction: column;
+    gap: 4px;
+    
+  }
+
+  .modal-links a {
+    display: block;
+  }
+
+  /* زر الإرسال */
+  .modal-submit {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+@media (max-width: 1024px) {
+  .header-container{
+    box-shadow: none;
+  }
+  
+}

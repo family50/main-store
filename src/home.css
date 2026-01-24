@@ -1,0 +1,695 @@
+/* ============================= */
+/* Reset + Base */
+html.home, body.home {
+  font-family: 'Inter', sans-serif; /* الخط الافتراضي للموقع */
+  margin: 0; /* إزالة الهوامش الافتراضية */
+  padding: 0; /* إزالة الحشو الافتراضي */
+  box-sizing: border-box; /* تضمين البادينغ والحدود في حجم العنصر */
+  width: 100%; /* عرض كامل الشاشة */
+  min-height: 100vh; /* ارتفاع كامل الشاشة */
+ 
+  color: #ffffff; /* لون النصوص */
+  display: flex; /* استخدام flexbox */
+  flex-direction: column; /* ترتيب عمودي */
+  justify-content: center; /* توسيط عمودي */
+  align-items: center; /* توسيط أفقي */
+  text-align: center; /* محاذاة النصوص */
+  overflow-x: hidden; /* منع التمرير العرضي */
+}
+
+/* Scrollbar Styles */
+html.home {
+  overflow-y: auto; /* السماح بالتمرير العمودي */
+  scrollbar-width: thin; /* Firefox: سمك الشريط */
+   scrollbar-color: var(--scroll-thumb) var(--scroll-track); /* Firefox: لون الشريط والخلفية */
+}
+
+/* Chrome / Edge / Safari */
+html.home::-webkit-scrollbar {
+  width: 5px; /* عرض الشريط */
+}
+
+html.home::-webkit-scrollbar-button {
+  display: none; /* إخفاء الأسهم */
+}
+
+/* ============================= */
+/* Home Container */
+.home {
+  width: 100vw; /* عرض كامل */
+  min-height: 100vh; /* ارتفاع كامل */
+  display: flex; /* استخدام flexbox */
+  flex-direction: column; /* ترتيب عمودي */
+  justify-content: center; /* توسيط عمودي */
+  align-items: center; /* توسيط أفقي */
+  text-align: center; /* محاذاة النصوص */
+  padding: 20px; /* مسافة داخلية */
+  overflow: hidden;
+
+  }
+
+/* ============================= */
+/* Bottom Section */
+.bottom-section {
+  display: flex; /* استخدام flexbox */
+  width: 100%; /* عرض كامل */
+  height: 100%; /* ارتفاع كامل */
+  position: relative; /* مهم للـ Center Box */
+  gap: 20px; /* مسافة بين العناصر */
+  justify-content: center; /* توسيط العناصر أفقياً */
+  align-items: flex-start; /* بداية المحاذاة عمودياً */
+  flex-wrap: wrap; /* يسمح بالمرونة على الشاشات الصغيرة */
+}
+
+/* ============================= */
+/* Left Box */
+.left-box {
+  display: flex; /* flexbox */
+  flex-direction: column; /* ترتيب عمودي */
+  align-items: flex-start; /* محاذاة النصوص لليسار */
+  padding: 20px; /* padding داخلي */
+  gap: 20px; /* مسافة بين العناصر */
+  border-radius: 15px; /* حواف ناعمة */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* ظل خفيف */
+  width: 300px; /* عرض ثابت */
+  height: fit-content; /* الطول على قد المحتوى */
+  position: absolute; /* وضع مطلق بالنسبة للـ bottom-section */
+  left: 50px; /* مسافة من اليسار */
+  top: 50%; /* توسيط عمودي */
+  transform: translateY(-50%); /* تعديل الوسط */
+}
+
+/* Product Title */
+.left-box .product-title {
+  font-size: 2.8rem; /* حجم العنوان */
+  font-weight: 700; /* سمك الخط */
+  color: #fffacd; /* لون النص */
+  text-align: left; /* محاذاة لليسار */
+}
+
+/* Product Description */
+.left-box .product-description {
+  font-size: 1.6rem; /* حجم الوصف */
+  color: #ffeec9; /* لون النص */
+  line-height: 1.6; /* ارتفاع السطر */
+  text-align: left; /* محاذاة لليسار */
+}
+
+/* Price */
+.left-box .price {
+  font-size: 2.5rem; /* حجم السعر */
+  font-weight: 800; /* سمك الخط */
+  color: #ffd700; /* لون النص */
+  margin-bottom: 15px; /* مسافة أسفل السعر */
+  text-align: left; /* محاذاة لليسار */
+
+}
+
+/* Quantity Counter */
+.quantity-counter {
+  display: flex; /* flexbox */
+  align-items: center; /* توسيط عمودي */
+  gap: 15px; /* مسافة بين الأزرار */
+  margin-bottom: 20px; /* مسافة أسفل الكونتر */
+
+}
+
+.quantity-counter button {
+  background-color: #ffd700; /* لون الزر */
+  color: #b65a2a; /* لون النص */
+  border: none; /* إزالة الحدود */
+  border-radius: 10px; /* حواف دائرية */
+  width: 45px; /* عرض الزر */
+  height: 45px; /* ارتفاع الزر */
+  font-weight: bold; /* سمك الخط */
+  font-size: 1.5rem; /* حجم الخط */
+  cursor: pointer; /* مؤشر عند المرور */
+  transition: 0.2s; /* تأثير سلس */
+}
+
+.quantity-counter button:hover {
+  background-color: #fffacd; /* لون عند المرور */
+}
+
+.quantity-counter span {
+  font-size: 1.8rem; /* حجم الرقم */
+  font-weight: 700; /* سمك الخط */
+  width: 40px; /* عرض */
+  text-align: center; /* محاذاة الرقم */
+  color: #fffacd; /* لون الرقم */
+}
+
+/* زر Add to Cart */
+.add-to-cart button {
+  border: none; 
+  border-radius: 15px;
+  padding: 15px 35px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  display: flex;             /* لترتيب النص والأيقونة أفقي */
+  align-items: center;       /* توسيط عمودي */
+  gap: 12px;                 /* مسافة بين الأيقونة والنص */
+}
+
+/* أيقونة عربية التسوق داخل الزر */
+.add-to-cart button i {
+  font-size: 1.4rem;        /* حجم مناسب للزر */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+/* تأثير hover للزر والأيقونة */
+.add-to-cart button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.add-to-cart button:hover i {
+  transform: scale(1.2);    /* تكبير بسيط عند hover */
+}
+
+
+/* ============================= */
+/* Center Box */
+.center-box {
+  position: absolute; /* وضع مطلق */
+  top: 50%; /* وسط عمودي */
+  left: 50%; /* وسط أفقي */
+  transform: translate(-50%, -50%); /* توسيط دقيق */
+  width: 540px; /* عرض الصورة */
+  height: auto; /* ارتفاع نسبي */
+  margin-top: 25px;
+}
+
+.center-box img {
+  width: 540px; /* عرض الصورة */
+  height: auto; /* الحفاظ على النسبة */
+  object-fit: contain; /* الاحتفاظ بالنسبة */
+  margin-top: 25px;
+}
+
+/* ============================= */
+/* Right Box Wrapper */
+.right-box-wrapper {
+  position: absolute; /* وضع مطلق */
+  right: 150px; /* المسافة من اليمين */
+  top: 50%; /* توسيط عمودي */
+  transform: translateY(-50%); /* تعديل الوسط */
+  display: flex; /* flexbox */
+  flex-direction: column; /* ترتيب عمودي */
+  align-items: center; /* توسيط الأفقي */
+  gap: 15px; /* مسافة بين البوكسات */
+  height: 370px; /* ارتفاع محدد */
+  overflow: hidden; /* إخفاء أي محتوى زائد */
+}
+
+/* Scroll Buttons */
+.scroll-buttons {
+  display: flex; /* flexbox */
+  gap: 10px; /* مسافة بين الأزرار */
+  margin-bottom: 10px; /* مسافة أسفل */
+}
+
+.scroll-btn {
+  background-color: #ffd700; /* لون الزر */
+  color: #b65a2a; /* لون النص */
+  border: none; /* إزالة الحدود */
+  border-radius: 50%; /* دائري */
+  width: 40px; /* عرض */
+  height: 40px; /* ارتفاع */
+  font-size: 1.2rem; /* حجم الخط */
+  cursor: pointer; /* مؤشر عند المرور */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* ظل خفيف */
+  transition: 0.3s; /* تأثير سلس */
+
+}
+
+.scroll-btn:hover {
+  background-color: #fffacd; /* لون عند المرور */
+}
+
+/* Right Box Vertical */
+.right-box {
+  display: flex; /* flexbox */
+  flex-direction: column; /* ترتيب عمودي */
+  gap: 15px; /* مسافة بين البوكسات */
+  position: relative; /* للمحاذاة */
+  z-index: 2; /* فوق الخط */
+  width: 150px; /* عرض البوكس */
+  align-items: center; /* توسيط داخلي */
+
+}
+
+/* Small Boxes */
+.small-box {
+  width: 120px; /* عرض */
+  height: 70px; /* ارتفاع */
+  border-radius: 12px; /* حواف */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* ظل */
+  display: flex; /* flexbox */
+  justify-content: center; /* توسيط محتوى */
+  align-items: center; /* توسيط محتوى */
+
+}
+/* مثال لصورة داخل أول بوكس */
+.small-box {
+  background-size: 60%;        /* حجم الصورة */
+  background-position: center; /* وضع الصورة في المنتصف */
+  background-repeat: no-repeat;/* عدم تكرار الصورة */
+   transform: scale(1.2);  /* يكبر البوكس شويه */
+}
+
+/* Vertical Line */
+.bottom-line {
+  width: 4px; /* عرض الخط */
+  height: 100%; /* ارتفاع كامل */
+  background-color: #ffd700; /* لون الخط */
+  position: absolute; /* وضع مطلق */
+  top: 0; /* أعلى */
+  left: 50%; /* منتصف */
+  transform: translateX(-50%); /* تعديل الوسط */
+  z-index: 1; /* خلف البوكسات */
+
+}
+.scroll-buttons{
+  z-index: 99;
+}
+/* Media Query للشاشات أقل من 1200px */
+@media (max-width: 1200px) {
+  .left-box { 
+    width: 250px; /* تقليل العرض */
+    padding: 18px; /* زيادة البادينغ قليلاً */
+  }
+  .left-box .product-title { 
+    font-size: 2.2rem; /* تصغير العنوان */
+  }
+  .left-box .product-description { 
+    font-size: 1.4rem; /* تصغير الوصف */
+  }
+  .left-box .price { 
+    font-size: 2.2rem; /* تصغير السعر */
+  }
+  .quantity-counter button { 
+    width: 38px; height: 38px; font-size: 1.3rem; /* أزرار أصغر */
+  }
+  .quantity-counter span { 
+    font-size: 1.5rem; width: 35px; /* حجم الرقم أصغر */
+  }
+  .add-to-cart button { 
+    padding: 12px 28px; font-size: 1.3rem; /* تكبير/تصغير الزر */
+  }
+  .center-box { 
+    width: 500px; /* تصغير الصورة */
+  }
+  .center-box img { 
+    
+    width: 500px;
+  }
+  .right-box-wrapper { 
+    right: 60px; /* المسافة من اليمين */
+    height: 320px; /* ارتفاع أقل */
+    gap: 12px; /* مسافة بين العناصر */
+  }
+  .right-box { 
+    width: 130px; gap: 12px; /* تعديل حجم البوكسات */
+  }
+  .small-box { 
+    width: 110px; height: 65px; /* تصغير البوكسات */
+  }
+  .small-box:nth-child(1) { 
+    background-size: 55%; /* تعديل حجم الخلفية */
+  }
+  .scroll-btn { 
+    width: 38px; height: 38px; font-size: 1.1rem; /* حجم الأسهم */
+  }
+  .bottom-line { 
+    width: 3.5px; /* عرض الخط */
+  }
+}
+@media (max-width: 1024px) {
+  .bottom-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    height: auto; /* بدل 100% */
+    margin-top: 20px;
+    
+  }
+.left-box-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  
+}
+  /* Left Box */
+  .left-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+    margin: 0 auto;    /* لتوسيطه افقياً */
+    padding: 20px;
+    
+  }
+
+ .quantity-counter {
+  margin-right: 55px; /* زوّد أو قلّل الرقم */
+
+}
+.add-to-cart{
+  margin-left: -35px; /* زوّد أو قلّل الرقم */
+}
+.price{
+margin:15px 0 0 65px;
+}
+.left-box-text{
+  margin-bottom: 60px;
+}
+/* Product Title */
+.left-box .product-title {
+  font-size: 2.5rem; /* حجم العنوان */
+  font-weight: 700; /* سمك الخط */
+  color: #fffacd; /* لون النص */
+  text-align: left; /* محاذاة لليسار */
+}
+
+/* Product Description */
+.left-box .product-description {
+  font-size: 1.5rem; /* حجم الوصف */
+  color: #ffeec9; /* لون النص */
+  line-height: 1.6; /* ارتفاع السطر */
+  text-align: left; /* محاذاة لليسار */
+}
+
+  /* Center Box */
+  .center-box {
+    position: relative;
+    width: 650px;
+    left: 0;
+    top: 0;
+    transform: none;
+    margin: 0 auto; /* توسيط الصورة */
+    margin-top: 300px;
+  }
+
+  .center-box img {
+    width: 100%;
+    height: auto;
+    display: block; /* للتأكد من عرض الصورة */
+  }
+
+  /* إخفاء السهمين بدون حذف */
+.scroll-buttons {
+  display: none;
+}
+
+/* Wrapper */
+.right-box-wrapper {
+  width: 660px;               /* عرض ثابت */
+  overflow: hidden;           /* إخفاء الزيادة */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  height: auto;
+  margin: 60px -100px 0 0;
+}
+
+/* البوكسات تبقى أفقية */
+.right-box {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: max-content;         /* يسمح بالزيادة */
+ 
+}
+
+/* كل بوكس */
+.small-box {
+  width: 170px;
+  height: 100px;
+  background-color: #cbc1bb;
+  border-radius: 12px;
+  box-shadow: 0 4px 13px rgba(0,0,0,0.25);
+  flex-shrink: 0;             /* يمنع التصغير */
+}
+
+/* الخط الأفقي */
+.bottom-line {
+  width: 700px;
+  height: 6px;
+  background-color: #ffd700;
+  margin-top: 25px;
+  margin-left: -170px;
+  transform: scale(1.2);  /* يكبر البوكس شويه */
+ transform: translateY(12px);
+}
+
+}
+@media (max-width: 650px) {
+
+
+  /* ===== Left Box ===== */
+  .left-box .product-title {
+    font-size: 2.1rem;   /* تصغير بسيط */
+  }
+
+  .left-box .product-description {
+    font-size: 1.1rem;   /* تصغير بسيط */
+  }
+
+  .left-box .price {
+    font-size: 1.8rem;     /* تصغير بسيط */
+  }
+
+  .quantity-counter button {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;   /* تصغير بسيط */
+  }
+
+  .quantity-counter span {
+    font-size: 1.2rem;
+    width: 30px;
+  }
+
+  .add-to-cart button {
+    padding: 10px 26px;  /* تصغير بسيط */
+    font-size: 1.1rem;
+  
+  }
+  /* ===== Center Box ===== */
+ .center-box {
+  width: 580px;   /* الحد الأقصى للعرض */
+  margin-left: 10px;
+  margin-top: 250px;
+}
+
+
+
+
+  /* ===== Right Boxes ===== */
+  
+  .right-box-wrapper{
+    margin-left: 150px;
+    margin-top: 90px;
+  }
+  .small-box {
+    width: 140px;        /* تصغير بسيط */
+    height: 90px;        /* تصغير بسيط */
+    
+  }
+
+  .small-box:nth-child(1) {
+    background-size: 55%; /* تصغير الصورة داخل البوكس */
+  }
+
+  /* ===== Bottom Line ===== */
+  .bottom-line {
+    height: 5px;         /* تصغير بسيط */
+    width: 500px;
+  }
+}
+
+@media (max-width: 530px) {
+ /* ===== Left Box Text ===== */
+  .left-box .product-title {
+    font-size: 1.8rem;   /* تصغير العنوان */
+  
+  }
+
+  .left-box .product-description {
+    font-size: 1rem;     /* تصغير الوصف */
+  }
+
+  .left-box .price {
+    font-size: 1.9rem;   /* تصغير السعر */
+  }
+   .quantity-counter {
+  margin-right: 45px; /* زوّد أو قلّل الرقم */
+
+}
+.add-to-cart{
+  margin-left: -30px; /* زوّد أو قلّل الرقم */
+}
+.price{
+margin:15px 0 0 55px;
+}
+  /* ===== Center Box ===== */
+  .center-box {
+    width: 500px;       /* تصغير الصورة */
+    margin-top: 220px;
+  }
+
+  .center-box img {
+    width: 100%;        /* مرونة الصورة */
+    height: auto;       /* الحفاظ على النسبة */
+  }
+
+  /* ===== Right Boxes ===== */
+  .small-box {
+    width: 125px;       /* تصغير البوكسات */
+    height: 90px;       /* تصغير البوكسات */
+  }
+
+  /* ===== Bottom Line ===== */
+  .bottom-line {
+    height: 7px;        /* تصغير الخط */
+    width: 400px;
+    margin-left: -200px;
+  }
+
+  /* ===== Quantity Counter & Buttons ===== */
+  .quantity-counter button {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;   /* تصغير بسيط للأزرار */
+  }
+
+  .quantity-counter span {
+    font-size: 1rem;
+    width: 25px;       /* تصغير الرقم */
+  }
+
+  .add-to-cart button {
+    padding: 8px 20px;  /* تصغير الزر */
+    font-size: 1rem;
+  }
+  .price{
+    margin-top: -15px;
+  }
+.quantity-counter{
+  margin-top: -5px;
+}
+.add-to-cart{
+  margin-top: -5px;
+}
+.right-box-wrapper{
+  margin-left: 100px;
+  
+}
+
+
+}
+@media (max-width: 440px) {
+
+  /* ===== Left Box Text ===== */
+  .left-box .product-title {
+    font-size: 1.6rem;   /* تصغير بسيط جدًا */
+  }
+
+  .left-box .product-description {
+    font-size: 0.95rem;  /* تصغير بسيط جدًا */
+  }
+
+  .left-box .price {
+    font-size: 1.7rem;   /* تصغير بسيط جدًا */
+  }
+
+  /* ===== Quantity Counter & Buttons ===== */
+  .quantity-counter button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;   /* تصغير بسيط جدًا */
+  }
+
+  .quantity-counter span {
+    font-size: 0.9rem;
+    width: 22px;
+  }
+
+  .add-to-cart button {
+    padding: 7px 18px;   /* تصغير بسيط جدًا */
+    font-size: 0.95rem;
+  }
+
+  /* ===== Center Box ===== */
+  .center-box {
+    width: 450px;         /* تصغير بسيط */
+    margin-top: 200px;    /* الحفاظ على المسافة الرأسية */
+    margin-left: -10px;
+  }
+
+  .center-box img {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ===== Right Boxes ===== */
+  .small-box {
+    width: 120px;         /* تصغير بسيط جدًا */
+    height: 80px;
+  }
+
+  .small-box:nth-child(1) {
+    background-size: 50%; /* تصغير بسيط للصورة داخل البوكس */
+  }
+
+  /* ===== Bottom Line ===== */
+  .bottom-line {
+    width: 380px;         /* تصغير بسيط جدًا */
+    height: 6px;
+    margin-left: -190px;  /* ضبط الوسط */
+  }
+ .left-box-content { 
+     height: 90px;
+     margin-top: 14px;
+    }
+
+}
+@media (max-width: 415px){
+ .left-box-content { 
+     
+     margin-top: 25px;
+    }
+}
+@media (max-width: 385px){
+   .left-box-content { 
+     height: 120px;
+    
+    }
+}
+@media (max-width: 392px){
+   .left-box-content { 
+     height: 140px;
+    }
+    .center-box {
+    width: 450px;         /* تصغير بسيط */
+    margin-top: 200px;    /* الحفاظ على المسافة الرأسية */
+    margin-left: -30px;
+  }
+
+  .center-box img {
+    width: 100%;
+    height: auto;
+  }
+}

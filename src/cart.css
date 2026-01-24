@@ -1,0 +1,817 @@
+:root {
+  /* ────────────── درجات الأزرق ────────────── */
+  --color-text: #214d7d;          /* نصوص عامة - أزرق داكن جدا */
+  --color-background: #EAF2FA;    /* خلفية الصفحة - أزرق فاتح جدا */
+  --color-shadow: rgba(13, 27, 42, 0.15); /* ظل - أزرق داكن شفاف */
+  --color-button-bg: #1D4ED8;     /* خلفية الأزرار - أزرق متوسط */
+  --color-button-text: #DCE6F5;   /* نصوص الأزرار - أزرق فاتح على الخلفية */
+  --color-accent: #2563EB;        /* أزرق highlight - مثالي hover أو عناصر بارزة */
+}
+
+:root {
+  --font-text: 'Inter', sans-serif;
+}
+
+
+body.cart-container,html.cart-container {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+  font-family: var(--font-text);
+  overflow-x: hidden; /* منع التمرير العرضي */
+  min-height: 100vh; /* ارتفاع كامل الشاشة */
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+
+/* Scrollbar العام */
+.cart-container::-webkit-scrollbar {
+  width: 10px; /* عرض الشريط */
+}
+
+/* خلفية الشريط */
+.cart-container::-webkit-scrollbar-track {
+  background: var(--color-background); /* متناسق مع خلفية الصفحة */
+  border-radius: 8px;
+}
+
+/* لون المقبض */
+.cart-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-button-bg); /* نفس ألوان الأزرار - متناسق */
+  border-radius: 8px;
+  border: 3px solid var(--color-background); /* يعطي تأثير Padding داخلي */
+}
+
+/* عند hover على المقبض */
+.cart-container::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent); /* تدرج أزرق أفتح عند hover */
+}
+/* ===== الحاوية العامة للصفحة ===== */
+.cart-container  {
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--color-background);
+  overflow-x: hidden; /* منع التمرير العرضي */
+  display: flex;
+  flex-direction: column;     /* ترتيب عمودي */
+  margin: 0;
+  }
+
+/* ===== Header ===== */
+.cart-header {
+  display: flex; /* ترتيب أفقي */
+  justify-content: space-between; /* توزيع العناصر يمين وشمال */
+  align-items: center; /* توسيط رأسي */
+
+}
+
+/* زر Continue Shopping */
+.continue-shopping {
+  display: inline-flex;           /* أيقونة + نص */
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 20px;             /* إحساس زر حقيقي */
+  background: var(--color-button-bg); /* أزرق فاتح جدًا من نفس العائلة */
+  
+  border: 1px solid rgba(29, 78, 216, 0.15); /* إطار ناعم */
+  border-radius: 12px;            /* Rounded عصري */
+
+  color: var(--color-button-text);
+  font-size: 19px;                /* أكبر */
+  font-weight: 600;               /* سمك واضح */
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+  margin-left:15px ;
+}
+
+/* الأيقونة */
+.continue-shopping i {
+  font-size: 17px;
+  transition: transform 0.25s ease;
+}
+
+/* Hover */
+.continue-shopping:hover {
+  background: rgba(29, 78, 216, 0.14); /* يغمق شوية */
+  border-color: rgba(29, 78, 216, 0.3);
+  color: var(--color-accent);
+}
+
+/* حركة خفيفة للأيقونة */
+.continue-shopping:hover i {
+  transform: translateX(-5px);
+}
+
+/* عنوان السلة */
+.cart-title {
+  display: flex; /* أيقونة + نص جنب بعض */
+  align-items: center;
+  gap: 10px; /* مسافة بين الأيقونة والعنوان */
+  margin-right: 50px;
+
+
+}
+
+/* أيقونة السلة */
+.cart-icon {
+  font-size: 28px;
+}
+
+/* العنوان التوضيحي */
+.cart-subtitle {
+  margin-top: 14px;
+  margin-left:30px ;
+  font-size: 20px;          /* أوضح من العادي */
+  font-weight: 700;         /* متوسط – مريح للعين */
+  line-height: 1.8;         /* تنفس للنص */
+  color: var(--color-text);
+  opacity: 0.75;            /* هدوء بصري */
+}
+
+
+
+
+/* ===== محتوى الصفحة ===== */
+.cart-content {
+  display: flex; 
+  gap: 30px; /* مسافة بين العمودين */
+  align-items: flex-start; /* كل عنصر يبدأ من فوق */
+  width: 100%;
+
+}
+
+/* ===== المنتجات ===== */
+.cart-products {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; 
+  margin-left:30px ;
+}
+
+/* كارت المنتج */
+.product-card {
+  display: flex;
+  gap: 20px;
+  background: var(--color-background);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px var(--color-shadow);
+}
+
+/* صورة المنتج */
+.product-image {
+  width: 85px;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Container الأفقي للمنتج */
+.product-info {
+  display: flex;                 /* Flex أفقي */
+  justify-content: space-between;/* Title على اليسار، باقي على اليمين */
+  align-items: center;           /* توسيط رأسي */
+  width: 100%;
+}
+
+/* Right side: السعر + الكمية */
+.product-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;                     /* مسافة بين السعر والكمية */
+}
+
+/* العنوان */
+.product-info h3 {
+  margin-left: 5px;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+/* السعر */
+.product-price {
+  margin: 0;
+  font-weight: 600;           /* أوضح وأقوى */
+  font-size: 24px;            /* أصغر شوية من قبل عشان يتناسق مع الكمية */
+  color: var(--color-text);
+}
+
+/* التحكم في الكمية */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;                  /* مسافة كافية بين الرقم والأزرار */
+}
+
+/* أزرار + و - */
+.quantity-controls button {
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  border: none;
+  width: 38px;                /* متناسب مع الرقم */
+  height: 38px;               /* متناسب مع الرقم */
+  border-radius: 8px;
+  font-size: 20px;            /* واضح بدون مبالغة */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover للأزرار */
+.quantity-controls button:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* الرقم */
+.quantity-controls span {
+  width: 38px;                /* نفس حجم الأزرار تقريبا */
+  text-align: center;
+  font-size: 22px;            /* يتناسق مع الأزرار والسعر */
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* ===== ملخص الطلب ===== */
+.cart-summary {
+  flex: 1;                  /* أقل من المنتجات */
+  background: var(--color-background);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px var(--color-shadow);
+  position: sticky;
+  top: 30px;
+  margin-right: 1%;
+  min-width: 0;             /* 🔥 يمنع الخروج برا */
+}
+
+/* صفوف الملخص */
+.summary-row,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+/* الإجمالي */
+.summary-total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* زر الدفع */
+.checkout-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 20px; /* زيادة Padding من الجوانب للأيقونة */
+  background: var(--color-button-bg);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+
+  display: flex;           /* لترتيب النص والأيقونة أفقيًا */
+  align-items: center;     /* توسيط رأسي */
+  gap: 12px;               /* مسافة بين الأيقونة والنص */
+  justify-content: center; /* توسيط الزر بالكامل */
+  transition: all 0.25s ease;
+}
+
+/* عند Hover */
+.checkout-btn:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* أيقونة الفيزا */
+.checkout-icon {
+  font-size: 20px;
+}
+
+/* رسالة الأمان */
+.secure-text {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+.product-card {
+  position: relative; /* مهم عشان أي عنصر مطلق داخل الكارت يبقى بالنسبة له */
+}
+
+/* أيقونة الإغلاق */
+.product-card .fas.fa-times {
+  position: absolute;
+  top: 5px;     /* من فوق */
+  left: 5px;    /* من الشمال */
+  width: 17px;   /* حجم الدائرة */
+  height: 17px;
+  background: var(--color-button-bg); /* نفس ألوان الأزرار */
+  color: var(--color-button-text);
+  border-radius: 50%;   /* دائرة */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;      /* حجم × داخل الدائرة */
+  cursor: pointer;
+  box-shadow: 0 2px 6px var(--color-shadow);
+  transition: all 0.2s ease;
+  z-index: 10;           /* فوق أي محتوى آخر */
+}
+
+/* Hover */
+.product-card .fas.fa-times:hover {
+  background: var(--color-accent); /* لون أزرق مميز عند المرور */
+  color: #fff;                     /* × أبيض */
+  transform: scale(1.1);           /* يكبر شوية */
+}
+
+/* ===== Responsive: أقل من 1200px ===== */
+@media (max-width: 1200px) {
+
+  /* زر Continue Shopping */
+  .continue-shopping {
+    padding: 10px 16px;        /* أقل شوية */
+    font-size: 17px;           /* أصغر قليلًا */
+  }
+
+  .continue-shopping i {
+    font-size: 15px;           /* أصغر شويه */
+  }
+
+  /* عنوان السلة */
+  .cart-title h2 {
+    font-size: 22px;           /* أصغر قليلا */
+  }
+
+  /* العنوان التوضيحي */
+  .cart-subtitle {
+    font-size: 18px;           /* أصغر شويه */
+    line-height: 1.6;
+  }
+
+  /* صورة المنتج */
+  .product-image {
+    width: 70px;               /* أصغر شويه */
+  }
+
+  /* العنوان */
+  .product-info h3 {
+    font-size: 22px;           /* أصغر شويه */
+  }
+
+  /* السعر */
+  .product-price {
+    font-size: 22px;           /* أصغر شويه */
+  }
+
+  /* الأزرار + و - */
+  .quantity-controls button {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  /* الرقم */
+  .quantity-controls span {
+    width: 34px;
+    font-size: 20px;
+  }
+
+  /* ملخص الطلب */
+  .cart-summary {
+    padding: 20px;             /* أصغر شويه */
+  }
+
+  /* زر الدفع */
+  .checkout-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* الرسالة */
+  .secure-text {
+    font-size: 13px;
+  }
+}
+/* ===== Responsive: أقل من 1024px ===== */
+@media (max-width: 1024px) {
+
+  /* ===== Header ===== */
+  .cart-header {
+    margin-bottom: 10px;
+  }
+
+  /* زر Continue Shopping */
+  .continue-shopping {
+    padding: 8px 14px;
+    gap: 8px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .continue-shopping i {
+    font-size: 13px;
+  }
+
+  /* عنوان السلة */
+  .cart-title {
+    gap: 6px;
+    margin-right:25px ;
+  }
+
+  .cart-title h1 {
+    font-size: 20px;
+  }
+
+  .cart-icon {
+    font-size: 22px;
+  }
+
+  /* Subtitle */
+  .cart-subtitle {
+    font-size: 14px;
+    margin-top: 6px;
+    line-height: 1.4;
+    margin-left: 27px;
+  }
+
+  /* ===== كروت المنتجات ===== */
+  .cart-products {
+    gap: 14px;
+    margin-left:0px ;
+  }
+
+  .product-card {
+    padding: 14px;
+    gap: 14px;
+    border-radius: 10px;
+  }
+
+  /* صورة المنتج */
+  .product-image {
+    width: 60px;
+    border-radius: 8px;
+  }
+
+  /* عنوان المنتج */
+  .product-info h3 {
+    font-size: 18px;
+    margin-left: 0;
+  }
+
+  /* السعر */
+  .product-price {
+    font-size: 18px;
+  }
+
+  /* Right side */
+  .product-right {
+    gap: 12px;
+  }
+
+  /* التحكم في الكمية */
+  .quantity-controls {
+    gap: 8px;
+  }
+
+  .quantity-controls button {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+
+  .quantity-controls span {
+    width: 30px;
+    font-size: 16px;
+  }
+
+  /* محتوى الصفحة */
+  .cart-content {
+    flex-direction: column;   /* عمودي بدل أفقي */
+    gap: 20px;                /* مسافة بسيطة بين الأعمدة */
+     margin-left:0px ;
+  }
+
+ /* ملخص الطلب ثابت أسفل الصفحة */
+.cart-summary {
+  position: fixed;         /* ثابت بالنسبة للشاشة */
+  bottom: 0;               /* أسفل الشاشة */
+  margin: 0;
+  width: 100vw;              /* ياخد 90% من عرض الصفحة */
+   box-sizing: border-box; /* ⭐️ أهم سطر */
+  top: auto;
+  height: fit-content;          /* ⭐️ ده المهم */
+  max-height: 330px;       /* أقصى ارتفاع */
+  overflow-y: auto;        /* scroll إذا زاد المحتوى عن الحد */
+  padding: 16px;           /* مسافة داخلية كافية */
+  border-radius: 65px 65px 0 0;     /* Rounded عصري */
+  box-shadow: 0 6px 14px var(--color-shadow);
+  background: var(--color-background);
+  z-index: 100;            /* فوق كل العناصر */
+}
+/* Scrollbar لـ cart-summary */
+.cart-summary::-webkit-scrollbar {
+  width: 7px; /* عرض الشريط */
+}
+
+/* خلفية الشريط */
+.cart-summary::-webkit-scrollbar-track {
+  background: var(--color-background); /* متناسق مع خلفية الصفحة */
+  border-radius: 8px;
+}
+
+/* لون المقبض */
+.cart-summary::-webkit-scrollbar-thumb {
+  background-color: var(--color-button-bg); /* نفس ألوان الأزرار - متناسق */
+  border-radius: 8px;
+  border: 3px solid var(--color-background); /* يعطي تأثير Padding داخلي */
+}
+
+/* عند hover على المقبض */
+.cart-summary::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent); /* تدرج أزرق أفتح عند hover */
+}
+
+
+  /* كل النصوص */
+  .cart-summary * {
+    font-size: 100%;
+    line-height: 1.4;
+  }
+
+  /* صفوف الملخص */
+  .summary-row,
+  .summary-total {
+    margin: 6px 0;
+  }
+
+  /* الإجمالي */
+  .summary-total {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* زر الدفع */
+  .checkout-btn {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  /* رسالة الأمان */
+  .secure-text {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+  /* المنتجات */
+  .cart-products {
+    position: absolute;         /* ثابت بالنسبة للشاشة */
+    left: 50%;               /* خليه في الوسط أفقيًا */
+    transform: translateX(-50%); /* لضبطه تمامًا في المنتصف */
+    width: 95%;              /* ياخد 90% من عرض الصفحة */   
+  }
+  /* أيقونة الإغلاق */
+.product-card .fas.fa-times {
+  position: absolute;
+  top: 3px;     /* من فوق */
+  left: 3px;    /* من الشمال */
+  width: 13px;   /* حجم الدائرة */
+  height: 13px;
+  font-size: 8px;      /* حجم × داخل الدائرة */
+}
+
+}
+
+/* ===== Responsive: أقل من 615px (موبايل) ===== */
+@media (max-width: 615px) {
+
+  /* ===== Header ===== */
+  .cart-header {
+    padding: 0 8px;
+  }
+
+  /* زر Continue Shopping */
+  .continue-shopping {
+    padding: 6px 10px;
+    gap: 6px;
+    font-size: 12px;
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .continue-shopping i {
+    font-size: 11px;
+  }
+/* عنوان السلة */
+  .cart-title {
+   
+    margin:0 ;
+  }
+  /* عنوان السلة */
+  .cart-title h1 {
+    font-size: 18px;
+  }
+
+  .cart-icon {
+    font-size: 20px;
+  }
+
+  /* Subtitle */
+  .cart-subtitle {
+    font-size: 12px;
+    line-height: 1.3;
+    margin-top: 4px;
+    margin-left: 20px;
+  }
+
+  /* ===== المنتجات ===== */
+  .cart-products {
+    gap: 10px;
+    width: 96%;
+  }
+
+  .product-card {
+    padding: 10px;
+    gap: 10px;
+    border-radius: 8px;
+  }
+
+  /* صورة المنتج */
+  .product-image {
+    width: 50px;
+    border-radius: 6px;
+  }
+
+  /* عنوان المنتج */
+  .product-info h3 {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* Right side */
+  .product-right {
+    gap: 8px;
+  }
+
+  /* السعر */
+  .product-price {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  /* التحكم في الكمية */
+  .quantity-controls {
+    gap: 6px;
+  }
+
+  .quantity-controls button {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+
+  .quantity-controls span {
+    width: 26px;
+    font-size: 14px;
+  }
+
+  /* ===== ملخص الطلب ===== */
+  .cart-summary {
+    padding: 12px;
+    border-radius: 30px 30px 0 0;
+  }
+
+  /* كل النصوص داخل الملخص */
+  .cart-summary * {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  /* صفوف الملخص */
+  .summary-row,
+  .summary-total {
+    margin: 4px 0;
+  }
+
+  /* الإجمالي */
+  .summary-total {
+    font-size: 14px;
+  }
+
+  /* زر الدفع */
+  .checkout-btn {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  /* رسالة الأمان */
+  .secure-text {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+}
+/* ===== Responsive: أقل من 450px (موبايل صغير) ===== */
+@media (max-width: 450px) {
+
+  /* ===== Header ===== */
+  .cart-header {
+    padding: 0 6px;
+  }
+
+  .continue-shopping {
+    padding: 5px 8px;
+    font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .continue-shopping i {
+    font-size: 10px;
+  }
+
+  .cart-title h1 {
+    font-size: 16px;
+  }
+
+  .cart-icon {
+    font-size: 18px;
+  }
+
+  .cart-subtitle {
+    font-size: 11px;
+    line-height: 1.2;
+    margin-left: 16px;
+  }
+
+  /* ===== المنتجات ===== */
+  .cart-products {
+    width: 94%;
+    gap: 8px;
+  }
+
+  .product-card {
+    padding: 8px;
+    gap: 8px;
+    border-radius: 6px;
+  }
+
+  .product-image {
+    width: 44px;
+    border-radius: 5px;
+  }
+
+  .product-info h3 {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .product-price {
+    font-size: 13px;
+  }
+
+  .product-right {
+    gap: 6px;
+  }
+
+  /* ===== الكمية ===== */
+  .quantity-controls {
+    gap: 5px;
+  }
+
+  .quantity-controls button {
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+
+  .quantity-controls span {
+    width: 22px;
+    font-size: 13px;
+  }
+/* أيقونة الإغلاق */
+.product-card .fas.fa-times {
+  position: absolute;
+  top: 2px;     /* من فوق */
+  left: 2px;    /* من الشمال */
+  width: 10px;   /* حجم الدائرة */
+  height: 10px;
+  font-size: 6px;      /* حجم × داخل الدائرة */
+}
+}
+
+@media (max-width: 370px){
+   .quantity{
+
+    width: 50px;
+    text-align: center;
+   }
+}
