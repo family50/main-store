@@ -15,23 +15,23 @@ html.home, body.home {
   align-items: center; /* توسيط أفقي */
   text-align: center; /* محاذاة النصوص */
   overflow-x: hidden; /* منع التمرير العرضي */
-}
-
-/* Scrollbar Styles */
-html.home {
-  overflow-y: auto; /* السماح بالتمرير العمودي */
-  scrollbar-width: thin; /* Firefox: سمك الشريط */
-   scrollbar-color: var(--scroll-thumb) var(--scroll-track); /* Firefox: لون الشريط والخلفية */
+ overflow-y: overlay;
 }
 
 /* Chrome / Edge / Safari */
 html.home::-webkit-scrollbar {
-  width: 5px; /* عرض الشريط */
+  width: 6px; /* سمك الشريط */
 }
 
-html.home::-webkit-scrollbar-button {
-  display: none; /* إخفاء الأسهم */
+html.home::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 10px;
 }
+
+html.home::-webkit-scrollbar-track {
+  background-color: var(--scroll-track);
+}
+
 
 /* ============================= */
 /* Home Container */
@@ -206,7 +206,14 @@ html.home::-webkit-scrollbar-button {
   gap: 15px; /* مسافة بين البوكسات */
   height: 370px; /* ارتفاع محدد */
   overflow: hidden; /* إخفاء أي محتوى زائد */
+
+
+
 }
+
+
+
+
 
 /* Scroll Buttons */
 .scroll-buttons {
@@ -226,6 +233,7 @@ html.home::-webkit-scrollbar-button {
   cursor: pointer; /* مؤشر عند المرور */
   box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* ظل خفيف */
   transition: 0.3s; /* تأثير سلس */
+ 
 
 }
 
@@ -242,7 +250,6 @@ html.home::-webkit-scrollbar-button {
   z-index: 2; /* فوق الخط */
   width: 150px; /* عرض البوكس */
   align-items: center; /* توسيط داخلي */
-
 }
 
 /* Small Boxes */
@@ -332,6 +339,7 @@ html.home::-webkit-scrollbar-button {
   }
 }
 @media (max-width: 1024px) {
+
   .bottom-section {
     flex-direction: column;
     align-items: center;
@@ -357,7 +365,6 @@ html.home::-webkit-scrollbar-button {
     width: 100%;
     margin: 0 auto;    /* لتوسيطه افقياً */
     padding: 20px;
-    
   }
 
  .quantity-counter {
@@ -409,12 +416,12 @@ margin:15px 0 0 65px;
   /* إخفاء السهمين بدون حذف */
 .scroll-buttons {
   display: none;
+
 }
 
 /* Wrapper */
 .right-box-wrapper {
   width: 660px;               /* عرض ثابت */
-  overflow: hidden;           /* إخفاء الزيادة */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -422,7 +429,14 @@ margin:15px 0 0 65px;
   position: relative;
   height: auto;
   margin: 60px -100px 0 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  }
+/* Chrome / Edge / Safari */
+.right-box-wrapper::-webkit-scrollbar {
+  width: 2px; /* سمك الشريط */
 }
+
 
 /* البوكسات تبقى أفقية */
 .right-box {
@@ -430,7 +444,7 @@ margin:15px 0 0 65px;
   flex-direction: row;
   gap: 15px;
   width: max-content;         /* يسمح بالزيادة */
- 
+
 }
 
 /* كل بوكس */
@@ -451,8 +465,9 @@ margin:15px 0 0 65px;
   margin-top: 25px;
   margin-left: -170px;
   transform: scale(1.2);  /* يكبر البوكس شويه */
- transform: translateY(12px);
+  transform: translateY(12px);
 }
+
 
 }
 @media (max-width: 650px) {
@@ -586,17 +601,20 @@ margin:15px 0 0 55px;
   }
   .price{
     margin-top: -15px;
+    margin-left: 25px;
   }
 .quantity-counter{
   margin-top: -5px;
 }
 .add-to-cart{
   margin-top: -5px;
+  
 }
 .right-box-wrapper{
   margin-left: 100px;
-  
+
 }
+
 
 
 }

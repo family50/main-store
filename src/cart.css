@@ -56,6 +56,7 @@ body.cart-container,html.cart-container {
   display: flex;
   flex-direction: column;     /* ترتيب عمودي */
   margin: 0;
+   box-sizing: border-box;
   }
 
 /* ===== Header ===== */
@@ -130,10 +131,6 @@ body.cart-container,html.cart-container {
   color: var(--color-text);
   opacity: 0.75;            /* هدوء بصري */
 }
-
-
-
-
 /* ===== محتوى الصفحة ===== */
 .cart-content {
   display: flex; 
@@ -199,14 +196,12 @@ body.cart-container,html.cart-container {
   font-size: 24px;            /* أصغر شوية من قبل عشان يتناسق مع الكمية */
   color: var(--color-text);
 }
-
 /* التحكم في الكمية */
 .quantity-controls {
   display: flex;
   align-items: center;
   gap: 12px;                  /* مسافة كافية بين الرقم والأزرار */
 }
-
 /* أزرار + و - */
 .quantity-controls button {
   background: var(--color-button-bg);
@@ -220,7 +215,6 @@ body.cart-container,html.cart-container {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
 /* Hover للأزرار */
 .quantity-controls button:hover {
   background: var(--color-accent);
@@ -235,7 +229,6 @@ body.cart-container,html.cart-container {
   font-weight: 500;
   color: var(--color-text);
 }
-
 /* ===== ملخص الطلب ===== */
 .cart-summary {
   flex: 1;                  /* أقل من المنتجات */
@@ -248,7 +241,6 @@ body.cart-container,html.cart-container {
   margin-right: 1%;
   min-width: 0;             /* 🔥 يمنع الخروج برا */
 }
-
 /* صفوف الملخص */
 .summary-row,
 .summary-total {
@@ -256,13 +248,11 @@ body.cart-container,html.cart-container {
   justify-content: space-between;
   margin: 10px 0;
 }
-
 /* الإجمالي */
 .summary-total {
   font-weight: bold;
   font-size: 18px;
 }
-
 /* زر الدفع */
 .checkout-btn {
   width: 100%;
@@ -281,18 +271,15 @@ body.cart-container,html.cart-container {
   justify-content: center; /* توسيط الزر بالكامل */
   transition: all 0.25s ease;
 }
-
 /* عند Hover */
 .checkout-btn:hover {
   background: var(--color-accent);
   color: #fff;
 }
-
 /* أيقونة الفيزا */
 .checkout-icon {
   font-size: 20px;
 }
-
 /* رسالة الأمان */
 .secure-text {
   text-align: center;
@@ -303,7 +290,6 @@ body.cart-container,html.cart-container {
 .product-card {
   position: relative; /* مهم عشان أي عنصر مطلق داخل الكارت يبقى بالنسبة له */
 }
-
 /* أيقونة الإغلاق */
 .product-card .fas.fa-times {
   position: absolute;
@@ -323,12 +309,43 @@ body.cart-container,html.cart-container {
   transition: all 0.2s ease;
   z-index: 10;           /* فوق أي محتوى آخر */
 }
-
 /* Hover */
 .product-card .fas.fa-times:hover {
   background: var(--color-accent); /* لون أزرق مميز عند المرور */
   color: #fff;                     /* × أبيض */
   transform: scale(1.1);           /* يكبر شوية */
+}
+.empty-cart {
+  position: relative;    /* ضروري عشان الفيديو يكون خلف النص */
+  width: 450px;
+  height: 450px;         /* ارتفاع الـ div، ممكن تغييره */
+  overflow: hidden;      /* منع أي تجاوز للفيديو */
+  background: var(--color-background);
+  margin-left: -30px;
+}
+
+.empty-cart-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+ 
+}
+/* تنسيقات الأيقونة */
+.checkout-icon {
+  font-size: 1.8rem;           /* حجم أيقونة أكبر شوي */
+  color: var(--color-accent);  /* لون أيقونة جذاب */
+  
+}
+.checkout-text {
+  font-size: 1.6rem;           /* حجم الخط */
+  font-weight: 700;            /* سمك الخط */
+  color: var(--color-text);    /* نفس لون النص */
+  display: flex;               /* تجعل النص والأيقونة في صف واحد */
+  align-items: center;         /* محاذاة رأسية للأيقونة مع النص */
+  gap: 10px;                   /* مسافة بين الأيقونة والنص */
 }
 
 /* ===== Responsive: أقل من 1200px ===== */
@@ -401,7 +418,6 @@ body.cart-container,html.cart-container {
 }
 /* ===== Responsive: أقل من 1024px ===== */
 @media (max-width: 1024px) {
-
   /* ===== Header ===== */
   .cart-header {
     margin-bottom: 10px;
@@ -577,18 +593,19 @@ body.cart-container,html.cart-container {
     transform: translateX(-50%); /* لضبطه تمامًا في المنتصف */
     width: 95%;              /* ياخد 90% من عرض الصفحة */   
   }
-  /* أيقونة الإغلاق */
-.product-card .fas.fa-times {
-  position: absolute;
-  top: 3px;     /* من فوق */
-  left: 3px;    /* من الشمال */
-  width: 13px;   /* حجم الدائرة */
-  height: 13px;
-  font-size: 8px;      /* حجم × داخل الدائرة */
+  .empty-cart {
+  display: none;
 }
 
 }
+@media (max-width: 850px) {
+  .empty-cart {
+  margin-left: -170px;
+}
 
+
+
+}
 /* ===== Responsive: أقل من 615px (موبايل) ===== */
 @media (max-width: 615px) {
 
@@ -718,6 +735,8 @@ body.cart-container,html.cart-container {
     font-size: 12px;
     margin-top: 6px;
   }
+ 
+
 }
 /* ===== Responsive: أقل من 450px (موبايل صغير) ===== */
 @media (max-width: 450px) {
@@ -806,12 +825,1720 @@ body.cart-container,html.cart-container {
   height: 10px;
   font-size: 6px;      /* حجم × داخل الدائرة */
 }
+  .empty-cart {
+
+  margin-left: -280px;
+
 }
 
+
+}
 @media (max-width: 370px){
    .quantity{
-
     width: 50px;
     text-align: center;
-   }
+   } 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== ملىء البينات ===== */
+.checkout-box-wrapper{
+ position: fixed;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 65%;
+  z-index: 2000;
+  
+  
+}
+.checkout-box {
+  width: 100%;
+  min-height: 420px;
+  padding: 50px 120px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 26px;
+  box-shadow: 0 30px 70px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* زر الإغلاق */
+.checkout-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+/* المحتوى */
+.checkout-content {
+  width: 100%;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+/* الجزء الشمال */
+.checkout-left {
+  width: 45%;
+  flex-shrink: 0;
+  margin-left: -10px; 
+}
+
+.checkout-left img {
+  width: 100%;
+  max-width: 550px;   /* 👈 ثبات حجم أقصى للصورة */
+  min-width: 400px;   /* 👈 أقل حجم مسموح */
+  border-radius: 22px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* الجزء اليمين */
+.checkout-right {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: left;
+}
+
+/* الجملة التحفيزية */
+.checkout-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+/* inputs */
+.checkout-right input {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--color-accent);
+  outline: none;
+  font-size: 15px;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: 0.3s;
+}
+
+.checkout-right input:focus {
+  border-color: var(--color-button-bg);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.checkout-right input::placeholder {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+
+/* زر الدفع */
+.confirm-payment {
+  margin-top: 14px;
+  padding: 12px 26px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+
+
+  width: fit-content; /* مش ياخد العرض كله */
+  
+  background: linear-gradient(135deg, var(--color-button-bg), var(--color-accent));
+  color: var(--color-button-text);
+
+  box-shadow: 0 10px 25px rgba(29, 78, 216, 0.35);
+  transition: 0.3s;
+
+}
+
+.confirm-payment:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(29, 78, 216, 0.45);
+}
+.confirm-payment i {
+  font-size: 1rem;                     /* حجم الأيقونة */
+  vertical-align: middle;              /* توسيط الأيقونة مع النص */
+  transition: transform 0.3s ease;     /* حركة خفيفة عند hover */
+
+}
+
+.confirm-payment:hover i {
+  transform: translateY(-2px) scale(1.1);  /* حركة الأيقونة عند hover */
+}
+
+
+.input-wrapper {
+  position: relative;           /* للسماح بوضع الأيقونة داخل الحقل */
+  width: 100%;
+}
+
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 14px; /* مسافة من اليمين للأيقونة */
+  border-radius: 10px;
+  border: 1px solid ;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--color-button-bg);
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 12px;                  /* أيقونة على اليمين */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;              /* حجم الأيقونة */
+  color: var(--color-button-bg);
+  pointer-events: none;         /* منع الأيقونة من التفاعل مع الماوس */
+}
+.input-wrapper input {
+  padding-left: 36px;  /* مسافة من اليسار للأيقونة */
+}
+.optional-text {
+  font-size: 12px;
+  color: #999;
+  display: block;
+  margin-bottom: 4px;
+
+}
+#fa-phone{
+  margin-top: 10px;
+}
+
+@media (max-width: 1280px){              /* لما عرض الشاشة يكون 1280px أو أقل */
+  .checkout-box {                       /* تصغير عرض البوكس الرئيسي شوية */
+    min-height: 380px;                   /* تقليل الطول الأدنى للبوكس */
+    padding: 40px 90px;                 /* تقليل المسافات الداخلية */
+  }
+
+  
+
+  .checkout-left img {
+    max-width: 480px;                    /* تصغير أقصى عرض للصورة */
+    min-width: 350px;                    /* تقليل أقل عرض مسموح للصورة */
+  }
+
+  .checkout-text {
+    font-size: 24px;                     /* تصغير حجم الجملة التحفيزية */
+  }
+
+  .checkout-right input {
+    padding: 10px 14px;                  /* تصغير padding للحقول */
+    font-size: 14px;                     /* تصغير حجم الخط داخل الحقول */
+  }
+
+  .confirm-payment {
+    padding: 10px 22px;                  /* تصغير padding للزر */
+    font-size: 14px;                     /* تصغير حجم الخط داخل الزر */
+  }
+  .input-wrapper input {
+  padding-left: 36px;  /* مسافة من اليسار للأيقونة */
+ 
+}
+}
+@media (max-width: 1110px) {            /* لما عرض الشاشة يكون 1110px أو أقل */
+
+  .checkout-right {
+     margin-left: 10px;                 
+    gap: 12px;                          /* تقليل المسافة بين العناصر شوية */
+  }
+
+  .checkout-text {
+    font-size: 22px;                     /* تصغير حجم الجملة التحفيزية شوية */
+  }
+
+  .checkout-right input {
+    padding: 10px 12px;                  /* تقليل المسافات الداخلية للحقول */
+    font-size: 13px;                     /* تصغير حجم الخط داخل الحقول */
+  }
+
+  .confirm-payment {
+    padding: 10px 20px;                  /* تقليل حجم زر الدفع */
+    font-size: 13px;                     /* تصغير الخط داخل الزر */
+  }
+  .input-wrapper input {
+  padding-left: 36px;  /* مسافة من اليسار للأيقونة */
+ 
+}
+}
+
+@media (max-width: 1024px) {                 /* لما عرض الشاشة يكون 1024px أو أقل */
+/* ===== ملىء البينات ===== */
+.checkout-box-wrapper{
+ position: fixed;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  z-index: 2000;
+}
+
+  /* ===== البوكس الرئيسي ===== */
+  .checkout-box {
+    padding: 40px 100px;                       /* المسافات الداخلية */                  /* تقليل المسافات الداخلية */
+    min-height: auto;                          /* ارتفاع تلقائي حسب المحتوى */
+    display: flex;                             /* flex عمودي */
+    flex-direction: column;                    /* ترتيب عمودي للعناصر */
+    align-items: center;                        /* توسيط العناصر أفقيًا */
+    text-align: center;                         /* توسيط النصوص */
+    gap: 15px;                                 /* مسافة بين الأقسام */
+  }
+  
+/* صورة الخلفية نصف شفافة */
+.checkout-box::before {
+  pointer-events: none; /* مهم جدًا */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/main-store/25T22-54-18.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.06;        /* <-- هنا شفافية الصورة */
+    border-radius: 22px;  /* نفس الـ border-radius للبوكس */
+    z-index: 0;           /* تحت كل المحتوى */
+}
+
+  /* زر الإغلاق */
+  .checkout-close {
+    top: 12px;                                 /* مسافة من الأعلى */
+    left: 12px;                                /* مسافة من اليسار */
+    font-size: 18px;                             /* حجم الخط */
+  }
+
+  /* المحتوى */
+  .checkout-content {
+    flex-direction: column;                     /* العمود الأيسر فوق واليمين تحت */
+    gap: 12px;                                  /* تقليل المسافة بين الأقسام */
+    width: 100%;                                /* عرض كامل البوكس */
+  }
+
+  /* الجزء الشمال (الصورة) مخفية */
+  .checkout-left {
+    display: none;                              /* حذف الصورة */
+  }
+
+  /* الجزء اليمين */
+  .checkout-right {
+    width: 100%;                                /* العرض كامل العمود */
+    display: flex;
+    flex-direction: column;                     /* ترتيب عمودي */
+    gap: 15px;                                  /* تقليل المسافة بين الحقول */
+    text-align: center;                         /* العنوان في النص */
+  }
+
+  /* الجملة التحفيزية */
+  .checkout-text {
+    font-size: 1.8rem;                           /* تصغير حجم العنوان */
+    font-weight: 700;                             /* نفس الوزن */
+    margin-bottom: 8px;                           /* مسافة تحت العنوان */
+   margin-left: -15px;
+  }
+
+  /* الحقول */
+  .checkout-right input {
+    width: 100%;                                /* عرض كامل العمود */
+    padding: 10px 12px;                           /* تقليل padding */
+    border-radius: 10px;                           /* الانحناء */
+    font-size: 0.95rem;                            /* تصغير حجم الخط */
+    margin-left: -15px;
+  }
+
+  /* زر الدفع */
+  .confirm-payment {
+    padding: 10px 18px;                           /* تقليل padding */
+    border-radius: 12px;                           /* الانحناء */
+    font-size: 0.95rem;                            /* حجم الخط أصغر */
+    width: fit-content;                            /* على قدر المحتوى */
+    border: none;                                  /* إزالة الحدود */
+    cursor: pointer;                               /* شكل المؤشر */
+    transition: 0.3s ease;                         /* تأثير الانتقال */
+    align-self: flex-start;                        /* وضع الزر على يسار المحتوى */
+    margin-left: -15px;
+  }
+
+.input-wrapper i {
+  
+  left: 3px;                  /* أيقونة على اليمين */
+
+}
+
+  .input-wrapper input {
+  padding-left: 36px;  /* مسافة من اليسار للأيقونة */
+ 
+}
+.optional-text {
+  font-size: 12px;
+  color: #999;
+  display: block;
+  margin-bottom: 4px;
+  margin-left: -89%;
+}
+}
+@media (max-width: 840px) {
+  /* ===== ملىء البينات ===== */
+.checkout-box-wrapper{
+ 
+  left: 35%;
+
+  
+}
+
+  
+}
+@media (max-width: 615px) {
+
+  .checkout-box-wrapper{
+  left: 40%;
+}
+  .checkout-box {
+                /* ياخد معظم الشاشة */
+    padding: 25px 50px;         /* تقليل المسافات الداخلية */
+    border-radius: 18px;
+  }
+
+  .checkout-text {
+    font-size: 1.4rem;          /* تصغير العنوان */
+    margin-bottom: 6px;
+  }
+
+  .checkout-right {
+    gap: 10px;                  /* تقليل المسافات بين الحقول */
+  }
+
+  .checkout-right input {
+    font-size: 0.85rem;         /* تصغير خط الإدخال */
+    padding: 8px 10px 8px 34px; /* تقليل الـ padding مع الحفاظ على مكان الأيقونة */
+  }
+
+  .input-wrapper i {
+    font-size: 0.85rem;         /* تصغير حجم الأيقونة */
+    left: 8px;                  /* تثبيت مكانها */
+  }
+
+  .confirm-payment {
+    padding: 8px 16px;          /* تصغير الزر */
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+
+  .checkout-close {
+    font-size: 16px;            /* تصغير زر الإغلاق */
+    top: 8px;
+    left: 8px;
+  }
+}
+
+@media (max-width: 450px) {
+ .checkout-box-wrapper{
+  left: 42%;
+}
+  .checkout-box {
+    padding: 18px 30px;      /* أصغر */
+    border-radius: 14px;
+  }
+
+  .checkout-text {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+  }
+
+  .checkout-right {
+    gap: 8px;
+  }
+
+  .checkout-right input {
+    font-size: 0.75rem;
+    padding: 7px 8px 7px 30px;
+  }
+
+  .input-wrapper i {
+    font-size: 0.75rem;
+    left: 6px;
+  }
+
+  .confirm-payment {
+    padding: 7px 14px;
+    font-size: 0.75rem;
+    border-radius: 8px;
+    margin-left: 2%;
+  }
+
+  .checkout-close {
+    font-size: 14px;
+    top: 6px;
+    left: 6px;
+     
+  }
+}
+
+
+
+
+/*لا يوجد منتجات*/
+.modal-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* يبقى ثابت */
+  z-index: 3000;
+}
+
+/* البوكس نفسه */
+.checkout-box-lose {
+  width: 70%;
+  padding: 40px 50px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  transform: none; /* مهم جداً */
+}
+
+
+/* زر الإغلاق */
+.checkout-box-lose .checkout-close {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* المحتوى */
+.empty-checkout-lose {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* الصورة */
+.empty-checkout-lose img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 18px;
+  padding: 10px;
+  background: #fff;
+
+  border: 2px solid rgba(29, 78, 216, 0.2);
+  box-shadow: 0 15px 35px rgba(29, 78, 216, 0.25);
+}
+
+/* النص */
+.empty-text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  line-height: 1.5;
+  max-width: 400px;
+}
+
+
+@media (max-width: 550px) {
+
+  /* البوكس نفسه */
+  .checkout-box-lose {
+    width: 90%;           /* تصغير العرض */
+    padding: 20px 20px;   /* تقليل الحشو */
+    border-radius: 16px;  /* تقليل الانحناءات */
+  }
+
+  /* المحتوى */
+  .empty-checkout-lose {
+    gap: 12px;            /* تقليل المسافة بين العناصر */
+  }
+
+  /* الصورة */
+  .empty-checkout-lose img {
+    max-width: 200px;     /* تصغير الصورة */
+    padding: 6px;         /* تقليل الحشو حولها */
+    border-radius: 12px;  /* تصغير الانحناء */
+  }
+
+  /* النص */
+  .empty-text {
+    font-size: 1rem;      /* تصغير الخط */
+    max-width: 250px;     /* تصغير الحد الأقصى للعرض */
+    line-height: 1.4;     /* تقليل ارتفاع السطر */
+  }
+
+  /* زر الإغلاق */
+  .checkout-box-lose .checkout-close {
+    font-size: 16px;      /* تصغير حجم زر الإغلاق */
+    top: 8px;
+    left: 8px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/*صفحه الدفع*/
+.payment-page-wrapper{
+   position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* يبقى ثابت */
+  z-index: 3000;
+  width: 88%;
+  height: auto;
+  z-index: 999;
+  
+}
+.payment-page{
+  
+  width: 100%;
+  height: auto;
+   /* خلفية متناسقة مع ألوان التموج */
+  background: radial-gradient(
+    circle at center,
+    rgba(95, 175, 224, 0.2) 0%,   /* #5fafe0 */
+    rgba(91, 179, 229, 0.15) 25%, /* #5bb3e5 */
+    rgba(183, 219, 243, 0.1) 50%, /* #b7dbf3 */
+    rgba(213, 235, 249, 0.05) 75%, /* #d5ebf9 */
+    rgba(255, 255, 255, 0) 100%   /* نهاية سلسة */
+  ), 
+  #EAF2FA;
+  padding: 8px; /* مسافة داخلية من كل الجوانب */
+  border-radius: 16px; /* حواف مستديرة */
+  box-shadow: 0 12px 35px #0b1930; /* شادو خفيف */
+  z-index: 999; /* فوق كل العناصر */
+  overflow: hidden; /* أي محتوى زائد يختفي */
+  
+}
+/* زر العودة للصفحة السابقة */
+.payment-page .back-to-checkout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 25px;
+
+  /* صورة الزر مع تغطية كاملة */
+  background-image: url('/upscalemedia-transformed.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #1b4c9a; /* أزرق متناسق */
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid #1b4c9a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15);
+}
+.payment-page .back-to-checkout i {
+  font-size: 1.1rem;
+  transition: transform 0.35s ease;
+}
+
+/* Hover أهدأ */
+.payment-page .back-to-checkout:hover {
+  background: linear-gradient(135deg, #1b4c9a, #5fafe0); /* تدرج هادئ متناسق */
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.payment-page .back-to-checkout:hover i {
+  transform: translateX(-1px);
+}
+/* المحتوى الداخلي */
+.payment-content {
+  width: 78%;       /* 80% من عرض البوكس */
+  margin: 0 auto;   /* يسيب 10% يمين و 10% شمال تلقائياً */
+  margin-top: 15px; /* مسافة من أعلى البوكس */
+}
+/* البوكس الداخلي */
+.payment-content .payment-box {
+  display: flex;
+  justify-content: space-between; /* يمين ويسار */
+  align-items: center;
+  padding: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.2); /* بوردر رفيع أزرق فاتح */
+  border-radius: 16px;
+  background-image: url('/upscalemedia-transformed.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); /* ظل خفيف */
+}
+/* اليسار */
+.payment-content .payment-left h2 {
+  font-size: 1.55rem; /* حجم كبير */
+  color: #1b4c9a;    /* أزرق متناسق */
+  margin: 0;
+}
+/* اليمين */
+.payment-content .payment-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  color: #1b4c9a;
+}
+.payment-content .payment-right .total-amount {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+/* القسم الأسفل لكل عنصر */
+.payment-content-bottom {
+  display: flex; /* العناصر بجانب بعض */
+  justify-content: space-between; /* توزيع يمين ويسار */
+  align-items: center;
+  width: 75%; /* ياخد 80% من عرض البوكس */
+  margin: 20px auto 0; /* توسيط القسم أسفل البوكس */
+  padding-top: 15px;
+
+}
+/* النص على الشمال */
+.payment-content-left  {
+  width: 50%;
+}
+/* النص على الشمال */
+.payment-content-left h3 {
+  font-size: 2.1rem; /* خط عملاق */
+  font-weight: 800;
+  color: #1b4c9a; /* أزرق متناسق مع الصفحة */
+  margin: 0;
+  line-height: 1.2;
+  text-transform: uppercase; /* اختياري لجعل النص بارز */
+  width: 520px;
+}
+
+/* الجزء على اليمين */
+.payment-content-right {
+  flex: 1; /* ياخد كل المساحة الباقية */
+  display: flex;
+  justify-content: flex-end; /* يحشر المحتوى لليمين */
+}
+/* النص الصغير تحت العنوان */
+.payment-content-left .payment-subtitle {
+  font-size: 0.95rem; /* حجم صغير نسبيًا */
+  color: #1b4c9a; /* رمادي فاتح */
+  margin-top: 8px; /* مسافة بين العنوان والخط الصغير */
+  line-height: 1.4;
+  max-width: 90%; /* يضمن أن النص لا يمتد أكثر من اللازم */
+}
+/* Container الأزرار */
+.Payment-methods {
+  display: flex;
+  flex-direction: column; /* ترتيب عمودي */
+  gap: 8px; /* مسافة بين كل زر واللي بعده */
+  margin-top: 22px; /* مسافة عن النص العلوي */
+  width: 90%; /* ياخد كامل المساحة المتاحة داخل payment-content-left */
+}
+
+/* كل زر */
+.Payment-methods .payment-btn {
+  display: flex;
+  justify-content: space-between; /* اليسار واليمين */
+  align-items: center;
+  width: 100%;
+  padding: 13px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1b4c9a;
+   border: 1px solid rgba(5, 15, 43, 0.4); /* أهدى من لون صريح */
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+   transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+
+ box-shadow: 
+    0 2px 6px rgba(29, 78, 216, 0.08),
+    inset 0 0 0 rgba(255,255,255,0);
+
+  gap: 10px;
+}
+
+/* زر الوسط بالصورة */
+.Payment-methods .payment-btn.middle {
+   background-image: url('/upscalemedia-transformed.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+   color: #1b4c9a;
+  border: 1px solid rgba(18, 35, 82, 0.5);
+}
+
+/* اليسار */
+.payment-btn .btn-left span {
+    font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* اليمين */
+.payment-btn .btn-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* صور داخل الزر */
+.payment-btn .btn-right .btn-img {
+  width: 44px;
+  height: auto;
+  object-fit: cover;
+  
+}
+/* صور داخل الكارد */
+#PayPal {
+  width: 90px;
+  height: auto;
+  object-fit: cover;
+}
+#amrican{
+   width: 40px;
+}
+#Mada{
+   width: 80px;
+
+}
+#Google , #Apple{
+  width:60px;
+
+  
+}
+
+
+
+/* صور داخل الزر */
+#visa-right {
+  width: 30px; /* الحجم اللي تحبه */
+  height: auto;
+}
+
+#master-right {
+  width: 28px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+
+#amrican-right {
+  width: 32px;
+  height: auto;
+}
+#Mada-right {
+  width: 35px;
+  height: auto;
+}
+/* Hover */
+/* Hover فقط للأزرار اللي مش middle */
+.payment-btn:not(.middle):hover {
+  transform: translateY(-2px);
+  border-color: rgba(27, 76, 154, 0.7);
+  box-shadow: 
+    0 6px 14px rgba(37, 99, 235, 0.18),
+    inset 0 0 0 rgba(255,255,255,0);
+}
+.confirm-payment-btn {
+  margin-top: 22px;
+  width: 60%;
+  padding: 14px 18px;
+  border-radius: 22px;
+  border: none;
+ background-image: url('/upscalemedia-transformed.jpeg');
+  color: #1b4c9a;
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  transition: all 0.3s ease;
+}
+/* Hover */
+.confirm-payment-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.45);
+}
+/* Active */
+.confirm-payment-btn:active {
+  transform: scale(0.97);
+}
+/* الأيقونة */
+.confirm-payment-btn i {
+  font-size: 1.1rem;
+}
+.payment-footer-brand {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center; /* في النص */
+  align-items: center;
+  gap: 8px;
+  opacity: 0.7; /* هادي */
+}
+/* صورة اللوجو */
+.payment-footer-brand img {
+  width: 55px;  /* حجم صغير */
+  height: auto;
+  object-fit: contain;
+}
+/* النص */
+.payment-footer-brand span {
+  font-size: 0.75rem; /* خط صغير */
+  color: #000000; /* اللون اللي اخترته */
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+.payment-content-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0;              /* مهم جدًا */
+ overflow: hidden;        /* يمنع أي خروج */
+
+}
+
+.payment-side-img {
+  height: 100%;
+  width: 100%;   /* حماية من الكسر */
+   object-fit: cover;       /* تملى البوكس بدون فراغ */
+  display: block;
+ }
+.payment-content-right {
+  position: relative;   /* مهم علشان نثبت الصور الصغيرة فوقها */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  
+}
+
+/* الصورة الكبيرة */
+.payment-side-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+
+}
+/* الكونتينر بتاع الصور الصغيرة */
+.payment-small-images {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  gap: 0;
+  z-index: 2;
+
+}
+/* كل صورة صغيرة */
+.payment-small-images img {
+  width: 44px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  padding: 3px;
+}
+/* ادخال بينات الكارد*/
+.payment-card-form {
+  position: absolute; /* فوق الكارد */
+  bottom: 20px;       /* مسافة من تحت الكارد */
+  left: 20px;         /* مسافة من اليسار */
+  width: 60%; /* 20px يمين و 20px شمال */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 5;
+}
+/* الصف الأول: Full Name و Card Number عموديا فوق بعض */
+.payment-card-form .input-row:first-child {
+  flex-direction: column; /* عمودياً */
+  width: 100%;            /* ياخد 40% من عرض الصورة كما حددنا للكارد */
+}
+.payment-card-form .input-row:first-child .input-group {
+  width: 100%;            /* كل مدخل ياخد كامل العرض */
+}
+/* الصف الثاني: Expire Date و CVC أفقي جنب بعض */
+.payment-card-form .input-row:last-child {
+  flex-direction: row;    /* أفقي */
+  gap: 10px;              /* مسافة بينهما */
+  width: 100%;            /* 100% من عرض الكارد */
+}
+.payment-card-form .input-row:last-child .input-group {
+  width: 50%;            /* كل واحد ياخد نصف الكارد (يعني 20% من الصورة لأنه الكارد نفسه 40%) */
+}
+.input-row {
+  display: flex;
+  gap: 20px; /* مسافة بين المدخلين جنب بعض */
+}
+.input-group {
+  flex: 1; /* كل input ياخد نفس المساحة */
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  font-size: 0.75rem;
+  color: #1b4c9a; /* نص خفيف على الكارد */
+  margin-bottom: 5px;
+}
+.input-group input {
+  background: transparent; /* بدون خلفية */
+  border: none;
+  border-bottom: 2px solid #1b4c9a; /* الخط تحت فقط */
+  padding: 8px 5px;
+  color: #1b4c9a; /* نص أبيض على الكارد */
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+.input-group input::placeholder {
+  color: #1b4c9a; /* placeholder شفاف */
+}
+.input-group input:focus {
+  border-bottom-color: #82bae0; /* يتلون لما المستخدم يكتب */
+}
+/* تصغير كل محتوى صفحة الدفع عند 1170px أو أقل */
+@media (max-width: 1170px) {
+  
+  .payment-page {
+  
+    padding: 6px; /* تقليل الحواف الداخلية */
+  }
+
+  
+
+  .payment-box {
+    padding: 12px; /* تصغير البادينج داخل الكارد */
+  }
+
+  /* نصوص وأحجام العناوين */
+  .payment-content-left h3 {
+    font-size: 1.8rem; /* أصغر من السابق */
+    width: 400px;      /* تقليل العرض للحفاظ على التناسب */
+  }
+
+  .payment-content-left .payment-subtitle {
+    font-size: 0.85rem; 
+  }
+
+  /* أزرار الدفع */
+  .Payment-methods .payment-btn {
+    font-size: 1rem;
+    padding: 9px 10px;
+  }
+#payment-btn-3{
+  padding: 13px; 
+}
+
+
+#amrican{
+   width: 30px;
+}
+#Mada{
+   width: 70px;
+}
+
+#master{
+  width: 30px;
+}
+#visa{
+   width: 33px;
+}
+  /* صور داخل الزر */
+#visa-right {
+  width: 26px; /* الحجم اللي تحبه */
+  height: auto;
+}
+
+#master-right {
+  width: 24px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+
+#amrican-right {
+  width: 22px;
+  height: auto;
+}
+
+#Mada-right {
+  width: 32px;
+  height: auto;
+}
+#PayPal{
+   width: 82px;
+  height: auto;
+}
+
+#Google , #Apple{
+  width:50px;
+}
+
+
+
+  /* الفورم الخاص بالكارد */
+  .payment-card-form {
+    width: 50%; /* تصغير الكارد نفسه */
+    bottom: 16px;
+    left: 16px;
+    gap: 10px;
+  }
+
+  .payment-card-form .input-row:first-child {
+    width: 100%;
+  }
+
+  .payment-card-form .input-row:first-child .input-group {
+    width: 100%;
+  }
+
+  .payment-card-form .input-row:last-child .input-group {
+    width: 50%;
+  }
+
+  .input-group label {
+    font-size: 0.65rem;
+  }
+
+  .input-group input {
+    padding: 6px 4px;
+    font-size: 0.8rem;
+  }
+
+  /* زر التأكيد */
+  .confirm-payment-btn {
+    width: 55%;
+    font-size: 0.8rem;
+    padding: 10px 12px;
+  }
+  .payment-footer-brand{
+    margin-top: 25px;
+  }
+}
+
+
+
+/*صفحه الدفع لى الموبايل*/
+.payment-page-mopil {
+  position: fixed;       /* تثبيت على الشاشة */
+  top: 0;
+  left: 0;
+  width: 100vw;           /* كامل العرض */
+  height: 100%;          /* كامل الطول */
+   /* خلفية متناسقة مع ألوان التموج */
+  background: radial-gradient(
+    circle at center,
+    rgba(95, 175, 224, 0.2) 0%,   /* #5fafe0 */
+    rgba(91, 179, 229, 0.15) 25%, /* #5bb3e5 */
+    rgba(183, 219, 243, 0.1) 50%, /* #b7dbf3 */
+    rgba(213, 235, 249, 0.05) 75%, /* #d5ebf9 */
+    rgba(255, 255, 255, 0) 100%   /* نهاية سلسة */
+  ), 
+  #EAF2FA;   /* لون خلفية موبايل */
+  display: flex;          /* ترتيب العناصر داخل الصفحة */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;         /* فوق كل العناصر */
+  overflow-x: hidden;      /* أي محتوى زائد يختفي */
+  padding: 0;            /* إزالة أي padding افتراضي */
+}
+/* الجزء اللي عليه الصورة الخلفية */
+.payment-bg-section {
+  position: absolute;        /* عشان تثبت من فوق */
+  top: 0;                    /* تبدأ من أول الصفحة */
+  left: 0;
+  width: 100%;
+  height: 290px;               /* نص طول الـ div */
+  background: url('/upscalemedia-transformed.jpeg') right center / cover no-repeat;
+  border-bottom-left-radius: 150px;
+  border-bottom-right-radius: 150px;
+
+  /* شادو خفيف بطريقة صحيحة */
+  box-shadow: 0 15px 30px rgba(91,179,229,0.4), 0 25px 50px rgba(95,175,224,0.3);
+
+  z-index: -1;               /* تحت كل العناصر */
+}
+/*زر الخروج*/
+.back-to-checkout-mopil {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #5bb3e5, #5fafe0);
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(91, 179, 229, 0.6);
+  transition: all 0.25s ease;
+}
+.back-to-checkout-mopil i {
+  font-size: 14px;
+}
+/* Hover */
+.back-to-checkout-mopil:hover {
+  transform: translateX(-3px);
+  box-shadow: 0 10px 22px rgba(91, 179, 229, 0.6);
+  background: linear-gradient(135deg, #4aa6dc, #3d9bd6);
+}
+/* Active */
+.back-to-checkout-mopil:active {
+  transform: scale(0.96);
+}
+/* بوكس صوره الكارد*/
+.payment-image-wrapper-mopil {
+  position: absolute;
+  top: 40%;                 /* تحت زرار الباك */
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;               /* خليها حسب الصورة */
+  max-width: 70%;            /* صغر الحجم شوية */
+  pointer-events: none;      /* عشان الزر يفضل شغال */
+  z-index: 1;                /* فوق الخلفية */
+  filter: drop-shadow(0px 25px 35px rgba(27,76,154,0.6)); /* شادو اتجاه كأنها طايرة */
+} 
+/* صوره الكارد */
+.payment-side-img-mopil {
+  width: 100%;          /* تصغيرها */  
+  filter: drop-shadow(0px 25px 35px rgba(91, 179, 229, 0.6));
+  animation: floatCard 4s ease-in-out infinite;
+}
+.payment-small-images-mopil {
+  position: absolute;
+  top: 6%;
+  left: 8%;
+  display: flex;
+  gap: 0;
+  z-index: 2;
+}
+/* كل صورة صغيرة */
+.payment-small-images-mopil img {
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
+  padding: 3px;
+}
+#visa-mopil {
+  width: 60px; /* الحجم اللي تحبه */
+  height: auto;
+}
+#master-mopil {
+  width: 58px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+#amrican-mopil {
+  width: 42px;
+  height: auto;
+}
+#Mada-mopil {
+  width: 75px;
+  height: auto;
+}
+.payment-box {
+  position: relative;
+}
+/* الحاوية اللي شايلة الاتنين */
+.payment-top-mopil,
+.payment-bottom-mopil {
+  position: absolute;
+  left: 6%;      /* بدل right */
+  bottom: 8%;
+  display: flex;
+  align-items: center;   /* نفس الخط */
+  gap: 6px;             /* مسافة بين Total والسعر */
+  color: #1b4c9a;
+  z-index: 1;
+}
+/* نخلي Hello Youssef فوقهم */
+.payment-top-mopil {
+  bottom: 14%;   /* فوق التوتل */
+}
+/* ستايل كلمة Total */
+.payment-label {
+  font-size: 16px;       /* أكبر */
+  font-weight: 600;
+  opacity: 0.9;
+}
+/* ستايل السعر */
+.total-amount {
+  font-size: 26px;       /* أكبر وواضح */
+  font-weight: 800;
+}
+/* خيارات الدفع */
+.payment-content-mopil{
+  width: 100%;
+  display: flex;
+  flex-direction: column;   /* 👈 أهم سطر */
+  align-items: center;
+  margin-top: 550px;
+
+}
+
+.payment-methods-mopil{
+  margin-top: 20%;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.payment-method-mopil{
+  width: 30%;
+  height: 65px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 16px rgba(27,76,154,0.25);
+  transition: 0.3s;
+ 
+}
+
+.payment-method-mopil img{
+  width: 65%;
+  object-fit: contain;
+
+}
+
+.payment-method-mopil:active{
+  transform: scale(0.95);
+}
+/* الفورم */
+.payment-form-mopil{
+  margin-top: 6%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+ 
+}
+
+.payment-input-mopil{
+  width: 90%;
+  padding: 20px 22px;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  background: rgba(255,255,255,0.95);
+  box-shadow: inset 0 0 6px rgba(27,76,154,0.2);
+  margin-left: 24px;
+  
+  
+}
+
+.payment-row-mopil{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+ 
+
+
+ 
+}
+
+.payment-input-mopil.half{
+  width: 100%;
+
+}
+/* زرار الدفع للموبايل */
+.confirm-payment-btn-mopil{
+  margin-top: 26px;
+  margin-left: 45px;
+   margin-bottom: 52px;
+  width: 90%;
+  padding: 14px 18px;
+  border-radius: 22px;
+  border: none;
+  background-image: url('/upscalemedia-transformed.jpeg');
+  color: #1b4c9a;
+  font-size: 1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  transition: all 0.3s ease;
+}
+
+.confirm-payment-btn-mopil:active{
+  transform: scale(0.96);
+}
+#lock-icon-mopil{
+  font-size: 1.1rem;
+}
+@media (max-width: 750px){
+  /*خلفيه الاعلى*/
+ .payment-bg-section {
+  box-shadow: 0 10px 20px linear-gradient(135deg, #5bb3e5, #5fafe0); /* شادو خفيف */
+ height: 220px;    
+}
+#visa-mopil {
+  width: 50px; /* الحجم اللي تحبه */
+  height: auto;
+}
+
+#master-mopil {
+  width: 48px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+
+#amrican-mopil {
+  width: 32px;
+  height: auto;
+}
+#Mada-mopil {
+  width: 65px;
+  height: auto;
+}
+
+
+.payment-top-mopil {
+  font-size: 14px; 
+}
+
+  .payment-label {
+    font-size: 13px;   /* أصغر شوية */
+  }
+  .total-amount {
+    font-size: 20px;   /* أصغر شوية */
+  }
+  .payment-content-mopil{
+    margin-top: 40%;
+  }
+
+  .payment-methods-mopil{
+    margin-top: 12%;
+    gap: 8px;
+    
+  }
+
+  .payment-method-mopil{
+    height: 55px;
+  }
+
+  .payment-method-mopil img{
+    width: 60%;
+  }
+
+  .payment-form-mopil{
+    margin-top: 4%;
+  }
+
+  .payment-input-mopil{
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    margin-left: 16px;
+    
+  }
+
+  .payment-row-mopil{
+    width: 95%;
+    margin-left: 6px;
+   
+  }
+
+  .payment-input-mopil.half{
+    width: 100%;
+  
+  }
+
+  .confirm-payment-btn-mopil{
+    margin-left: 23px;
+    width: 90%;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+    
+  }
+}
+
+@media (max-width: 650px){
+#visa-mopil {
+  width: 40px; /* الحجم اللي تحبه */
+  height: auto;
+}
+
+#master-mopil {
+  width: 38px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+
+#amrican-mopil {
+  width: 22px;
+  height: auto;
+}
+#Mada-mopil {
+  width: 55px;
+  height: auto;
+}
+.payment-bg-section {
+            /* نص طول الـ div */
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+ .back-to-checkout-mopil {
+    top: 12px;
+    left: 12px;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    box-shadow: 0 4px 10px rgba(91, 179, 229, 0.4);
+  }
+}
+@media (max-width: 550px){
+  /* بوكس صوره الكارد*/
+.payment-image-wrapper-mopil {
+  position: absolute;
+  top: 50%;                 /* تحت زرار الباك */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 80%;            /* صغر الحجم شوية */
+   /* شادو اتجاه كأنها طايرة */
+} 
+ .payment-bg-section { 
+  height: 250px;
+ }
+ .payment-content-mopil{
+  margin-top: 440px;
+ 
+ }
+
+ .payment-input-mopil{
+  
+  margin-left: 3px;
+ }
+}
+@media (max-width: 500px){
+  .payment-content-mopil{
+  margin-top: 310px;
+ 
+ }
+}
+
+@media (max-width: 440px) {
+    .payment-content-mopil{
+  margin-top: 250px;
+ 
+ }
+
+}
+@media (max-width: 400px) {
+  .back-to-checkout-mopil {
+    top: 8px;
+    left: 8px;
+    gap: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    box-shadow: 0 3px 8px rgba(91, 179, 229, 0.3);
+  }
+   #visa-mopil {
+  width: 30px; /* الحجم اللي تحبه */
+  height: auto;
+}
+
+#master-mopil {
+  width: 28px; /* أصغر أو أكبر حسب رغبتك */
+  height: auto;
+}
+
+#amrican-mopil {
+  width: 24px;
+  height: auto;
+}
+#Mada-mopil {
+  width: 45px;
+  height: auto;
+}
+.payment-top-mopil {
+  font-size: 10px; 
+}
+
+  .payment-label {
+    font-size: 10px;   /* أصغر شوية */
+  }
+  .total-amount {
+    font-size: 13px;   /* أصغر شوية */
+  }
+    .payment-input-mopil{
+    padding: 14px 16px;
+    font-size: 0.85rem;
+    margin-left: 4px;
+  }
+    .payment-content-mopil{
+  margin-top: 210px;
+ 
+ }
+  .payment-bg-section { 
+  height: 210px;
+ }
+}
+
+@media (min-height: 1050px ) {
+      .payment-content-mopil{
+        margin-top: 26%;
+      }
+}
+@media (min-height: 1150px) {
+  .payment-content-mopil {
+    margin-top: 32%;  /* رفع المحتوى أعلى */
+  }
+
+  .payment-methods-mopil {
+    gap: 16px;
+  }
+
+  .payment-method-mopil {
+    height: 85px;      /* أزرار أكبر */
+  }
+
+  .payment-method-mopil img {
+    width: 75%;        /* تكبير الصور */
+  }
+
+  .payment-form-mopil {
+    gap: 18px;
+  }
+
+  .payment-input-mopil {
+    padding: 26px 28px;  /* تكبير مساحة الكتابة */
+    font-size: 1.1rem;   /* تكبير الخط */
+  }
+
+  .payment-row-mopil {
+    gap: 14px;
+  }
+
+  .payment-input-mopil.half {
+    width: 48%;
+  }
+
+  .confirm-payment-btn-mopil {
+    margin-top: 36px;
+    padding: 18px 22px;   /* تكبير زر الدفع */
+    font-size: 1.1rem;
+  }
+
+  #lock-icon-mopil {
+    font-size: 1.3rem;    /* تكبير أيقونة القفل */
+  }
+}
+@media (min-height: 1350px) {
+  .payment-content-mopil {
+    margin-top: 38%;  /* رفع المحتوى أعلى */
+  }
+
+  .payment-methods-mopil {
+    gap: 20px;
+  }
+
+  .payment-method-mopil {
+    height: 95px;      /* أزرار أكبر */
+  }
+
+  .payment-method-mopil img {
+    width: 80%;        /* تكبير الصور */
+  }
+
+  .payment-form-mopil {
+    gap: 22px;
+  }
+
+  .payment-input-mopil {
+    padding: 28px 30px;  /* تكبير مساحة الكتابة */
+    font-size: 1.2rem;   /* تكبير الخط */
+  }
+
+  .payment-row-mopil {
+    gap: 16px;
+  }
+
+  .payment-input-mopil.half {
+    width: 50%;
+  }
+
+  .confirm-payment-btn-mopil {
+    margin-top: 40px;
+    padding: 20px 24px;   /* تكبير زر الدفع */
+    font-size: 1.2rem;
+  }
+
+  #lock-icon-mopil {
+    font-size: 1.4rem;    /* تكبير أيقونة القفل */
+  }
+}
+.payment-page-mopil {
+  max-height: 100svh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* عرض الاسكرول */
+.payment-page-mopil::-webkit-scrollbar {
+  width: 6px;              /* خليه رفيع */
+}
+/* الخلفية */
+.payment-page-mopil::-webkit-scrollbar-track {
+  background: transparent; /* أو لون فاتح */
+}
+/* الجزء المتحرك */
+.payment-page-mopil::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f8cff, #1b4c9a);
+  border-radius: 10px;
+}
+/* لما المستخدم يلمسه */
+.payment-page-mopil::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6ea0ff, #245bb5);
+}
+

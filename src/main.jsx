@@ -3,11 +3,12 @@ import React, { useState , useEffect } from "react";
 import Home from "./home.jsx";
 import Header from "./header.jsx";
 import Cart from "./cart.jsx";
+import  Dashboard  from "./dashboard.jsx";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 function Main() {
    const location = useLocation();
-  const hideHeader = location.pathname === "/cart";
+const hideHeader = location.pathname === "/cart" || location.pathname.startsWith("/dashboard");
 
 
 
@@ -20,25 +21,28 @@ useEffect(() => {
   localStorage.setItem("scrollIndex", scrollIndex);
 }, [scrollIndex]);
 
-
+const whiteGradient = `
+  radial-gradient(
+    circle at center,
+    rgba(255,255,255,0.35) 0%,
+    rgba(255,255,255,0.15) 30%,
+    rgba(255,255,255,0.05) 50%,
+    rgba(255,255,255,0) 70%
+  )
+`;
+const blackGradient = `
+  radial-gradient(
+    circle at center,
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.25) 30%,
+    rgba(0,0,0,0.15) 50%,
+    rgba(0,0,0,0) 70%
+  )
+`;
  const [products, setProducts] = useState([
   {
-    id: 1,
-    productTitles: "Jacket Bump",
-    productDescriptions: "A stylish and warm jacket, perfect for winter.", 
-    images:["/WhatsApp_Image_2026-01-10_at_11.04.24_AM-removebg-preview.png"],
-    backgrounds: "#b65a2a",
-    textColors:{ title: "#ffffff", description: "#f1e6df" }, 
-    price: 120,
-    buttonColors:"#ffd700",
-    buttonTextColors: "#ffffff",
-    quantity: 1,
-    leftshadow:"0 4px 15px #ffd9004e", // للباكجراوند #b65a2a
-    headerShadows:"0 4px 15px #ffd9004e",
-    iconShadows:"2px 2px 8px #ffd700",
-  },
-  {
-    id: 2,
+   
+     id: 1,
     productTitles: "Modern jacket",
     productDescriptions:"A modern jacket with a sleek design for everyday wear.", 
     images: ["/Elegante_Fleecejacke_mit_Kapuze_für_Wintertage_-_Rosa___XXL-removebg-preview.png"],
@@ -51,6 +55,27 @@ useEffect(() => {
     leftshadow: "0 4px 15px rgba(51, 57, 60, 0.65)", // للباكجراوند #d9dee1
     headerShadows: "0 4px 15px rgba(51, 57, 60, 0.65)",
     iconShadows:"2px 2px 8px #4b4b4b",
+    backgroundshadow: blackGradient,
+    backgroundcartCount:"#1a1a1a",
+    cartCountshadow:"#1a1a1a",
+  },
+  {
+    id: 2,
+    productTitles: "Jacket Bump",
+    productDescriptions: "A stylish and warm jacket, perfect for winter.", 
+    images:["/WhatsApp_Image_2026-01-10_at_11.04.24_AM-removebg-preview.png"],
+    backgrounds: "#b65a2a",
+    textColors:{ title: "#ffffff", description: "#f1e6df" }, 
+    price: 120,
+    buttonColors:"#ffd700",
+    buttonTextColors: "#ffffff",
+    quantity: 1,
+    leftshadow:"0 4px 15px #ffd9004e", // للباكجراوند #b65a2a
+    headerShadows:"0 4px 15px #ffd9004e",
+    iconShadows:"2px 2px 8px #ffd700",
+     backgroundshadow: whiteGradient,
+     backgroundcartCount:"#b65a2a",
+    cartCountshadow:"#2e231d",
   },
   {
     id: 3,
@@ -66,6 +91,9 @@ useEffect(() => {
     leftshadow: "0 4px 15px rgba(63, 70, 99, 0.8)",   // للباكجراوند #3f4663
     headerShadows:"0 4px 15px rgba(63, 70, 99, 0.8)",
     iconShadows: "2px 2px 8px #f0e68c",
+    backgroundshadow: whiteGradient,
+    backgroundcartCount:"#3f4663",
+     cartCountshadow:"#f0e68c",
   },
   {
     id: 4,
@@ -81,6 +109,9 @@ useEffect(() => {
     leftshadow: "0 4px 15px #437353",  // للباكجراوند #437353
     headerShadows:"0 4px 15px #437353",
     iconShadows:"2px 2px 8px #90ee90",
+    backgroundshadow: whiteGradient,
+    backgroundcartCount:"#437353",
+    cartCountshadow:"#90ee90",
   },
   {
     id: 5,
@@ -96,6 +127,9 @@ useEffect(() => {
     leftshadow: "0 4px 15px rgba(255, 254, 254, 0.43)",   // للباكجراوند #1a1a1a
     headerShadows:"0 4px 15px rgba(255, 254, 254, 0.43)",
     iconShadows:"2px 2px 8px #ffffff",
+     backgroundshadow: whiteGradient,
+     backgroundcartCount:"#1a1a1a",
+     cartCountshadow:"#ffffff",
    },
   {
     id: 6,
@@ -111,6 +145,9 @@ useEffect(() => {
     leftshadow: "0 4px 15px #ff69b46f",  // للباكجراوند #a11e27
     headerShadows: "0 4px 15px #ff69b46f",
     iconShadows: "2px 2px 8px #ff69b4",
+    backgroundshadow: whiteGradient,
+    backgroundcartCount:"#a11e27",
+    cartCountshadow:"#ff69b4",
   },
 ]);
 
@@ -218,6 +255,8 @@ const handleAddToCart = (productId) => {
        {/* الهيدر يظهر في كل الصفحات ماعدا cart */}
       {!hideHeader && (
         <Header
+          products={products}
+          scrollIndex={scrollIndex}
           iconColor={products[scrollIndex].buttonColors}
           headerShadow={products[scrollIndex].headerShadows}
           iconShadow={products[scrollIndex].iconShadows}
@@ -225,7 +264,9 @@ const handleAddToCart = (productId) => {
           buttonTextColors={products[scrollIndex].buttonTextColors}
           cartCount={cartCount}
           setCartCount={setCartCount}
-         deleteCookie={deleteCookie}
+          deleteCookie={deleteCookie}
+          textColors={products[scrollIndex].textColors}
+          backgrounds={products[scrollIndex].backgrounds}
           />
       )}
 
@@ -249,11 +290,21 @@ const handleAddToCart = (productId) => {
     element={
       <Cart
          products={products}
-        setProducts={setProducts}
+         setProducts={setProducts}
         
       />
     }
   />
+      </Routes>
+       <Routes>
+        <Route
+          path="dashboard/"
+          element={
+           <Dashboard
+            
+          />
+          }
+        />
       </Routes>
     </>
   );

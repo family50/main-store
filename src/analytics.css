@@ -1,0 +1,298 @@
+.analytics-page {
+
+  margin-top: 100px;
+  width: 90vw;        /* ياخد 90% من عرض الشاشة */
+  margin: 100px auto; /* يوسّطه في النص */
+}
+
+.analytics-title {
+  font-size: 36px; /* حجم الخط كبير للعنوان */
+  font-weight: bold; /* الخط عريض */
+  color: var(--text-title); /* لون العنوان حسب الثيم */
+  margin-bottom: 20px; /* مسافة أسفل العنوان */
+  
+}
+
+.analytics-grid {
+  display: grid; /* استخدام Grid لتوزيع العناصر */
+  grid-template-columns: 1fr 1fr; /* عمودين بنفس العرض */
+  grid-template-rows: auto auto; /* صفين ارتفاعهم تلقائي حسب المحتوى */
+  gap: 20px; /* المسافة بين الصفوف والأعمدة */
+  
+}
+
+/* كروت الرسومات */
+.chart-card {
+  background: var(--background-glass); /* خلفية زجاجية شفافة حسب الثيم */
+  border: 1px solid var(--glass-border); /* حدود شفافة للخلفية الزجاجية */
+  border-radius: 20px; /* تدوير زوايا الكارت */
+  padding: 20px; /* مسافة داخل الكارت */
+  box-shadow: var(--card-shadow); /* ظل الكارت حسب الثيم */
+}
+
+/* الجزء اللي فيه الزرارين */
+.analytics-buttons {
+  display: flex; /* استخدام flex لترتيب الزرارين عمودي */
+  flex-direction: column; /* ترتيب عمودي */
+  gap: 20px; /* المسافة بين الزرارين */
+}
+
+.big-btn {
+  flex: 1; /* يأخذ كامل المساحة المتاحة في الاتجاه العمودي */
+  background: var(--button-bg); /* لون خلفية الزر حسب الثيم */
+  color: var(--button-text); /* لون النص حسب الثيم */
+  border: none; /* إزالة الحدود الافتراضية */
+  border-radius: 20px; /* تدوير زوايا الزر */
+  font-size: 20px; /* حجم الخط داخل الزر */
+  cursor: pointer; /* تغيير شكل المؤشر عند المرور على الزر */
+  padding: 20px; /* مساحة داخل الزر */
+  display: flex; /* استخدام flex لترتيب المحتوى داخل الزر */
+  align-items: center; /* محاذاة المحتوى عموديًا */
+  justify-content: center; /* محاذاة المحتوى أفقيًا */
+  gap: 12px; /* المسافة بين أيقونة النص */
+  box-shadow: var(--card-shadow); /* ظل الزر حسب الثيم */
+  transition: 0.3s; /* تأثير الحركة عند hover */
+  
+}
+
+.big-btn:hover {
+  transform: translateY(-3px); /* رفع الزر عند المرور عليه */
+}
+
+.chart-header {
+  display: flex; /* ترتيب العنوان والتابس أفقيًا */
+  justify-content: space-between; /* توزيع المساحة بين العنوان والتابس */
+  align-items: center; /* محاذاة العناصر عموديًا */
+  margin-bottom: 10px; /* مسافة أسفل الهيدر */
+
+}
+
+.chart-header h3 {
+  color: var(--text-title); /* لون عنوان الرسم البياني حسب الثيم */
+  align-items: flex-start;
+}
+.chart{
+  text-align: start;
+  
+}
+
+.chart-tabs button {
+  background: transparent; /* زر شفاف */
+  border: 1px solid var(--glass-border); /* حدود شفافة */
+  color: var(--text-title); /* لون النص حسب الثيم */
+  padding: 5px 10px; /* مساحة داخلية للزر */
+  border-radius: 10px; /* تدوير زوايا الزر */
+  cursor: pointer; /* مؤشر اليد عند المرور على الزر */
+  margin-left: 5px; /* مسافة بين كل زر وآخر */
+  
+}
+.chart-titles {
+  display: flex;
+  flex-direction: column; /* يخلي h3 تحت بعض */
+  align-items: flex-start;
+ 
+}
+@media (max-width: 1024px) {
+
+  /* الصفحة كلها */
+  .analytics-page {
+    width: 100vw;
+    margin-top: 50px ; /* نصغر المسافة العلوية والسفلية */
+  }
+
+  /* العنوان الرئيسي */
+  .analytics-title {
+    font-size: 24px; /* تصغير العنوان */
+    text-align: center;
+  }
+
+  /* شبكة الكروت */
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    column-gap: 4%;  /* مسافة بين chart2 و chart3 */
+    row-gap: 15px;   /* المسافة الرأسية بين الصفوف */
+  }
+
+  /* الرسم 1 ياخد الصف كامل */
+  .analytics-grid .chart-card:nth-child(1) {
+    grid-column: 1 / -1;
+    width: 90vw;
+  }
+
+  /* الرسم 2 و 3 جنب بعض، مع مسافة من الطرفين */
+  .analytics-grid .chart-card:nth-child(2),
+  .analytics-grid .chart-card:nth-child(3) {
+    width: 46vw;  /* حوالي نصف الشاشة مع المسافة */
+    box-sizing: border-box;
+  }
+    .analytics-grid .chart-card:nth-child(2){
+      margin-right: -6%;
+    }
+      .analytics-grid .chart-card:nth-child(3){
+        margin-left: -6%;
+      }
+
+  /* تصغير النصوص داخل كروت الرسم */
+  .chart-card h3 {
+    font-size: 16px;
+  }
+
+  .chart-card p {
+    font-size: 14px;
+  }
+
+  /* الأزرار */
+  .analytics-buttons {
+    grid-column: 1 / -1;
+    width: 90vw;
+  }
+
+  .big-btn {
+    width: 100%;
+    font-size: 16px;  /* تصغير الخط داخل الزر */
+    padding: 15px;    /* تصغير مساحة الزر */
+  }
+
+  /* tabs داخل الرسم */
+  .chart-tabs button {
+    font-size: 12px;  /* تصغير الخط */
+    padding: 4px 8px;
+  }
+
+  /* العناوين داخل الرسم */
+  .chart-titles h3 {
+    font-size: 16px;
+  }
+}
+@media (max-width: 650px) {
+
+  /* الصفحة كلها */
+  .analytics-page {
+    width: 100vw;
+  
+  }
+
+  /* العنوان الرئيسي */
+  .analytics-title {
+    font-size: 20px; /* تصغير العنوان أكثر */
+    text-align: center;
+  }
+
+  /* شبكة الكروت */
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* كل كارت ياخد صف كامل */
+    justify-items: center;
+    row-gap: 15px; /* المسافة الرأسية بين الصفوف */
+  }
+
+  /* كل كارت ياخد عرض كامل تقريبًا مع padding من الجوانب */
+  .analytics-grid .chart-card {
+    width: 90vw;
+  }
+
+  /* تصغير النصوص داخل كروت الرسم */
+  .chart-card h3 {
+    font-size: 14px;
+  }
+
+  .chart-card p {
+    font-size: 12px;
+  }
+
+  /* tabs داخل الرسم */
+  .chart-tabs button {
+    font-size: 10px;  /* تصغير الخط */
+    padding: 3px 6px;
+  }
+
+  /* العناوين داخل الرسم */
+  .chart-titles h3 {
+    font-size: 14px;
+  }
+
+  /* الأزرار */
+  .analytics-buttons {
+    width: 90vw;
+  }
+
+  .big-btn {
+    width: 100%;
+    font-size: 14px;  /* تصغير الخط داخل الزر */
+    padding: 12px;    /* تصغير مساحة الزر */
+  }
+   /* الرسم 2 و 3 جنب بعض، مع مسافة من الطرفين */
+  .analytics-grid .chart-card:nth-child(2),
+  .analytics-grid .chart-card:nth-child(3) {
+    width: 90vw;  /* حوالي نصف الشاشة مع المسافة */
+    box-sizing: border-box;
+  }
+    .analytics-grid .chart-card:nth-child(2){
+      margin-right: 0;
+    }
+      .analytics-grid .chart-card:nth-child(3){
+        margin-left: 0;
+      }
+  
+}
+@media (max-width: 550px) {
+
+  /* الصفحة كلها */
+  .analytics-page {
+    width: 100vw;
+     margin-top: 40px ; /* نصغر المسافة العلوية والسفلية */
+  }
+
+  /* العنوان الرئيسي */
+  .analytics-title {
+    font-size: 18px; /* تصغير أكبر للعنوان */
+    text-align: center;
+  }
+
+  /* شبكة الكروت */
+  .analytics-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* كل كارت ياخد صف كامل */
+    justify-items: center;
+    row-gap: 10px; /* المسافة الرأسية بين الصفوف */
+  }
+
+  /* كل كارت ياخد عرض كامل تقريبًا */
+  .analytics-grid .chart-card {
+    width: 95vw;  /* عرض الكارت أصغر */
+    padding: 10px; /* تصغير padding داخل الكارت */
+  }
+
+  /* تصغير النصوص داخل كروت الرسم */
+  .chart-card h3 {
+    font-size: 12px;
+  }
+
+  .chart-card p {
+    font-size: 10px;
+  }
+
+  /* tabs داخل الرسم */
+  .chart-tabs button {
+    font-size: 9px;  
+    padding: 2px 4px;
+  }
+
+  /* العناوين داخل الرسم */
+  .chart-titles h3 {
+    font-size: 12px;
+  }
+
+  /* الأزرار */
+  .analytics-buttons {
+    width: 95vw;
+  }
+
+  .big-btn {
+    width: 100%;
+    font-size: 12px;  /* تصغير الخط داخل الزر */
+    padding: 10px;    /* تصغير مساحة الزر */
+  }
+}

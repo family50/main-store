@@ -17,10 +17,7 @@
 .header-container i {
   font-size: 28px; /* أكبر شوية */
   cursor: pointer;
-  /* لون ذهبي لامع */
-  color: #cba576;
-  text-shadow:
-    0 0 18px #cea777;
+
   transition: transform 0.2s ease;
 }
 
@@ -37,16 +34,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  
   padding: 40px 100px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 22px;
-
   box-shadow: 0 20px 50px rgba(203, 165, 118, 0.35),
               0 0 40px rgba(203, 165, 118, 0.25);
-
   z-index: 2000;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,14 +51,14 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #b65a2a;
+  
 }
 
 /* العنوان الفرعي */
 .modal-subtitle {
   font-size: 1.2rem;
   margin-bottom: 20px;
-  color: #555;
+  
 }
 
 /* الفورم */
@@ -81,48 +74,69 @@
   width: 100%;
   padding: 12px 15px;
   border-radius: 10px;
-  border: 1px solid #ccc;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s ease;
 }
 
-.modal-input:focus {
-  border-color: #b65a2a;
-}
+
 
 /* الروابط الصغيرة */
 .modal-links {
   display: flex;
   justify-content: space-between;
   font-size: 0.85rem;
-  margin-bottom: 15px;
+  margin:0 -30px 15px 0;
+  
 }
 
-.modal-links a {
-  color: #b65a2a;
-  text-decoration: none;
-  transition: color 0.2s ease;
+.modal-links button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+   text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.modal-links a:hover {
-  color: #dc7339;
+/* Hover effect */
+.modal-links button:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  transform: scale(1.05);
 }
+
+/* Click effect */
+.modal-links button:active {
+  transform: scale(0.96);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* إزالة أي شكل افتراضي للزر */
+.modal-links button:focus {
+  outline: none;
+}
+
+
+
 
 /* زر الإرسال */
 .modal-submit {
   padding: 12px 20px;
-  background-color: #b65a2a;
-  color: #fff;
   border: none;
   border-radius: 12px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-right: -30px;
 }
 
 .modal-submit:hover {
-  background-color: #dc7339;
   transform: scale(1.05);
 }
 .cart-icon-wrapper {
@@ -157,8 +171,6 @@
 
 @media (max-width: 1024px){
   .header-container {
- 
-  
   box-shadow: none;
 }
 }
@@ -173,24 +185,31 @@
   }
 }
 @media (max-width: 630px) {
+ 
+ 
   .user-modal {
     width: 50%;          /* يستغل العرض كله */
+   
   }
 
   /* العنوان الكبير */
   .modal-title {
     font-size: 1.5rem;
+    margin-left: -20px;
+    
   }
 
   /* العنوان الفرعي */
   .modal-subtitle {
     font-size: 1rem;
     margin-bottom: 15px;
+     margin-left: -20px;
   }
 
   /* الفورم */
   .modal-form {
     gap: 10px;
+     margin-left: -20px;
   }
 
   /* الخانات */
@@ -208,7 +227,7 @@
     align-items: start;
   }
 
-  .modal-links a {
+  .modal-links button {
     display: block;
   }
 
@@ -216,6 +235,16 @@
   .modal-submit {
     padding: 10px 15px;
     font-size: 0.9rem;
+  }
+  .modal-links {
+    font-size: 0.7rem;   /* تصغير النص */
+    margin: 0 -15px 10px 0; /* تقليل المارجن */
+  }
+
+  .modal-links button {
+    padding: 6px 12px;   /* تصغير حجم الزر */
+    font-size: 0.7rem;
+    border-radius: 8px; /* تقليل الاستدارة */
   }
 }
 @media (max-width: 500px){
@@ -262,7 +291,7 @@
     
   }
 
-  .modal-links a {
+  .modal-links button {
     display: block;
   }
 

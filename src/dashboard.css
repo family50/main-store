@@ -1,0 +1,266 @@
+
+/* ============================= */
+/* Reset + Base */
+html.dashboard, body.dashboard {
+  font-family: 'Inter', sans-serif; /* الخط الافتراضي للموقع */
+  margin: 0; /* إزالة الهوامش الافتراضية */
+  padding: 0; /* إزالة الحشو الافتراضي */
+  box-sizing: border-box; /* تضمين البادينغ والحدود في حجم العنصر */
+  width: 100%; /* عرض كامل الشاشة */
+  min-height: 100vh; /* ارتفاع كامل الشاشة */
+  background: var(--background-main);
+  display: flex; /* استخدام flexbox */
+  overflow-x: hidden; /* منع التمرير العرضي */
+  overflow-y: overlay;
+}
+
+/* ===== الهيدر ===== */
+.dashboard-header {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between; /* يمين - نص - يسار */
+  align-items: center;
+  padding: 15px 30px; /* أكبر padding */
+  background: transparent; /* شفاف بالكامل */
+  box-shadow: none; /* مش عايز شادو */
+  font-family: "Arial", sans-serif;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+}
+
+/* ====الجزء اليسار: Language Switcher ===== */
+.header-right {
+  position: relative;
+}
+
+.language-btn {
+  background: transparent;
+  border: 2px solid var(--border-color); /* بوردر أغمق وأكبر */
+  border-radius: 12px; /* حواف ناعمة وفخمة */
+  padding: 10px 20px; /* أكبر حجم */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px; /* أكبر خط */
+  font-weight: 600;
+  transition: all 0.3s ease;
+    color: var(--text-title);
+}
+
+.language-btn:hover {
+  background-color: var(--text-title);
+  color: var(--button-text);
+  border-color: var(--text-title);
+  
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 120%; /* تحت الزر */
+  left: 0;
+  background-color: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  min-width: 150px;
+  color: var(--text-title);
+}
+
+.language-option {
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.language-option:hover {
+  background-color: var(--text-title);
+  color: var(--button-text);
+  border-radius: 12px;
+}
+
+:root {
+  /* ألوان الهيدر */
+  --text-title: var(--text-title);
+  --tab-underline: var(--text-title); /* لون الخط الأسود تحت التاب */
+}
+
+.header-center {
+  display: flex;
+  gap: 30px;
+  margin-left: -60px;
+}
+
+.tab {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-title);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* أيقونات داخل التاب */
+.tab i {
+  font-size: 20px;
+}
+
+/* خط أسود تحت التاب */
+.tab::after {
+  content: "";
+  position: absolute;
+  bottom: -3px; /* تحت النص */
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--tab-underline);
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* التاب النشط: خط أسفل ممتد + باكجراوند شبه زجاجي */
+.active-tab {
+  background: var(--background-tab); /* شفاف خفيف يشبه الزجاج */
+  backdrop-filter: blur(6px); /* تأثير الزجاج */
+  -webkit-backdrop-filter: blur(6px);
+  /* خط أسود ممتد يظهر من البداية */
+}
+
+.active-tab::after {
+  width: 100%; /* الخط يمتد بالكامل */
+}
+
+
+
+
+/* ===== الجزء اليمين: أيكون اللون ===== */
+.header-left {
+  display: flex;
+
+}
+
+.color-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* أكبر أيكون */
+  transition: transform 0.2s ease;
+}
+
+.color-toggle-btn:hover {
+  transform: scale(1.2);
+}
+
+
+@media (max-width: 1024px) {
+
+  /* تصغير الهيدر */
+  .dashboard-header {
+    padding: 10px 20px;
+  }
+
+  .language-btn {
+    padding: 8px 14px;
+    font-size: 16px;
+  }
+
+  .tab {
+    font-size: 16px;
+    padding: 8px 12px;
+  }
+
+  /* ننزل شريط التابات تحت */
+  .header-center {
+  position: fixed;
+  top: 90%;   /* 👈 أسفل الشاشة */
+  left: 50%;
+  transform: translateX(-50%);
+
+  margin-left: 0;
+  padding: 12px 20px;
+
+  background: var(--background-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  z-index: 999;
+  width: 90%;
+  display: flex;
+  justify-content: space-between; /* 👈 يوزع المحتوى في النص */
+  align-items: center;
+}
+
+}
+@media (max-width: 500px) {
+  .header-center {
+    padding: 8px 12px;   /* أصغر البادينج */
+    border-radius: 14px;
+    width: 90%;
+     top: 92%;  
+  }
+
+  .tab {
+    font-size: 14px;    /* تصغير الخط */
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .tab i {
+    font-size: 16px;    /* تصغير الأيقونة */
+  }
+}
+@media (max-width: 400px) {
+
+  /* تصغير الهيدر نفسه */
+  .dashboard-header {
+    padding: 6px 10px;
+  }
+
+  /* زر اللغة */
+  .language-btn {
+    padding: 6px 10px;
+    font-size: 14px;
+    gap: 6px;
+  }
+
+  /* شريط التابات */
+  .header-center {
+    padding: 6px 10px;
+    border-radius: 12px;
+    width: 90%;
+    top: 93%;  
+  }
+
+  /* التاب */
+  .tab {
+    font-size: 12px;
+    padding: 5px 6px;
+    gap: 4px;
+  }
+
+  .tab i {
+    font-size: 14px;
+  }
+
+  /* زر تغيير اللون */
+  .color-toggle-btn {
+    font-size: 18px;
+  }
+}

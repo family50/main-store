@@ -5,10 +5,14 @@ import './home.css';
 import './header.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { BrowserRouter } from "react-router-dom";
+import supabase from "./supabase.js";
+console.log(supabase); // 👈 هنا صح
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-  <BrowserRouter>
+
+
+  <BrowserRouter >
+  
     <Main />
   </BrowserRouter>
-</StrictMode>
+
 );

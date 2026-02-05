@@ -11,7 +11,7 @@ function Home({ scrollIndex, setScrollIndex, products,Quantities, setQuantities,
   const priceRef = useRef(null); // مرجع السعر
   const scrollButtonsRef = useRef(null);
   const prevIndex = useRef(scrollIndex);
- 
+
 
 useEffect(() => {
   const img = centerBoxRef.current?.querySelector("img");
@@ -19,33 +19,6 @@ useEffect(() => {
 
   gsap.set(img, { x: 0, y: 0, opacity: 1 });
 }, []);
-
-
-const whiteGradient = `
-  radial-gradient(
-    circle at center,
-    rgba(255,255,255,0.35) 0%,
-    rgba(255,255,255,0.15) 30%,
-    rgba(255,255,255,0.05) 50%,
-    rgba(255,255,255,0) 70%
-  )
-`;
-const blackGradient = `
-  radial-gradient(
-    circle at center,
-    rgba(0,0,0,0.35) 0%,
-    rgba(0,0,0,0.25) 30%,
-    rgba(0,0,0,0.15) 50%,
-    rgba(0,0,0,0) 70%
-  )
-`;
-
-
-
-
-const gradientByIndex = (index) => {
-  return index === 1 ? blackGradient : whiteGradient;
-};
 
 
   // ===== Animation عند تحميل الصفحة =====
@@ -217,21 +190,19 @@ useEffect(() => { //
 
 
 //تدرج باك جراوند ابيض او اسود
+//تدرج باك جراوند حسب كل منتج
 useEffect(() => {
-  // تأكيد إن هناك لون موجود للـ scrollIndex الحالي
-  if (!products[scrollIndex].backgrounds) return; // إذا اللون غير موجود، اخرج من الـ useEffect
+  if (!products[scrollIndex]?.backgrounds) return;
 
-  // تحديد التدرج المناسب: لو scrollIndex === 1 استخدم التدرج الأسود، وإلا التدرج الأبيض
-  const gradient = scrollIndex === 1 ? blackGradient : whiteGradient;
+  // نستخدم التدرج الموجود في كل منتج
+  const gradient = products[scrollIndex].backgroundshadow;
 
-  // تنفيذ الأنيميشن على خلفية الصفحة
   gsap.to(document.body, {
-    background: `${gradient}, ${products[scrollIndex].backgrounds}`, // دمج التدرج + اللون الأساسي
-    duration: 0.6,                                          // مدة الأنيميشن 0.6 ثانية
-    ease: "power2.out",                                     // نوع easing للحركة السلسة
+    background: `${gradient}, ${products[scrollIndex].backgrounds}`,
+    duration: 0.6,
+    ease: "power2.out",
   });
-}, [scrollIndex]); // هذا الـ useEffect يعتمد على scrollIndex → يتنفذ كل مرة يتغير
-
+}, [scrollIndex]);
 
 
 // انميشن text
@@ -388,7 +359,7 @@ useEffect(() => {
     tl.to(buttonRef.current, {
       duration: 1,
       scale: 1.05,          
-     boxShadow: `0 4px 25px ${products[scrollIndex].buttonTextColors}`,
+     boxShadow: `0 22px 40px ${products[scrollIndex].buttonColors}`,
 
       ease: "power1.inOut",
       repeat: 1,
@@ -501,13 +472,18 @@ return (
                       backgroundColor: currentProduct.buttonColors,
                       color: currentProduct.buttonTextColors,
                 }}
-                      onClick={() =>
-                      setQuantities(prev => ({
-                      ...prev,
-                     [currentProduct.id]: Math.max(1, (prev[currentProduct.id] || 1) - 1),
-                }))
-                }
-                >
+                    onClick={() => {
+    // إنشاء وتشغيل الصوت مباشرة عند الضغط
+    new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play().catch(err => {
+      console.log("Error playing sound:", err);
+    });
+
+    setQuantities(prev => ({
+      ...prev,
+      [currentProduct.id]: Math.max(1, (prev[currentProduct.id] || 1) - 1),
+    }));
+  }}
+>
                    -
                 </button>
 
@@ -523,13 +499,17 @@ return (
                        backgroundColor: currentProduct.buttonColors,
                        color: currentProduct.buttonTextColors,
                     }}
-                       onClick={() =>
-                       setQuantities(prev => ({
-                       ...prev,
-                       [currentProduct.id]: (prev[currentProduct.id] || 1) + 1,
-                    }))
-                    }
-                  >
+                       onClick={() => {
+    new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play().catch(err => {
+      console.log("Error playing sound:", err);
+    });
+
+    setQuantities(prev => ({
+      ...prev,
+      [currentProduct.id]: (prev[currentProduct.id] || 1) + 1,
+    }));
+  }}
+>
                     +
                   </button>
 
@@ -543,9 +523,14 @@ return (
                     color: currentProduct.buttonTextColors,
                   }}
                      onClick={() => {
-    handleAddToCart(currentProduct.id); // الكارت لوكال ستورج
-    handleClickAnimation();             // تشغيل الانيميشن
-  }}
+      handleAddToCart(currentProduct.id); // إضافة المنتج للـ cart في localStorage
+      handleClickAnimation();             // تشغيل الانيميشن
+      
+      // 🔊 تشغيل الصوت
+      const audio = new Audio("/coin-and-money-bag-7-185268.mp3"); // من public
+      audio.volume = 1; // ضبط مستوى الصوت (0.0 - 1.0)
+      audio.play().catch(err => console.log("Error playing sound:", err)); // التعامل مع أي خطأ
+    }}
                >
                  <i className="fas fa-shopping-cart" ref={iconRef}></i>
                 <span ref={textRef}>Add Cart</span>
@@ -577,7 +562,11 @@ return (
     backgroundColor: products[scrollIndex].buttonColors,
     color: products[scrollIndex].buttonTextColors,
   }}
-              onClick={() => handleBoxClick(scrollIndex - 1)}>
+              onClick={() => {
+    new Audio("/ui-authorised-243460.mp3").play(); // تشغيل الصوت مباشرة
+    handleBoxClick(scrollIndex - 1);        // تحريك البوكس
+  }}
+>
                 ◀
               </button>
               <button className="scroll-btn right-btn" 
@@ -585,7 +574,11 @@ return (
     backgroundColor: products[scrollIndex].buttonColors,
     color: products[scrollIndex].buttonTextColors,
   }}
-              onClick={() => handleBoxClick(scrollIndex + 1)}>
+             onClick={() => {
+    new Audio("/ui-authorised-243460.mp3").play(); // تشغيل الصوت مباشرة
+    handleBoxClick(scrollIndex + 1);        // تحريك البوكس
+  }}
+>
                 ▶
               </button>
             </div>
@@ -596,10 +589,13 @@ return (
       <div
         key={`${pIndex}-${i}`}
         className="small-box"
-        onClick={() => handleBoxClick(pIndex)}
+        onClick={() =>{
+           new Audio("/ui-authorised-243460.mp3").play();
+           handleBoxClick(pIndex)
+          }}
         style={{
           backgroundColor: product.backgrounds,
-          backgroundImage: `url(${img}), ${gradientByIndex(pIndex)}`,
+          backgroundImage: `url(${img}), ${product.backgroundshadow}`,
           backgroundSize: "60% auto, cover",
           backgroundPosition: "center, center",
           backgroundRepeat: "no-repeat, no-repeat",
