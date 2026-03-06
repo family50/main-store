@@ -29,6 +29,7 @@ html.dashboard, body.dashboard {
   top: 0;
   left: 0;
   z-index: 1000;
+  
 
 }
 
@@ -49,7 +50,7 @@ html.dashboard, body.dashboard {
   font-size: 18px; /* أكبر خط */
   font-weight: 600;
   transition: all 0.3s ease;
-    color: var(--text-title);
+  color: var(--text-title);
 }
 
 .language-btn:hover {
@@ -98,7 +99,9 @@ html.dashboard, body.dashboard {
 .header-center {
   display: flex;
   gap: 30px;
-  margin-left: -60px;
+  margin-left: -120px;
+
+
 }
 
 .tab {
@@ -113,6 +116,7 @@ html.dashboard, body.dashboard {
   position: relative;
   border-radius: 12px;
   transition: all 0.3s ease;
+
 }
 
 /* أيقونات داخل التاب */
@@ -177,11 +181,13 @@ html.dashboard, body.dashboard {
   .language-btn {
     padding: 8px 14px;
     font-size: 16px;
+    
   }
 
   .tab {
     font-size: 16px;
     padding: 8px 12px;
+   
   }
 
   /* ننزل شريط التابات تحت */
@@ -203,8 +209,9 @@ html.dashboard, body.dashboard {
   z-index: 999;
   width: 90%;
   display: flex;
-  justify-content: space-between; /* 👈 يوزع المحتوى في النص */
+  justify-content:center; /* 👈 يوزع المحتوى في النص */
   align-items: center;
+
 }
 
 }
@@ -263,4 +270,17 @@ html.dashboard, body.dashboard {
   .color-toggle-btn {
     font-size: 18px;
   }
+}
+/* dashboard.css */
+.dashboard {
+  min-height: 100vh;
+  /* استخدم المسمى الصحيح هنا أيضاً */
+  background-color: var(--background-main) !important;
+  color: var(--text-title);
+}
+
+/* إجبار الـ body في حالة الداشبورد */
+body.dashboard-active {
+  background-color: var(--background-main) !important;
+  background-image: none !important;
 }

@@ -168,8 +168,31 @@ export const conversionStats = [
   { name: "Purchased", value: 1080 },
 ];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ================= ORDERS DETAILS (TABLE - FUTURE) =================
 export const ordersTable = [
+  // ====== Today ======
   {
     id: "ORD-1001",
     fullName: "Ahmed Hassan",
@@ -178,26 +201,14 @@ export const ordersTable = [
     address: "Nasr City, Street 10",
     phone: "01012345678",
     second_phone: null,
-
     products: [
-      {
-        name: "Black Hoodie",
-        price: 800,
-        quantity: 2,
-        image: "/images/hoodie.png"
-      },
-      {
-        name: "White Sneakers",
-        price: 1200,
-        quantity: 1,
-        image: "/images/shoes.png"
-      }
+      { name: "Black Hoodie", price: 800, quantity: 2, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png"},
+      { name: "White Sneakers", price: 1200, quantity: 1, image: "/Puma_PALERMO_UNISEX_-_Trainers_-_archive_green_white-removebg-preview.png" }
     ],
-
     totalProducts: 3,
-    totalPrice: 2800
+    totalPrice: 2800,
+    date: "today"
   },
-
   {
     id: "ORD-1002",
     fullName: "Sara Mohamed",
@@ -206,17 +217,286 @@ export const ordersTable = [
     address: "Dokki, Street 5",
     phone: "01198765432",
     second_phone: "01222222222",
-
     products: [
-      {
-        name: "T-shirt",
-        price: 400,
-        quantity: 2,
-        image: "/images/tshirt.png"
-      }
+      { name: "T-shirt", price: 400, quantity: 2, image:"/Puma_PALERMO_UNISEX_-_Trainers_-_archive_green_white-removebg-preview.png" }
     ],
-
     totalProducts: 2,
-    totalPrice: 800
+    totalPrice: 800,
+    date: "today"
+  },
+  {
+    id: "ORD-1003",
+    fullName: "Omar Ali",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Smouha, Street 12",
+    phone: "01234567891",
+    second_phone: null,
+    products: [
+      { name: "Blue Jeans", price: 600, quantity: 1, image:"/Puma_PALERMO_UNISEX_-_Trainers_-_archive_green_white-removebg-preview.png"}
+    ],
+    totalProducts: 1,
+    totalPrice: 600,
+    date: "today"
+  },
+  {
+    id: "ORD-1004",
+    fullName: "Mona Samir",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Maadi, Street 2",
+    phone: "01099887766",
+    second_phone: null,
+    products: [
+      { name: "Red Dress", price: 900, quantity: 1, image:  "/WhatsApp_Image_2026-01-10_at_11.04.24_AM-removebg-preview.png"},
+      { name: "Black Sandals", price: 500, quantity: 1, image:"/Elegante_Fleecejacke_mit_Kapuze_für_Wintertage_-_Rosa___XXL-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 1400,
+    date: "today"
+  },
+  {
+    id: "ORD-1005",
+    fullName: "Khaled Nabil",
+    country: "Egypt",
+    city: "Giza",
+    address: "Mohandessin, Street 8",
+    phone: "01122334455",
+    second_phone: null,
+    products: [
+      { name: "White Hoodie", price: 750, quantity: 1, image: "/Elegante_Fleecejacke_mit_Kapuze_für_Wintertage_-_Rosa___XXL-removebg-preview.png"}
+    ],
+    totalProducts: 1,
+    totalPrice: 750,
+    date: "today"
+  },
+
+  // ====== Week ======
+  {
+    id: "ORD-1006",
+    fullName: "Heba Fathy",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Heliopolis, Street 4",
+    phone: "01011223344",
+    second_phone: null,
+    products: [
+      { name: "Green T-shirt", price: 350, quantity: 2, image:"/WhatsApp_Image_2026-01-10_at_11.04.24_AM-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 700,
+    date: "week"
+  },
+  {
+    id: "ORD-1007",
+    fullName: "Tamer Adel",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Gleem, Street 1",
+    phone: "01233445566",
+    second_phone: null,
+    products: [
+      { name: "Running Shoes", price: 1300, quantity: 1, image: "/WhatsApp_Image_2026-01-10_at_11.04.24_AM-removebg-preview.png"}
+    ],
+    totalProducts: 1,
+    totalPrice: 1300,
+    date: "week"
+  },
+  {
+    id: "ORD-1008",
+    fullName: "Salma Hossam",
+    country: "Egypt",
+    city: "Giza",
+    address: "6th of October, Street 9",
+    phone: "01155667788",
+    second_phone: null,
+    products: [
+      { name: "Leather Jacket", price: 1500, quantity: 1, image: "/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 1500,
+    date: "week"
+  },
+  {
+    id: "ORD-1009",
+    fullName: "Mohamed Fawzy",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Zamalek, Street 3",
+    phone: "01066778899",
+    second_phone: null,
+    products: [
+      { name: "Cap", price: 200, quantity: 3, image:"/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png"}
+    ],
+    totalProducts: 3,
+    totalPrice: 600,
+    date: "week"
+  },
+  {
+    id: "ORD-1010",
+    fullName: "Aya Mahmoud",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Stanley, Street 7",
+    phone: "01277889900",
+    second_phone: null,
+    products: [
+      { name: "Sunglasses", price: 500, quantity: 2, image:"/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 1000,
+    date: "week"
+  },
+  {
+    id: "ORD-1011",
+    fullName: "Youssef Adel",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Dokki, Street 11",
+    phone: "01111223344",
+    second_phone: null,
+    products: [
+      { name: "White Sneakers", price: 1200, quantity: 1, image: "/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 1200,
+    date: "week"
+  },
+  {
+    id: "ORD-1012",
+    fullName: "Dina Kamal",
+    country: "Egypt",
+    city: "Giza",
+    address: "Haram, Street 5",
+    phone: "01022334455",
+    second_phone: null,
+    products: [
+      { name: "Black T-shirt", price: 400, quantity: 2, image:"/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 800,
+    date: "week"
+  },
+  {
+    id: "ORD-1013",
+    fullName: "Ali Mostafa",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Roushdy, Street 6",
+    phone: "01233445577",
+    second_phone: null,
+    products: [
+      { name: "Blue Hoodie", price: 850, quantity: 1, image: "/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 850,
+    date: "week"
+  },
+  {
+    id: "ORD-1014",
+    fullName: "Fatma Nader",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Maadi, Street 15",
+    phone: "01099887766",
+    second_phone: null,
+    products: [
+      { name: "Black Dress", price: 900, quantity: 1, image: "/14_of_the_Coolest_Cropped_Sweaters_to_Rock_This_Fall-removebg-preview.png"}
+    ],
+    totalProducts: 1,
+    totalPrice: 900,
+    date: "week"
+  },
+
+  // ====== Past ======
+  {
+    id: "ORD-1015",
+    fullName: "Hany Samir",
+    country: "Egypt",
+    city: "Giza",
+    address: "Mohandessin, Street 3",
+    phone: "01155667799",
+    second_phone: null,
+    products: [
+      { name: "Red Hoodie", price: 850, quantity: 1, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 850,
+    date: "past"
+  },
+  {
+    id: "ORD-1016",
+    fullName: "Laila Fathy",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Heliopolis, Street 8",
+    phone: "01033445566",
+    second_phone: null,
+    products: [
+      { name: "White Sneakers", price: 1200, quantity: 1, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 1200,
+    date: "past"
+  },
+  {
+    id: "ORD-1017",
+    fullName: "Omar Kamal",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Stanley, Street 10",
+    phone: "01244556677",
+    second_phone: null,
+    products: [
+      { name: "Blue Jeans", price: 600, quantity: 2, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 1200,
+    date: "past"
+  },
+  {
+    id: "ORD-1018",
+    fullName: "Mona Adel",
+    country: "Egypt",
+    city: "Giza",
+    address: "Dokki, Street 12",
+    phone: "01166778899",
+    second_phone: null,
+    products: [
+      { name: "Red Dress", price: 900, quantity: 1, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png" }
+    ],
+    totalProducts: 1,
+    totalPrice: 900,
+    date: "past"
+  },
+  {
+    id: "ORD-1019",
+    fullName: "Khaled Samir",
+    country: "Egypt",
+    city: "Cairo",
+    address: "Nasr City, Street 20",
+    phone: "01011223344",
+    second_phone: null,
+    products: [
+      { name: "Black Hoodie", price: 800, quantity: 1, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png"}
+    ],
+    totalProducts: 1,
+    totalPrice: 800,
+    date: "past"
+  },
+  {
+    id: "ORD-1020",
+    fullName: "Sara Adel",
+    country: "Egypt",
+    city: "Alexandria",
+    address: "Gleem, Street 2",
+    phone: "01277889911",
+    second_phone: null,
+    products: [
+      { name: "White T-shirt", price: 400, quantity: 2, image: "/Soul_Half_Zipper_Solid_Sweatshirt_for_Men-removebg-preview.png" }
+    ],
+    totalProducts: 2,
+    totalPrice: 800,
+    date: "past"
   }
 ];

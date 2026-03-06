@@ -1,0 +1,526 @@
+/* ============================== */
+/* Add Product Page */
+/* ============================== */
+
+.add-product-page {
+  width: 100%;             /* غير دي من min-width لـ width */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center; /* التوسط العرضي الحقيقي */
+  align-items: flex-start;  /* يخليه يبدأ من فوق (لو عايزه في النص بالظبط خليها center) */
+  padding: 10px 0;         /* مساحة أمان عشان ما يلزقش في سقف الشاشة */
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.add-product-container {
+  width: 90vw;              /* الأفضل استخدام % داخل Flexbox */
+  margin: 0 auto;          /* تأكيد التوسط العرضي */
+  height: auto;
+  border-radius: 20px;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background: var(--page-bg);
+  box-shadow: var(--container-shadow);
+  overflow: visible;
+  position: relative;      /* لضمان استقرار العناصر جواه */
+
+}
+/* عنوان الصفحة */
+.add-product-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--title-color);
+  text-shadow: var(--text-shadow);
+}
+
+/* محتوى الفورم */
+.add-product-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: space-between;
+}
+
+/* Form group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 15px 20px;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--group-bg);
+  box-shadow: var(--group-shadow);
+  
+}
+
+.form-group:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--group-hover-shadow);
+}
+
+/* Labels */
+.form-group label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--label-color);
+  
+}
+
+.a {
+  text-align: start;
+}
+
+/* Inputs */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"],
+.form-group select {
+  padding: 14px 18px;
+  font-size: 1.05rem;
+  border: 2px solid var(--input-border);
+  border-radius: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  background: var(--input-bg);
+  color: var(--title-color);
+ 
+  
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: var(--input-focus-shadow);
+  background: var(--input-focus-bg);
+  color: var(--title-color);
+    color: var(--title-color);
+}
+
+
+/* color input */
+.form-group input[type="color"] {
+  width: 55px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+  color: #ffffff;
+}
+
+.form-group input[type="color"]:hover {
+  transform: scale(1.1);
+}
+
+.image-preview {
+  margin-top: 12px;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: var(--image-shadow);
+  border: 2px solid var(--image-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-preview:hover {
+  transform: scale(1.05);
+  box-shadow: var(--container-shadow);
+}
+
+/* رسالة الخطأ */
+.error-msg {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-top: -4px;
+}
+
+/* Buttons group */
+.form-group.buttons {
+  display: flex;
+  gap: 25px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.form-group.buttons button {
+  padding: 14px 35px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* زر Add */
+.form-group.buttons button:first-child {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #ffffff;
+}
+
+.form-group.buttons button:first-child:hover {
+  background: linear-gradient(135deg, var(--primary-hover), var(--primary-dark));
+  transform: translateY(-3px);
+  box-shadow: var(--box-hover-shadow);
+}
+
+/* زر Back */
+.form-group.buttons button:last-child {
+  background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+  color: #ffffff;
+}
+
+.form-group.buttons button:last-child:hover {
+  background: linear-gradient(135deg, var(--secondary-hover), var(--secondary-dark));
+  transform: translateY(-3px);
+  box-shadow: var(--box-hover-shadow);
+}
+
+/* ترتيب بعض الحقول */
+.input-row {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.input-row .form-group {
+  flex: 1 1 300px;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+/* ============================== */
+/* Background Gradient Boxes */
+/* ============================== */
+
+.gradient-options {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.gradient-box {
+  flex: 1;
+  min-width: 100px;
+  max-width: 160px;
+  height: 100px;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid var(--box-border);
+}
+
+.gradient-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-hover-shadow);
+}
+
+.gradient-box span {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: var(--box-label-color);
+  font-weight: 500;
+  text-shadow: var(--box-label-shadow);
+}
+
+/* الخلفيات من الثيم */
+.gradient-none {
+  background: var(--gradient-none);
+}
+
+.gradient-light {
+  background: var(--gradient-light);
+}
+
+.gradient-dark {
+  background: var(--gradient-dark);
+}
+
+/* البوكس المختار */
+.selected {
+  border: 3px solid var(--primary);
+}
+
+
+@media (max-width: 1024px) {
+
+  .add-product-container {
+  
+    transform-origin: top center; /* يخلي التصغير من فوق للوسط */
+  }
+
+  .add-product-title {
+    font-size: 2.2rem; /* نصغر العنوان */
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="file"],
+  .form-group select {
+    font-size: 0.95rem;
+    padding: 12px 14px;
+  }
+
+  .image-preview {
+    width: 140px;
+    height: 140px;
+  }
+
+  .gradient-box {
+    height: 80px;
+    min-width: 80px;
+    max-width: 140px;
+  }
+
+  .form-group.buttons button {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+
+}
+@media (max-width: 840px) {
+
+  .add-product-container {
+    width: 90vw;          /* 90% من عرض الشاشة */
+    padding: 30px 20px;   /* شوية padding من الجوانب */
+    transform: scale(1);  /* بدون تصغير إضافي */
+  }
+
+
+
+  .add-product-content{
+     flex-direction: column;   /* العناصر تبقى عمودية */
+    align-items: center;       /* في الوسط */
+    gap: 20px;
+    
+  }
+  .input-row{
+    flex-direction: column;   /* العناصر تبقى عمودية */
+    align-items: center;       /* في الوسط */
+    gap: 20px;  
+    
+  }
+ .gradient-options {
+  display: flex;
+  flex-direction: row;  /* خلي العناصر جنب بعض */
+  flex-wrap: wrap;      /* يسمح بالانتقال للسطر التالي لو ضاقت المساحة */
+  justify-content: center; /* في الوسط أفقيًا */
+  align-items: center;     /* في الوسط رأسيًا */
+  gap: 20px;               /* مسافة بين العناصر */
+
+}
+
+
+
+
+
+  .form-group {
+    flex: 1 1 90%;   /* تاخد 90% من عرض الأب */
+    max-width: 90%;  
+    min-width: 90%;
+  }
+
+  .gradient-box {
+    flex: 1 1 90%;
+    max-width: 90%;
+  }
+
+  .form-group.buttons {
+    flex-direction: column;   /* الأزرار فوق بعض */
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .form-group.buttons button {
+    width: 80%;  /* الأزرار أعرض شوية وتكون متوسطة */
+    max-width: 300px;
+  }
+
+  .image-preview {
+    width: 120px;
+    height: 120px;
+  }
+
+}
+
+
+
+@media (max-width: 550px) {
+
+  .add-product-container {
+    width: 95vw;          /* خليه ياخد أغلب الشاشة */
+    padding: 20px 15px;   /* padding أصغر */
+  }
+
+  .add-product-title {
+    font-size: 1.8rem;    /* تصغير العنوان */
+    margin-bottom: 20px;
+  }
+
+  .add-product-content {
+    flex-direction: column;   /* خلي كل العناصر عمودية */
+    align-items: center;
+    gap: 15px;
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .form-group {
+    flex: 1 1 95%;   /* تاخد معظم العرض */
+    min-width: 95%;
+    max-width: 95%;
+    padding: 12px 15px;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="file"],
+  .form-group select {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+
+  .image-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+  .gradient-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .gradient-box {
+    flex: 1 1 95%;
+    max-width: 95%;
+    height: 70px;
+  }
+
+  .form-group.buttons {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
+
+  .form-group.buttons button {
+    width: 90%;   /* أكبر من العناصر للضغط بسهولة */
+    max-width: 250px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ============================== */
+/* Mobile Extra Small (380px) */
+/* ============================== */
+
+@media (max-width: 500px) {
+  /* تقليل الهوامش الخارجية والداخلية للكونتينر */
+  .add-product-page {
+    padding: 5px 0;
+  }
+
+  .add-product-container {
+    width: 98vw;      /* استغلال كامل العرض تقريباً */
+    padding: 15px 10px; /* تقليل الحشو الداخلي */
+    gap: 15px;         /* تقليل الفجوات بين الأقسام الرئيسية */
+    border-radius: 12px;
+  }
+
+  /* تصغير العنوان */
+  .add-product-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  /* تصغير الـ Form Groups */
+  .form-group {
+    padding: 10px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  /* تصغير الحقول والنصوص جواه */
+  .form-group input[type="text"],
+  .form-group input[type="number"],
+  .form-group input[type="file"] {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+  }
+
+  /* تصغير بوكسات التدرج */
+  .gradient-options {
+    gap: 10px;
+  }
+
+  .gradient-box {
+    height: 60px;     /* تقليل الارتفاع */
+    min-width: 70px;
+    border-radius: 8px;
+  }
+
+  .gradient-box span {
+    font-size: 0.65rem;
+    top: 4px;
+  }
+
+  /* تصغير الصورة المعاينة */
+  .image-preview {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+  }
+
+  /* تصغير الأزرار */
+  .form-group.buttons {
+    margin-top: 10px;
+    gap: 8px;
+  }
+
+  .form-group.buttons button {
+    width: 100%;       /* الأزرار تأخذ العرض بالكامل */
+    padding: 10px;
+    font-size: 0.85rem;
+    border-radius: 10px;
+  }
+  
+  /* تصغير مدخلات الألوان لتبدو متناسقة */
+  .form-group input[type="color"] {
+    width: 45px;
+    height: 35px;
+  }
+}

@@ -8,7 +8,7 @@ function Cart() {
 const summaryRef = useRef(null);   // مرجع لعنصر ملخص الطلب اليممين للتحكم فيه بالأنيميشن
 const headerRef = useRef(null);    // مرجع لعنصر الهيدر أعلى الصفحة للتحكم في ظهوره وحركته
 const subtitleRef = useRef(null);  // مرجع لعنصر النص أسفل الهيدر (Subtitle)
-const productsRef = useRef([]);    // مصفوفة مراجع لكل كارت منتج عشان نعمل عليه أنيميشن أو
+const productsRef = useRef({});    // مصفوفة مراجع لكل كارت منتج (تم تغييرها لكائن لضمان دقة الربط بالـ ID)
 const [modalType, setModalType] = useState(null); // صفحه البينات عرض
 const modalRef = useRef(null); //غلق صفحه البينات
 const [Payment, setPayment] = useState(false); // صفحه الدفع
@@ -36,8 +36,8 @@ const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   useEffect(() => {
 
     const handleStorageChange = () => {
-      const savedCart = localStorage.getItem("cart");
-      setCartItems(savedCart ? JSON.parse(savedCart) : {});
+      const savedCart = localStorage.getItem("cart"); // قراءة البيانات الجديدة
+      setCartItems(savedCart ? JSON.parse(savedCart) : {}); // تحديث الحالة
     };
 
     window.addEventListener("storage", handleStorageChange); // الاستماع لتغيرات التخزين
@@ -67,12 +67,12 @@ const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   // لو مفيش عناصر رجع صوره بى انميشن 
 const imgRef = useRef(null);
 useEffect(() => {
-  const el = imgRef.current;
+  const el = imgRef.current; // تخزين المرجع
   if (!el) return; // لو العنصر مش موجود، اخرج
 
   // Timeline للحركة المتكررة فقط لو الكارت فاضي
   if (Object.keys(cartItems).length === 0) {
-    const tl = gsap.timeline({ repeat: -1 });
+    const tl = gsap.timeline({ repeat: -1 }); // إنشاء تايم لاين متكرر
 
     tl.fromTo(
       el,
@@ -88,13 +88,13 @@ useEffect(() => {
 
 // دالة غلق صفحه اللبينات
 const closeModal = () => {
-  if (!modalRef.current) return;
+  if (!modalRef.current) return; // التحقق من وجود المرجع
   gsap.to(modalRef.current, {
-    y: -100,
-    opacity: 0,
-    duration: 0.4,
-    ease: "power2.in",
-    onComplete: () => setModalType(null), // يخفي أي مودال
+    y: -100, // الارتفاع للأعلى
+    opacity: 0, // الاختفاء
+    duration: 0.4, // المدة
+    ease: "power2.in", // نوع الحركة
+    onComplete: () => setModalType(null), // يخفي أي مودال بعد الانتهاء
   });
 };
 
@@ -103,8 +103,8 @@ useEffect(() => {
   if (modalType && modalRef.current) {
     gsap.fromTo(
       modalRef.current,
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }
+      { y: -100, opacity: 0 }, // نقطة البداية
+      { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" } // نقطة النهاية
     );
   }
 }, [modalType]);
@@ -112,12 +112,12 @@ useEffect(() => {
 // متغير صفحه الدفع حسب عرض الشاشه 
 useEffect(() => {
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 1024);
+    setIsMobile(window.innerWidth <= 1024); // تحديث حالة الموبايل
   };
-  window.addEventListener("resize", handleResize);
+  window.addEventListener("resize", handleResize); // إضافة مستمع لتغيير الحجم
 
   return () => {
-    window.removeEventListener("resize", handleResize);
+    window.removeEventListener("resize", handleResize); // تنظيف المستمع
   };
 }, []);
 
@@ -137,25 +137,51 @@ const [errors, setErrors] = useState({});
   // ===== أنيميشن عند تحميل الصفحة =====
   useEffect(() => {
     document.body.classList.remove("home", "other-page"); // إزالة أي كلاس قديم
-    document.documentElement.classList.remove("home", "other-page");
+    document.documentElement.classList.remove("home", "other-page"); // تنظيف الروت
 
     document.body.classList.add("cart-container"); // إضافة كلاس خاص بالصفحة
-    document.documentElement.classList.add("cart-container");
+    document.documentElement.classList.add("cart-container"); // إضافة كلاس للروت
 
-    // أنيميشن ملخص الطلب
+    // أنيميشن ملخص الطلب عند التحميل الأول
     gsap.fromTo(summaryRef.current, { y: 200, opacity: 0 }, { y: 0, opacity: 1, duration: 2, ease: "power3.out", delay: 0.5 });
     // أنيميشن الهيدر
     gsap.fromTo(headerRef.current, { y: -50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power2.out" });
     // أنيميشن subtitle
     gsap.fromTo(subtitleRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 3, ease: "power3.out", delay: 0.3 });
-    // أنيميشن المنتجات
-    gsap.fromTo(productsRef.current, { x: -50, opacity: 0 }, { x: 0, opacity: 1, duration: 3, ease: "power3.out", stagger: 0.2, delay: 0.5 });
 
     return () => {
       document.body.classList.remove("cart-container"); // تنظيف الكلاسات عند الخروج
       document.documentElement.classList.remove("cart-container");
     };
   }, []);
+
+// ===== 🔑 تصليح أنيميشن المنتجات المضافة حديثاً =====
+useEffect(() => {
+  // تجميع المراجع الحقيقية الموجودة حالياً وفلترة أي قيم فارغة
+  const existingProducts = Object.values(productsRef.current).filter(el => el !== null);
+
+  // استهداف العناصر التي لم يتم عمل أنيميشن لها بعد (لا تحتوي على كلاس is-animated)
+  const newProducts = existingProducts.filter(el => !el.classList.contains('is-animated'));
+
+  if (newProducts.length > 0) {
+    gsap.fromTo(
+      newProducts,
+      { x: -50, opacity: 0, scale: 0.9 }, // البداية: زحزحة لليسار وصغر حجم
+      { 
+        x: 0, 
+        opacity: 1, 
+        scale: 1, 
+        duration: 0.8, 
+        ease: "power3.out", 
+        stagger: 0.2, // تتابع بين المنتجات
+   onComplete: (targets) => { 
+  // هنا نستخدم targets التي تمررها GSAP تلقائياً
+  targets.forEach(el => el.classList.add('is-animated'));
+}
+      }
+    );
+  }
+}, [cartItems]); // 🔑 يراقب التغير في الكارت ليشمل أي منتج جديد مضاف
 
   // ===== إجمالي السعر فى الكارت الى فى اليمين=====
   const totalPrice 
@@ -214,8 +240,8 @@ return (
     placeholder="Full Name"
     value={formData.fullName}
     onChange={(e) => {
-      setFormData({ ...formData, fullName: e.target.value });
-      setErrors({ ...errors, fullName: false });
+      setFormData({ ...formData, fullName: e.target.value }); // تحديث الاسم
+      setErrors({ ...errors, fullName: false }); // إزالة الخطأ
     }}
     style={{
       border: errors.fullName ? "2px solid red" : "2px solid #ccc"
@@ -233,8 +259,8 @@ return (
   placeholder="Country"
   value={formData.country}
   onChange={(e) => {
-      setFormData({ ...formData, country: e.target.value });
-      setErrors({ ...errors, country: false });
+      setFormData({ ...formData, country: e.target.value }); // تحديث الدولة
+      setErrors({ ...errors, country: false }); // إزالة الخطأ
     }}
     style={{
       border: errors.country ? "2px solid red" : "2px solid #ccc"
@@ -248,8 +274,8 @@ return (
    placeholder="City" 
     value={formData.city}
      onChange={(e) => {
-      setFormData({ ...formData, city: e.target.value });
-      setErrors({ ...errors, city: false });
+      setFormData({ ...formData, city: e.target.value }); // تحديث المدينة
+      setErrors({ ...errors, city: false }); // إزالة الخطأ
     }}
     style={{
       border: errors.city ? "2px solid red" : "2px solid #ccc"
@@ -263,8 +289,8 @@ return (
    placeholder="Address"
     value={formData.address}
   onChange={(e) => {
-      setFormData({ ...formData, address: e.target.value });
-      setErrors({ ...errors, address: false });
+      setFormData({ ...formData, address: e.target.value }); // تحديث العنوان
+      setErrors({ ...errors, address: false }); // إزالة الخطأ
     }}
     style={{
       border: errors.address ? "2px solid red" : "2px solid #ccc"
@@ -279,8 +305,8 @@ return (
    placeholder="Phone Number" 
    value={formData.phone}
   onChange={(e) => {
-      setFormData({ ...formData, phone: e.target.value });
-      setErrors({ ...errors, phone: false });
+      setFormData({ ...formData, phone: e.target.value }); // تحديث الهاتف
+      setErrors({ ...errors, phone: false }); // إزالة الخطأ
     }}
     style={{
       border: errors.phone ? "2px solid red" : "2px solid #ccc"
@@ -307,20 +333,20 @@ return (
       address: !formData.address,
       phone: !formData.phone
     };
-    setErrors(newErrors);
-if (Object.values(newErrors).some(err => err)) return;
+    setErrors(newErrors); // فحص الأخطاء
+if (Object.values(newErrors).some(err => err)) return; // لو فيه خطأ اخرج
 
 // هات input الرقم التاني
 const secondPhoneInput = document.querySelector('input[placeholder="Second Phone Number"]');
 
-let secondPhone = null;
+let secondPhone = null; // القيمة الافتراضية
 
 if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
-  secondPhone = secondPhoneInput.value.trim();
+  secondPhone = secondPhoneInput.value.trim(); // لو موجود خده
 }
 
 
-      setErrors(newErrors);
+      setErrors(newErrors); // تحديث الأخطاء
       if (Object.values(newErrors).some(err => err)) return;
        // 3️⃣ كل الحقول مليانة، نحفظ البيانات في sessionStorage
       const dataToSave = {
@@ -331,7 +357,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
         phone: formData.phone,
         second_phone: secondPhone // 👈 يا null يا رقم
       };
-      sessionStorage.setItem("checkoutData", JSON.stringify(dataToSave));
+      sessionStorage.setItem("checkoutData", JSON.stringify(dataToSave)); // تخزين البيانات
 
       if (modalRef.current) {
         gsap.fromTo(
@@ -343,8 +369,8 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
             duration: 0.5,
             ease: "power3.in",
             onComplete: () => {
-              setModalType(null);
-              setPayment(true);
+              setModalType(null); // إغلاق المودال
+              setPayment(true); // فتح صفحة الدفع
 
               setTimeout(() => {
                 if (PaymentRef.current) {
@@ -352,7 +378,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
                     PaymentRef.current,
                     { y: -100, opacity: 0 },
                     { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-                  );
+                  ); // أنيميشن ظهور صفحة الدفع
                 }
               }, 2);
             }
@@ -406,12 +432,12 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
 <div className="payment-content">
   <div className="payment-box">
     <div className="payment-left">
-      <h2>Hello Youssef</h2>
+  <h2>Hello {formData.fullName ? formData.fullName.split(' ')[0] : "Guest"}</h2>{/* ترحيب */}
     </div>
 
     <div className="payment-right">
       <span>Total:</span>
-      <span className="total-amount">${totalPrice}</span>
+      <span className="total-amount">${totalPrice}</span> {/* السعر */}
     </div>
   </div>
 </div>
@@ -469,7 +495,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
 </button>
 </div>
 </div>
- {/*  محتوى  على اليمين */}
+ {/* محتوى  على اليمين */}
   <div className="payment-content-right">
       {/* الصور الصغيرة */}
   <div className="payment-small-images">
@@ -480,21 +506,21 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
   </div>
 
   {/* ادخال بينات الكارد*/}
-  <div className="payment-card-form">
-  <div className="input-row">
-    <div className="input-group">
+  <div className="payment-card-form33">
+  <div className="input-row33">
+    <div className="input-group33">
       <input type="text" id="fullName" placeholder="Your Full Name" />
     </div>
-    <div className="input-group">
+    <div className="input-group33">
       <input type="text" id="cardNumber" placeholder="Card Number" />
     </div>
   </div>
 
-  <div className="input-row">
-    <div className="input-group">
+  <div className="input-row33">
+    <div className="input-group33">
       <input type="text" id="expireDate" placeholder="MM/YY" />
     </div>
-    <div className="input-group">
+    <div className="input-group33">
       <input type="text" id="cvc" placeholder="CVC" />
     </div>
   </div>
@@ -553,7 +579,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
   </div>
 
 <div className="payment-top-mopil">
-  <h2>Hello Youssef</h2>
+  <h2>Hello {formData.fullName ? formData.fullName.split(' ')[0] : "Guest"}</h2>
 </div>
 
 <div className="payment-bottom-mopil">
@@ -624,8 +650,8 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
       {/* ===== Header أعلى الصفحة ===== */}
       <div className="cart-header" ref={headerRef}>
         <button className="continue-shopping" onClick={() => {
-              new Audio("/ui-authorised-243460.mp3").play();
-              handleContinueShopping();
+              new Audio("/ui-authorised-243460.mp3").play(); // صوت زر التسوق
+              handleContinueShopping(); // دالة الانتقال
         }}
 >
           <i className="fa-solid fa-arrow-left"></i>
@@ -658,9 +684,9 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
       // نكرر على كل منتج داخل cartItems
       <div 
         className="product-card"                // كلاس الكارت
-        key={item.id}                           // مفتاح React
+        key={item.id}                           // مفتاح React الفريد
         ref={(el) => (productsRef.current[item.id] = el)} 
-        // نخزن reference للكارت عشان نعمل عليه أنيميشن
+        // 🔑 تم ربط المرجع بالـ id لضمان تحديد كل عنصر بدقة للأنيميشن
       >
 
         <i
@@ -693,7 +719,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
         <img
           src={item.images}                    // صورة المنتج
           alt={item.productTitles}            // عنوان للصورة
-          className="product-image"           // كلاس الصورة
+          className="product-image33"           // كلاس الصورة
           style={{
             backgroundSize: "50% auto, cover",
             backgroundPosition: "center, center",
@@ -701,7 +727,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
           }}
         />
 
-        <div className="product-info">         {/* معلومات المنتج */}
+        <div className="product-info1">         {/* معلومات المنتج */}
           <h3 className="Address">{item.productTitles}</h3> 
           {/* اسم المنتج */}
 
@@ -715,7 +741,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
             <div className="quantity-controls">
               <button
                 onClick={() => {
-                  new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play();
+                  new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play(); // صوت كليك
                   handleQuantityChange(item.id, -1);
                   // نقص الكمية
                 }}
@@ -725,7 +751,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
 
               <button
                 onClick={() => {
-                  new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play();
+                  new Audio("/zapsplat_multimedia_button_click_bright_002_92099.mp3").play(); // صوت كليك
                   handleQuantityChange(item.id, +1);
                   // زود الكمية
                 }}
@@ -749,7 +775,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
    
     alt="Empty Cart"
        className="empty-cart-img"  // نحتفظ بالكلاس عشان الـ CSS يشتغل
-    draggable={false}             // منع سحب الصورة
+    draggable={false}              // منع سحب الصورة
   />
 </div>
   )}
@@ -778,7 +804,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
   onClick={() => {
     if (Object.keys(cartItems).length === 0) {
       setModalType("empty");   // اعرض رسالة السلة الفارغة
-      new Audio("/ui-authorised-243460.mp3").play();
+      new Audio("/ui-authorised-243460.mp3").play(); // صوت تحذير
     } else {
       setModalType("checkout");    // افتح checkout الطبيعي
     }

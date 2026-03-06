@@ -307,3 +307,141 @@
   }
   
 }
+
+
+
+
+
+
+
+/* الحاوية الكلية للـ OTP */
+.otp-v2-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.otp-v2-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.otp-v2-back-icon {
+    cursor: pointer;
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.otp-v2-back-icon:hover {
+    transform: translateX(5px);
+}
+
+/* حاوية المدخلات الستة */
+.otp-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.otp-input {
+    width: 40px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    background: transparent;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+    transform: scale(1.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* الفوتر (الأزرار) */
+.otp-footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
+    padding: 0 5px;
+}
+
+.resend-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    position: relative;
+    padding: 4px 0;
+    transition: opacity 0.3s;
+    opacity: 0.8;
+}
+
+.resend-btn::after {
+    content: '';
+    position: absolute;
+    width: 0; height: 1.5px; bottom: 0; left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.resend-btn:hover { opacity: 1; }
+.resend-btn:hover::after { width: 100%; }
+
+.verify-submit-btn {
+    background: transparent;
+    border: 1.5px solid; 
+    border-radius: 12px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.verify-submit-btn:hover {
+    transform: translateY(-3px);
+    background: currentColor; /* اختياري: يمتلئ باللون عند الوقوف عليه */
+    color: white !important;
+}
+
+/* --- التجاوب عند 635 بكسل --- */
+@media screen and (max-width: 635px) {
+    .otp-v2-wrapper .modal-title { font-size: 1.4rem !important; }
+    .otp-container { gap: 6px !important; }
+    .otp-input { width: 32px !important; height: 42px !important; font-size: 16px !important; }
+    .verify-submit-btn { padding: 8px 16px !important; font-size: 12px !important; }
+}
+
+/* --- التجاوب عند 420 بكسل (توسيع البوكس وعزل التنسيقات) --- */
+@media screen and (max-width: 520px) {
+    /* توسيع المودال فقط في حالة واجهة الـ OTP */
+    .user-modal:has(.otp-v2-wrapper) {
+        width: 92% !important;
+        padding: 30px 15px !important;
+    }
+
+    .otp-v2-wrapper .modal-title { font-size: 1.2rem !important; }
+    .otp-v2-wrapper .modal-subtitle { font-size: 0.8rem !important; margin-bottom: 10px !important; }
+
+    .otp-container { gap: 4px !important; margin: 15px 0 !important; }
+    .otp-input { 
+        width: 28px !important; 
+        height: 38px !important; 
+        font-size: 14px !important; 
+        border-width: 1.5px !important;
+    }
+
+    .otp-footer-container { margin-top: 15px !important; }
+    .resend-btn { font-size: 10px !important; }
+    .verify-submit-btn { padding: 6px 12px !important; font-size: 11px !important; }
+}

@@ -1,5 +1,4 @@
 .analytics-page {
-
   margin-top: 100px;
   width: 90vw;        /* ياخد 90% من عرض الشاشة */
   margin: 100px auto; /* يوسّطه في النص */
@@ -10,7 +9,6 @@
   font-weight: bold; /* الخط عريض */
   color: var(--text-title); /* لون العنوان حسب الثيم */
   margin-bottom: 20px; /* مسافة أسفل العنوان */
-  
 }
 
 .analytics-grid {
@@ -18,7 +16,6 @@
   grid-template-columns: 1fr 1fr; /* عمودين بنفس العرض */
   grid-template-rows: auto auto; /* صفين ارتفاعهم تلقائي حسب المحتوى */
   gap: 20px; /* المسافة بين الصفوف والأعمدة */
-  
 }
 
 /* كروت الرسومات */
@@ -52,7 +49,6 @@
   gap: 12px; /* المسافة بين أيقونة النص */
   box-shadow: var(--card-shadow); /* ظل الزر حسب الثيم */
   transition: 0.3s; /* تأثير الحركة عند hover */
-  
 }
 
 .big-btn:hover {
@@ -294,5 +290,10 @@
     width: 100%;
     font-size: 12px;  /* تصغير الخط داخل الزر */
     padding: 10px;    /* تصغير مساحة الزر */
+  }
+}
+@media (min-height: 1300px) {
+  .analytics-page {
+    margin-top: -20px; /* تصغير المسافة العلوية والسفلية */
   }
 }

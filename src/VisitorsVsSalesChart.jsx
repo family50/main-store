@@ -4,8 +4,10 @@ import { salesStats, visitorsStats } from "./analytics";
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { themes } from "./themes";
+import { translations } from "./translations";
 
-export default function VisitorsVsSalesChart({ theme = "light" }) {
+export default function VisitorsVsSalesChart({ lang, theme = "light" }) {
+  const t = translations[lang].charts;
   const [range, setRange] = useState("today"); // اليوم افتراضي
   const chartRef = useRef(null);
 
@@ -24,12 +26,12 @@ export default function VisitorsVsSalesChart({ theme = "light" }) {
     <div ref={chartRef}>
       <div className="chart-header" >
         <div className="chart-titles">
-        <h3>Visitors vs Sales</h3>
-        <h3 style={{color: "var(--price-color)" }}>totle:230$</h3>
+        <h3>{t.visitorsVsSales}</h3>
+        <h3 style={{color: "var(--price-color)" }}>{t.total}: 230$</h3>
         </div>
         <div className="chart-tabs">
           {["today", "week", "month", "year"].map(r => (
-            <button key={r} onClick={() => setRange(r)}>{r}</button>
+            <button key={r} onClick={() => setRange(r)}> {t[r]}</button>
           ))}
         </div>
       </div>
@@ -39,14 +41,26 @@ export default function VisitorsVsSalesChart({ theme = "light" }) {
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip
-            contentStyle={{
-              backgroundColor: themes[theme]["--background-main"],
-              borderRadius: "10px",
-              border: `1px solid ${themes[theme]["--glass-border"]}`
-            }}
-            itemStyle={{ color: themes[theme]["--text-title"], fontWeight: "bold" }}
-            labelStyle={{ color: themes[theme]["--text-description"], fontSize: "12px" }}
-          />
+  contentStyle={{
+    backgroundColor: themes[theme]["--background-main"],
+    borderRadius: "10px",
+    border: `1px solid ${themes[theme]["--glass-border"]}`
+  }}
+  itemStyle={{ color: themes[theme]["--text-title"], fontWeight: "bold" }}
+  labelStyle={{ color: themes[theme]["--text-description"], fontSize: "12px" }}
+
+  formatter={(value, name) => {
+    const map = {
+      orders: t.orders,
+      revenue: t.revenue,
+      visitors: t.visitors,
+      cartAbandoned: t.cartAbandoned
+    };
+
+    return [value, map[name] || name];
+  }}
+/>
+
           <Bar dataKey="visitors" fill={themes[theme]["--button-bg"]} />
           <Bar dataKey="orders" fill={themes[theme]["--button-bg"]} />
         </BarChart>

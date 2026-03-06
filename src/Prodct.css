@@ -1,0 +1,604 @@
+.products-admin-page {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  overflow-x: hidden; /* نقفل الاسكرول العرضي */
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+
+}
+
+.products-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 70px;
+  
+}
+
+
+
+
+
+
+
+/* الهيدر: عنوان + زرار */
+.products-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 15px;
+}
+
+.products-title {
+  font-size: 42px;
+  font-weight: bold;
+  color:var(--text-title);
+
+}
+
+
+.products-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+.view-store-btn {
+  background: linear-gradient(135deg, #0ea5e9, #22c55e); /* أزرق + أخضر */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: 0.3s;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.view-store-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+
+/* زر الإضافة */
+.add-product-btn {
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: 0.3s;
+  white-space: nowrap;
+  width: fit-content;
+  
+}
+
+.add-product-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  
+}
+
+/* السيرش */
+.products-search {
+  width: 100%;
+  max-width: 450px;
+  align-self: center; /* في النص هندسيًا */
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: none;
+  
+
+  box-shadow: var(--card-shadow);
+  outline: none;
+  font-size: 15px;
+
+    background: var(--admin-search-bg);
+  color: var(--text-title);
+}
+
+/* الجريد */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  
+}
+
+/* الكارت */
+.product-admin-card {
+background: var(--admin-card-bg);
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 430px;
+
+}
+
+.product-admin-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* الصورة */
+.product-image {
+   background: var(--admin-image-bg);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* العنوان */
+.product-admin-card h3 {
+  font-size: 22px;
+  color: var(--admin-title-color);
+  margin-top: 5px;
+  
+}
+
+/* السعر */
+.price {
+  color: var(--price-color);
+  font-weight: bold;
+  font-size: 18px;
+}
+.product-views {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--admin-views-color);
+  margin-top: 2px;
+  margin-bottom: 4px;
+  opacity: 0.85;
+}
+
+.product-views i {
+  font-size: 15px;
+   color: var(--admin-views-icon);
+  filter: drop-shadow(0 0 4px rgba(96,165,250,0.4));
+}
+
+.product-views span {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+
+/* أزرار */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  
+}
+
+.edit-btn,
+.delete-btn {
+  flex: 1;
+  border: none;
+  padding: 10px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.edit-btn {
+   background: var(--admin-edit-bg);
+  color: white;
+  
+}
+
+.delete-btn {
+ background: var(--admin-delete-bg);
+  color: white;
+}
+
+.edit-btn:hover {
+  transform: scale(1.05);
+}
+
+.delete-btn:hover {
+  transform: scale(1.05);
+}
+@media (max-width: 1024px) {
+
+  .products-admin-page {
+    padding: 18px;
+    gap: 18px;
+    width: 95vw;
+   
+  }
+
+  .products-content {
+    gap: 15px;
+    margin-top: 20px;
+   margin-bottom: 100px;
+  }
+
+  .products-title {
+    font-size: 32px;
+  }
+
+  .add-product-btn {
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  .products-search {
+    max-width: 360px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  .product-admin-card {
+    padding: 12px;
+    border-radius: 16px;
+    height: 360px;
+    gap: 8px;
+  }
+
+  .product-image {
+    border-radius: 12px;
+  }
+
+  .product-admin-card h3 {
+    font-size: 18px;
+  }
+
+  .price {
+    font-size: 16px;
+      width: 100%;
+     margin-left: 0px;
+
+  }
+  .view-store-btn,
+  .product-views {
+    font-size: 12px;
+
+  }
+  .view-store-btn i,
+  .product-views i {
+    font-size: 13px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 8px 0;
+    font-size: 13px;
+    border-radius: 10px;
+    
+  }
+
+}
+@media (max-width: 740px) {
+
+  .products-admin-page {
+    padding: 12px;
+    gap: 12px;
+    
+
+  }
+
+  .products-content {
+    gap: 12px;
+    margin-top: 60px;
+    margin-bottom: 80px;
+  }
+
+  .products-header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .products-title {
+    font-size: 26px;
+  }
+  .view-store-btn,
+  .add-product-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+    border-radius: 10px;
+    justify-self: center;
+  }
+
+  .products-search {
+
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+  }
+
+  .product-admin-card {
+    padding: 10px;
+    border-radius: 14px;
+    height: 320px;
+    gap: 6px;
+  }
+
+  .product-image {
+    border-radius: 10px;
+  }
+
+  .product-admin-card h3 {
+    font-size: 15px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .product-views {
+    font-size: 11px;
+  }
+  .view-store-btn i,
+  .product-views i {
+    font-size: 12px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 7px 0;
+    font-size: 12px;
+    border-radius: 9px;
+  }
+.product-image {
+  aspect-ratio: 1 / 1;   /* يحافظ على مربع */
+}
+
+}
+
+
+
+@media (max-width: 500px) {
+
+
+  .products-content {
+    margin-top: 40px;
+    gap: 10px;
+    
+  }
+
+  /* تصغير العنوان */
+  .products-title {
+    font-size: 20px;
+    
+  }
+
+  /* تصغير أزرار الهيدر وجعلها بجانب بعضها إذا سمحت المساحة */
+  .products-actions {
+    gap: 6px;
+  }
+
+  .view-store-btn,
+  .add-product-btn {
+    padding: 6px 10px;
+    font-size: 11px;
+    border-radius: 8px;
+    gap: 4px;
+  }
+
+  /* تصغير شريط البحث */
+  .products-search {
+    padding: 7px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+    width: 60%;
+  }
+
+ 
+
+  /* تصغير الكارت */
+  .product-admin-card {
+    padding: 8px;
+    border-radius: 12px;
+    height: 280px; /* تقليل الارتفاع الإجمالي */
+    gap: 4px;
+  }
+
+  /* تصغير النصوص داخل الكارت */
+  .product-admin-card h3 {
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .price {
+    font-size: 13px;
+  }
+
+  .product-views {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  /* تصغير أزرار الأكشن (تعديل/حذف) */
+  .card-actions {
+    gap: 5px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 0;
+    font-size: 11px;
+    border-radius: 7px;
+  }
+
+  /* تصغير بوكس التأكيد الصغير ليناسب الكارت الصغير */
+  .mini-confirm-box {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .mini-confirm-box p {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .mini-actions button {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+
+
+/* منع السكرول العرضي تماماً في الصفحة */
+.dashboard-active {
+    overflow-x: hidden !important;
+    overflow-y: auto;
+}
+
+/* تنسيق السكروول بار لمتصفحات Chrome و Edge و Safari */
+/* 1. عرض السكروول */
+.dashboard-active-scrollbar {
+    width: 10px; /* عرض السكروول الطولي */
+}
+
+/* 2. خلفية السكروول (Track) */
+.dashboard-active-scrollbar-track {
+    background: var(--background-main); /* نفس خلفية الصفحة */
+}
+
+/* 3. الجزء المتحرك (Thumb) */
+.dashboard-active-scrollbar-thumb {
+    background: var(--text-title); /* نفس لون التكست */
+    border-radius: 10px; /* لجعله انسيابي */
+    border: 2px solid var(--background-main); /* يعطي مسافة جمالية حول السكروول */
+}
+
+/* 4. عند تمرير الماوس فوق السكروول */
+.dashboard-active-scrollbar-thumb:hover {
+    filter: brightness(1.2); /* تفتيح اللون قليلاً عند التفاعل */
+    background: var(--accent-color, var(--text-title)); 
+}
+
+/* لتطبيقه على متصفح Firefox */
+.dashboard-active {
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-title) var(--background-main);
+}
+
+
+
+
+
+
+/* طبقة التأكيد - الحاوية الأب */
+.mini-delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  
+  /* الإضافات لضمان التوسط التام */
+  display: flex;
+  justify-content: center; /* التوسط العرضي */
+  align-items: center;     /* التوسط الطولي */
+  
+  z-index: 10;
+  padding: 10px; /* مسافة أمان حتى لا يلمس البوكس حواف الكارد */
+  box-sizing: border-box;
+}
+
+/* صندوق التأكيد الصغير */
+.mini-confirm-box {
+  background: var(--background-glass);
+  border: 1px solid var(--glass-border);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  
+  /* تعديل العرض */
+  width: 90%;      /* جعل العرض مرن ليناسب الكارد */
+  max-width: 250px; /* تحديد أقصى عرض حتى لا يبدو ضخماً في الشاشات الكبيرة */
+}
+
+
+.mini-confirm-box p {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--text-title);
+  margin-bottom: 12px;
+}
+
+/* حاوية الأزرار */
+.mini-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.mini-actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.mini-confirm-btn {
+  background: var(--admin-delete-bg);
+  color: #fff;
+}
+
+.mini-cancel-btn {
+  background: var(--background-tab);
+  color: var(--text-title);
+  border: 1px solid var(--glass-border) !important;
+}
+
+.mini-actions button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}

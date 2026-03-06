@@ -4,8 +4,9 @@ import { salesStats, visitorsStats, cartAbandonedStats } from "./analytics";
 import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { themes } from "./themes";
-
-export default function TripleComparisonChart({ theme = "light" }) {
+import { translations } from "./translations";
+export default function TripleComparisonChart({ lang, theme = "light" }) {
+  const t = translations[lang].charts;
   const [range, setRange] = useState("today"); // اليوم افتراضي
   const chartRef = useRef(null);
 
@@ -25,13 +26,13 @@ export default function TripleComparisonChart({ theme = "light" }) {
     <div ref={chartRef}>
     <div className="chart-header">
   <div className="chart-titles">
-    <h3 className="chart">Visitors / Orders / Cart Abandoned</h3>
-    <h3 style={{color: "var(--price-color)" }}>total: 230$</h3>
+    <h3 className="chart">{t.triple}</h3>
+    <h3 style={{color: "var(--price-color)" }}>{t.total}: 230$</h3>
   </div>
 
   <div className="chart-tabs">
     {["today", "week", "month", "year"].map(r => (
-      <button key={r} onClick={() => setRange(r)}>{r}</button>
+      <button key={r} onClick={() => setRange(r)}>{t[r]}</button>
     ))}
   </div>
 </div>
@@ -40,15 +41,30 @@ export default function TripleComparisonChart({ theme = "light" }) {
         <LineChart data={data}>
           <XAxis dataKey="name" />
           <YAxis  />
-          <Tooltip 
-            contentStyle={{
-              backgroundColor: themes[theme]["--background-main"],
-              borderRadius: "10px",
-              border: `1px solid ${themes[theme]["--glass-border"]}`
-            }}
-            itemStyle={{ color: themes[theme]["--text-title"], fontWeight: "bold" }}
-            labelStyle={{ color: themes[theme]["--text-description"], fontSize: "12px" }}
-          />
+         <Tooltip
+  contentStyle={{
+    backgroundColor: themes[theme]["--background-main"],
+    borderRadius: "10px",
+    border: `1px solid ${themes[theme]["--glass-border"]}`
+  }}
+  itemStyle={{ color: themes[theme]["--text-title"], fontWeight: "bold" }}
+  labelStyle={{ color: themes[theme]["--text-description"], fontSize: "12px" }}
+
+  formatter={(value, name) => {
+    const map = {
+      orders: t.orders,
+      revenue: t.revenue,
+      visitors: t.visitors,
+      cartAbandoned: t.cartAbandoned
+    };
+    return [value, map[name] || name];
+  }}
+
+  labelFormatter={(label) => {
+    return t[label] || label;
+  }}
+/>
+
           <Line type="monotone" dataKey="visitors" stroke={themes[theme]["--button-bg"]} />
           <Line type="monotone" dataKey="orders" stroke={themes[theme]["--button-bg"]} />
           <Line type="monotone" dataKey="cartAbandoned" stroke="#ff4b4b" />

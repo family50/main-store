@@ -71,24 +71,37 @@ html.home::-webkit-scrollbar-track {
   gap: 20px; /* مسافة بين العناصر */
   border-radius: 15px; /* حواف ناعمة */
   box-shadow: 0 8px 20px rgba(0,0,0,0.25); /* ظل خفيف */
-  width: 300px; /* عرض ثابت */
+  width: 350px; /* عرض ثابت */
   height: fit-content; /* الطول على قد المحتوى */
   position: absolute; /* وضع مطلق بالنسبة للـ bottom-section */
   left: 50px; /* مسافة من اليسار */
   top: 50%; /* توسيط عمودي */
   transform: translateY(-50%); /* تعديل الوسط */
+  /* السطرين القادمين أهم شيء */
+/* السطرين القادمين أهم شيء */
+  overflow: visible; /* لكي نرى أي محتوى حتى لو تمدد */
+  box-sizing: border-box;
 }
 
 /* Product Title */
-.left-box .product-title {
-  font-size: 2.8rem; /* حجم العنوان */
-  font-weight: 700; /* سمك الخط */
-  color: #fffacd; /* لون النص */
-  text-align: left; /* محاذاة لليسار */
+.left-box .product-title33 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  width: 100%;
+  text-align: left;
+
+  box-sizing: border-box;
+
+  /* 🔑 الحل السحري هنا */
+  white-space: normal;       /* يسمح للنص بالنزول لسطر جديد طبيعياً */
+  word-wrap: break-word;     /* يكسر الكلمة إذا كانت أطول من العرض */
+  overflow-wrap: break-word; /* معيار حديث لكسر الكلمات الطويلة */
+  word-break: break-word;    /* لضمان الدعم في جميع المتصفحات */
+  display: block;            /* التأكد من أن العنصر يأخذ مساحة عرضية كاملة */
 }
 
 /* Product Description */
-.left-box .product-description {
+.left-box .product-description33 {
   font-size: 1.6rem; /* حجم الوصف */
   color: #ffeec9; /* لون النص */
   line-height: 1.6; /* ارتفاع السطر */
@@ -96,7 +109,7 @@ html.home::-webkit-scrollbar-track {
 }
 
 /* Price */
-.left-box .price {
+.left-box .price33 {
   font-size: 2.5rem; /* حجم السعر */
   font-weight: 800; /* سمك الخط */
   color: #ffd700; /* لون النص */
@@ -106,7 +119,7 @@ html.home::-webkit-scrollbar-track {
 }
 
 /* Quantity Counter */
-.quantity-counter {
+.quantity-counter33 {
   display: flex; /* flexbox */
   align-items: center; /* توسيط عمودي */
   gap: 15px; /* مسافة بين الأزرار */
@@ -114,7 +127,7 @@ html.home::-webkit-scrollbar-track {
 
 }
 
-.quantity-counter button {
+.quantity-counter33 button {
   background-color: #ffd700; /* لون الزر */
   color: #b65a2a; /* لون النص */
   border: none; /* إزالة الحدود */
@@ -127,11 +140,11 @@ html.home::-webkit-scrollbar-track {
   transition: 0.2s; /* تأثير سلس */
 }
 
-.quantity-counter button:hover {
+.quantity-counter33 button:hover {
   background-color: #fffacd; /* لون عند المرور */
 }
 
-.quantity-counter span {
+.quantity-counter33 span {
   font-size: 1.8rem; /* حجم الرقم */
   font-weight: 700; /* سمك الخط */
   width: 40px; /* عرض */
@@ -140,7 +153,7 @@ html.home::-webkit-scrollbar-track {
 }
 
 /* زر Add to Cart */
-.add-to-cart button {
+.add-to-cart33 button {
   border: none; 
   border-radius: 15px;
   padding: 15px 35px;
@@ -155,7 +168,7 @@ html.home::-webkit-scrollbar-track {
 }
 
 /* أيقونة عربية التسوق داخل الزر */
-.add-to-cart button i {
+.add-to-cart33 button i {
   font-size: 1.4rem;        /* حجم مناسب للزر */
   display: flex;
   align-items: center;
@@ -164,15 +177,27 @@ html.home::-webkit-scrollbar-track {
 }
 
 /* تأثير hover للزر والأيقونة */
-.add-to-cart button:hover {
+.add-to-cart33 button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
-.add-to-cart button:hover i {
+.add-to-cart33 button:hover i {
   transform: scale(1.2);    /* تكبير بسيط عند hover */
 }
-
+.left-box-text33 {
+ 
+  display: block; /* تغيير من flex إلى block لضمان سلوك النصوص الطبيعي */
+  text-align: left;
+}
+.left-box .product-titl33, 
+.left-box .product-description33 {
+    display: block; /* تأكيد أنها تأخذ سطر كامل */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; /* إلغاء أي nowrap قد يكون موروثاً */
+    word-break: break-word; /* كسر الكلمات حتى لو كانت كلمة واحدة طويلة */
+}
 
 /* ============================= */
 /* Center Box */
@@ -286,28 +311,30 @@ html.home::-webkit-scrollbar-track {
 .scroll-buttons{
   z-index: 99;
 }
+
+
 /* Media Query للشاشات أقل من 1200px */
 @media (max-width: 1200px) {
   .left-box { 
     width: 250px; /* تقليل العرض */
     padding: 18px; /* زيادة البادينغ قليلاً */
   }
-  .left-box .product-title { 
+  .left-box .product-title33 { 
     font-size: 2.2rem; /* تصغير العنوان */
   }
-  .left-box .product-description { 
+  .left-box .product-description33 { 
     font-size: 1.4rem; /* تصغير الوصف */
   }
-  .left-box .price { 
+  .left-box .price33 { 
     font-size: 2.2rem; /* تصغير السعر */
   }
-  .quantity-counter button { 
+  .quantity-counter33 button { 
     width: 38px; height: 38px; font-size: 1.3rem; /* أزرار أصغر */
   }
-  .quantity-counter span { 
+  .quantity-counter33 span { 
     font-size: 1.5rem; width: 35px; /* حجم الرقم أصغر */
   }
-  .add-to-cart button { 
+  .add-to-cart33 button { 
     padding: 12px 28px; font-size: 1.3rem; /* تكبير/تصغير الزر */
   }
   .center-box { 
@@ -348,7 +375,7 @@ html.home::-webkit-scrollbar-track {
     margin-top: 20px;
     
   }
-.left-box-content {
+.left-box-content33 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -365,23 +392,27 @@ html.home::-webkit-scrollbar-track {
     width: 100%;
     margin: 0 auto;    /* لتوسيطه افقياً */
     padding: 20px;
+    
   }
 
- .quantity-counter {
-  margin-right: 55px; /* زوّد أو قلّل الرقم */
+ .quantity-counter33 {
+  margin-left: 10px;
+ 
+  width: fit-content;
 
 }
-.add-to-cart{
-  margin-left: -35px; /* زوّد أو قلّل الرقم */
+.add-to-cart33{
+  margin-left: -25px; /* زوّد أو قلّل الرقم */
+ 
 }
-.price{
+.price33{
 margin:15px 0 0 65px;
 }
-.left-box-text{
+.left-box-text33{
   margin-bottom: 60px;
 }
 /* Product Title */
-.left-box .product-title {
+.left-box .product-title33 {
   font-size: 2.5rem; /* حجم العنوان */
   font-weight: 700; /* سمك الخط */
   color: #fffacd; /* لون النص */
@@ -389,7 +420,7 @@ margin:15px 0 0 65px;
 }
 
 /* Product Description */
-.left-box .product-description {
+.left-box .product-description33 {
   font-size: 1.5rem; /* حجم الوصف */
   color: #ffeec9; /* لون النص */
   line-height: 1.6; /* ارتفاع السطر */
@@ -451,7 +482,7 @@ margin:15px 0 0 65px;
 .small-box {
   width: 170px;
   height: 100px;
-  background-color: #cbc1bb;
+
   border-radius: 12px;
   box-shadow: 0 4px 13px rgba(0,0,0,0.25);
   flex-shrink: 0;             /* يمنع التصغير */
@@ -461,7 +492,7 @@ margin:15px 0 0 65px;
 .bottom-line {
   width: 700px;
   height: 6px;
-  background-color: #ffd700;
+
   margin-top: 25px;
   margin-left: -170px;
   transform: scale(1.2);  /* يكبر البوكس شويه */
@@ -470,34 +501,54 @@ margin:15px 0 0 65px;
 
 
 }
+
+
+
+
+@media (max-width: 750px) {
+  /* 1. تصغير نصوص المربع الأيسر */
+  .left-box .product-title33 {
+    font-size: 1.8rem !important; /* تصغير العنوان */
+  }
+
+  .left-box .product-description33 {
+    font-size: 1.1rem !important; /* تصغير الوصف */
+  }
+
+  .price33 {
+    font-size: 1.6rem !important; /* تصغير السعر */
+  }
+
+ 
+}
 @media (max-width: 650px) {
 
 
   /* ===== Left Box ===== */
-  .left-box .product-title {
+  .left-box .product-title33 {
     font-size: 2.1rem;   /* تصغير بسيط */
   }
 
-  .left-box .product-description {
+  .left-box .product-description33 {
     font-size: 1.1rem;   /* تصغير بسيط */
   }
 
-  .left-box .price {
+  .left-box .price33 {
     font-size: 1.8rem;     /* تصغير بسيط */
   }
 
-  .quantity-counter button {
+  .quantity-counter33 button {
     width: 35px;
     height: 35px;
     font-size: 1.1rem;   /* تصغير بسيط */
   }
 
-  .quantity-counter span {
+  .quantity-counter33 span {
     font-size: 1.2rem;
     width: 30px;
   }
 
-  .add-to-cart button {
+  .add-to-cart33 button {
     padding: 10px 26px;  /* تصغير بسيط */
     font-size: 1.1rem;
   
@@ -535,30 +586,28 @@ margin:15px 0 0 65px;
   }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 595px) {
+
+.left-box{
+
+  margin-top: 22px;
+}
+
  /* ===== Left Box Text ===== */
-  .left-box .product-title {
+  .left-box .product-title33 {
     font-size: 1.8rem;   /* تصغير العنوان */
   
   }
 
-  .left-box .product-description {
+  .left-box .product-description33 {
     font-size: 1rem;     /* تصغير الوصف */
   }
 
-  .left-box .price {
+  .left-box .price33 {
     font-size: 1.9rem;   /* تصغير السعر */
   }
-   .quantity-counter {
-  margin-right: 45px; /* زوّد أو قلّل الرقم */
 
-}
-.add-to-cart{
-  margin-left: -30px; /* زوّد أو قلّل الرقم */
-}
-.price{
-margin:15px 0 0 55px;
-}
+
   /* ===== Center Box ===== */
   .center-box {
     width: 500px;       /* تصغير الصورة */
@@ -581,33 +630,41 @@ margin:15px 0 0 55px;
     height: 7px;        /* تصغير الخط */
     width: 400px;
     margin-left: -200px;
+    
   }
 
   /* ===== Quantity Counter & Buttons ===== */
-  .quantity-counter button {
+  .quantity-counter33 button {
     width: 30px;
     height: 30px;
     font-size: 1rem;   /* تصغير بسيط للأزرار */
+    
   }
 
-  .quantity-counter span {
+  .quantity-counter33 span {
     font-size: 1rem;
     width: 25px;       /* تصغير الرقم */
+    
   }
 
-  .add-to-cart button {
+  .add-to-cart33 button {
     padding: 8px 20px;  /* تصغير الزر */
     font-size: 1rem;
+  
   }
-  .price{
+  .price33{
     margin-top: -15px;
-    margin-left: 25px;
+    margin-left: 45px;
+  
+    width: fit-content;
   }
-.quantity-counter{
+.quantity-counter33{
   margin-top: -5px;
+  
 }
-.add-to-cart{
+.add-to-cart33{
   margin-top: -5px;
+   
   
 }
 .right-box-wrapper{
@@ -621,31 +678,31 @@ margin:15px 0 0 55px;
 @media (max-width: 440px) {
 
   /* ===== Left Box Text ===== */
-  .left-box .product-title {
+  .left-box .product-title33 {
     font-size: 1.6rem;   /* تصغير بسيط جدًا */
   }
 
-  .left-box .product-description {
+  .left-box .product-description33 {
     font-size: 0.95rem;  /* تصغير بسيط جدًا */
   }
 
-  .left-box .price {
+  .left-box .price33 {
     font-size: 1.7rem;   /* تصغير بسيط جدًا */
   }
 
   /* ===== Quantity Counter & Buttons ===== */
-  .quantity-counter button {
+  .quantity-counter33 button {
     width: 28px;
     height: 28px;
     font-size: 0.9rem;   /* تصغير بسيط جدًا */
   }
 
-  .quantity-counter span {
+  .quantity-counter33 span {
     font-size: 0.9rem;
     width: 22px;
   }
 
-  .add-to-cart button {
+  .add-to-cart33 button {
     padding: 7px 18px;   /* تصغير بسيط جدًا */
     font-size: 0.95rem;
   }
@@ -684,20 +741,15 @@ margin:15px 0 0 55px;
     }
 
 }
-@media (max-width: 415px){
- .left-box-content { 
-     
-     margin-top: 25px;
-    }
-}
+
 @media (max-width: 385px){
-   .left-box-content { 
+   .left-box-content33 { 
      height: 120px;
     
     }
 }
 @media (max-width: 392px){
-   .left-box-content { 
+   .left-box-content33 { 
      height: 140px;
     }
     .center-box {
@@ -711,3 +763,39 @@ margin:15px 0 0 55px;
     height: auto;
   }
 }
+@media (max-height: 700px){
+/* Center Box */
+  .center-box {
+    width: 400px;
+    margin-top: 140px;
+  }
+}@media (max-height: 550px){
+/* Center Box */
+  .center-box {
+    width: 400px;
+    margin-top: 140px;
+  }
+}
+
+
+@media (max-width: 395px) {
+  /* 1. تصغير نصوص المربع الأيسر */
+  .left-box .product-title33 {
+    font-size: 1.4rem !important; /* تصغير العنوان ليتناسب مع المساحة الضيقة */
+    line-height: 1.2;
+  }
+
+  .left-box .product-description33 {
+    font-size: 0.85rem !important; /* تصغير الوصف */
+    line-height: 1.4;
+  }
+
+  .left-box .price33 {
+    font-size: 1.5rem !important; /* تصغير السعر */
+   
+  }
+
+
+}
+
+

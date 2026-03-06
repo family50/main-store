@@ -158,28 +158,51 @@ body.cart-container,html.cart-container {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 10px var(--color-shadow);
+
 }
 
 /* صورة المنتج */
-.product-image {
+.product-image33 {
   width: 85px;
   height: auto;
   border-radius: 10px;
 }
 
 /* Container الأفقي للمنتج */
-.product-info {
+.product-info1 {
   display: flex;                 /* Flex أفقي */
   justify-content: space-between;/* Title على اليسار، باقي على اليمين */
   align-items: center;           /* توسيط رأسي */
   width: 100%;
+  gap: 15px; /* مسافة بين اسم المنتج وجهة التحكم اليمنى */
+  overflow: hidden; /* لمنع أي خروج عن الإطار */
+   
 }
+
+
+
+/* تعديل اسم المنتج ليدعم القص (Truncate) */
+.product-info1 h3{
+  margin: 0;
+  font-weight: 700;
+  font-size: 22px; /* تم تصغيره قليلاً ليتناسب مع القص */
+  color: var(--color-text);
+  
+  /* 🔑 سحر قص النص: */
+  white-space: nowrap;       /* منع النزول لسطر جديد */
+  overflow: hidden;          /* إخفاء ما يخرج عن الحاوية */
+  text-overflow: ellipsis;   /* إضافة ثلاث نقط (...) في نهاية الكلمة */
+  flex: 1;                   /* يخليه ياخد المساحة المتاحة ويجبره على القص */
+  min-width: 0;              /* ضروري جداً لعمل flex-truncate */
+  text-align: left;          /* محاذاة جهة اليسار */
+}
+
 
 /* Right side: السعر + الكمية */
 .product-right {
   display: flex;
   align-items: center;
-  gap: 20px;                     /* مسافة بين السعر والكمية */
+                     /* مسافة بين السعر والكمية */
 }
 
 /* العنوان */
@@ -229,6 +252,57 @@ body.cart-container,html.cart-container {
   font-weight: 500;
   color: var(--color-text);
 }
+
+
+
+
+
+
+
+.quantity {
+  /* 1. جعل الخلفية على مقاس الرقم بالضبط */
+  width: fit-content !important; 
+  min-width: 30px; /* يضمن مساحة مريحة حتى لو الرقم حرف واحد */
+  
+  /* 2. التحكم في المكان: مسافة من اليسار لدفعها لليسار قليلاً عن مكانها السابق */
+  margin-left: 40px; 
+  margin-right: 20px; /* مسافة بينها وبين السعر */
+
+  /* 3. تنسيق النص */
+  text-align: center !important; 
+  padding: 2px 8px; /* مسافة داخلية لتوسيع الخلفية حول الرقم بشكل شيك */
+  
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--color-text);
+  
+  /* 4. إضافات اختيارية لجعل الشكل احترافي (ممكن تحذف الخلفية لاحقاً) */
+ 
+  border-radius: 4px; /* تنعيم حواف الخلفية */
+}
+/* Right side: السعر + التحكم */
+.product-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;            /* يمنع انكماش جهة السعر والتحكم */
+  justify-content: flex-end; /* محاذاة جهة اليمين */
+
+ 
+}
+
+/* تعديل السعر ليكون ثابت العرض أيضاً للمحاذاة */
+.product-price {
+  min-width: 80px;           /* عرض أدنى للسعر ليظل السعر تحت السعر */
+  text-align: right;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--color-text);
+  margin: 0;
+   
+}
+
+
 /* ===== ملخص الطلب ===== */
 .cart-summary {
   flex: 1;                  /* أقل من المنتجات */
@@ -373,12 +447,12 @@ body.cart-container,html.cart-container {
   }
 
   /* صورة المنتج */
-  .product-image {
+  .product-image33 {
     width: 70px;               /* أصغر شويه */
   }
 
   /* العنوان */
-  .product-info h3 {
+  .product-info1 h3 {
     font-size: 22px;           /* أصغر شويه */
   }
 
@@ -470,13 +544,13 @@ body.cart-container,html.cart-container {
   }
 
   /* صورة المنتج */
-  .product-image {
+  .product-image33 {
     width: 60px;
     border-radius: 8px;
   }
 
   /* عنوان المنتج */
-  .product-info h3 {
+  .product-info1 h3 {
     font-size: 18px;
     margin-left: 0;
   }
@@ -661,13 +735,13 @@ body.cart-container,html.cart-container {
   }
 
   /* صورة المنتج */
-  .product-image {
+  .product-image33 {
     width: 50px;
     border-radius: 6px;
   }
 
   /* عنوان المنتج */
-  .product-info h3 {
+  .product-info1 h3 {
     font-size: 15px;
     font-weight: 600;
   }
@@ -782,12 +856,12 @@ body.cart-container,html.cart-container {
     border-radius: 6px;
   }
 
-  .product-image {
+  .product-image33 {
     width: 44px;
     border-radius: 5px;
   }
 
-  .product-info h3 {
+  .product-info1 h3 {
     font-size: 13px;
     font-weight: 600;
   }
@@ -830,6 +904,25 @@ body.cart-container,html.cart-container {
   margin-left: -280px;
 
 }
+.quantity {
+    /* 1. تقليل عرض الخلفية لجعلها "على قد" الرقم */
+max-width: 20px;
+    
+    /* 2. التحكم في المكان: دفع العنصر لليمين */
+    margin-left: auto;       /* دفع العنصر لأقصى اليمين */
+    margin-right: 20px;      /* مسافة بينه وبين جهة السعر/التحكم */
+
+    /* 3. تنسيق النص والخلفية الملونة */
+    text-align: center !important; 
+    
+    /* 4. تنسيقات احترافية للخلفية (ممكن تحذفها لاحقاً) */
+
+    border-radius: 6px;      /* تنعيم حواف الخلفية */
+    padding: 0;              /* إزالة البادينغ ليبقى العرض ثابتاً */
+  }
+
+  /* ... باقي الكود القديم (Center Box، Right Boxes، الخ) ... */
+
 
 
 }
@@ -1784,7 +1877,7 @@ body.cart-container,html.cart-container {
   padding: 3px;
 }
 /* ادخال بينات الكارد*/
-.payment-card-form {
+.payment-card-form33 {
   position: absolute; /* فوق الكارد */
   bottom: 20px;       /* مسافة من تحت الكارد */
   left: 20px;         /* مسافة من اليسار */
@@ -1793,39 +1886,45 @@ body.cart-container,html.cart-container {
   flex-direction: column;
   gap: 15px;
   z-index: 5;
+  
+  box-sizing: border-box;
 }
 /* الصف الأول: Full Name و Card Number عموديا فوق بعض */
-.payment-card-form .input-row:first-child {
+.payment-card-form33 .input-row33:first-child {
   flex-direction: column; /* عمودياً */
-  width: 100%;            /* ياخد 40% من عرض الصورة كما حددنا للكارد */
+  width: 100%;  
+         /* ياخد 40% من عرض الصورة كما حددنا للكارد */
 }
-.payment-card-form .input-row:first-child .input-group {
+.payment-card-form33 .input-row33:first-child .input-group33 {
   width: 100%;            /* كل مدخل ياخد كامل العرض */
+
 }
 /* الصف الثاني: Expire Date و CVC أفقي جنب بعض */
-.payment-card-form .input-row:last-child {
+.payment-card-form33 .input-row33:last-child {
   flex-direction: row;    /* أفقي */
   gap: 10px;              /* مسافة بينهما */
   width: 100%;            /* 100% من عرض الكارد */
+
+  box-sizing: border-box;
 }
-.payment-card-form .input-row:last-child .input-group {
-  width: 50%;            /* كل واحد ياخد نصف الكارد (يعني 20% من الصورة لأنه الكارد نفسه 40%) */
+.payment-card-form33 .input-row33:last-child .input-group33 {
+  width: 40%;            /* كل واحد ياخد نصف الكارد (يعني 20% من الصورة لأنه الكارد نفسه 40%) */
 }
-.input-row {
+.input-row33 {
   display: flex;
   gap: 20px; /* مسافة بين المدخلين جنب بعض */
 }
-.input-group {
+.input-group33 {
   flex: 1; /* كل input ياخد نفس المساحة */
   display: flex;
   flex-direction: column;
 }
-.input-group label {
+.input-group33 label {
   font-size: 0.75rem;
   color: #1b4c9a; /* نص خفيف على الكارد */
   margin-bottom: 5px;
 }
-.input-group input {
+.input-group33 input {
   background: transparent; /* بدون خلفية */
   border: none;
   border-bottom: 2px solid #1b4c9a; /* الخط تحت فقط */
@@ -1835,10 +1934,10 @@ body.cart-container,html.cart-container {
   outline: none;
   transition: all 0.2s ease;
 }
-.input-group input::placeholder {
+.input-group33 input::placeholder {
   color: #1b4c9a; /* placeholder شفاف */
 }
-.input-group input:focus {
+.input-group33 input:focus {
   border-bottom-color: #82bae0; /* يتلون لما المستخدم يكتب */
 }
 /* تصغير كل محتوى صفحة الدفع عند 1170px أو أقل */
@@ -1920,30 +2019,32 @@ body.cart-container,html.cart-container {
 
 
   /* الفورم الخاص بالكارد */
-  .payment-card-form {
+  .payment-card-form33 {
     width: 50%; /* تصغير الكارد نفسه */
     bottom: 16px;
     left: 16px;
     gap: 10px;
+    
   }
 
-  .payment-card-form .input-row:first-child {
+  .payment-card-form33 .input-row33:first-child {
     width: 100%;
   }
 
-  .payment-card-form .input-row:first-child .input-group {
+  .payment-card-form33 .input-row33:first-child .input-group33 {
     width: 100%;
   }
 
-  .payment-card-form .input-row:last-child .input-group {
-    width: 50%;
+  .payment-card-form33 .input-row33:last-child .input-group33 {
+    width: 40%;
+   
   }
 
-  .input-group label {
+  .input-group33 label {
     font-size: 0.65rem;
   }
 
-  .input-group input {
+  .input-group33 input {
     padding: 6px 4px;
     font-size: 0.8rem;
   }
@@ -2542,3 +2643,25 @@ body.cart-container,html.cart-container {
   background: linear-gradient(180deg, #6ea0ff, #245bb5);
 }
 
+@media (max-height: 720px) {
+
+.payment-content-mopil{
+  width: 100%;
+  display: flex;
+  flex-direction: column;   /* 👈 أهم سطر */
+  align-items: center;
+  margin-top: 350px;
+
+}
+}
+@media (max-height: 590px) {
+
+.payment-content-mopil{
+  width: 100%;
+  display: flex;
+  flex-direction: column;   /* 👈 أهم سطر */
+  align-items: center;
+  margin-top: 430px;
+
+}
+}

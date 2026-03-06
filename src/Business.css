@@ -1,0 +1,778 @@
+.business-page {
+   position: absolute; /* أو fixed لو عايزها ثابتة حتى عند السكروول */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-x: hidden;
+  width: 90vw;
+  
+}
+/* Business.css */
+
+
+/* زر الرجوع */
+.business-page  .back-btn {
+  position: fixed; /* نجعله في أقصى يسار */
+  left: -20px;
+  top: 1.5%;
+  transform: translateY(1.5%);
+  background-color: var(--price-color); /* لون الخلفية للزرار */
+  border: none;
+  border-radius: 50%; /* دائري */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #fff; /* لون السهم */
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+   pointer-events: auto; /* يضمن أن الزر يقبل النقر */
+   z-index: 9999;
+}
+
+.business-page  .back-btn:hover {
+  background-color: darken(var(--price-color), 10%);
+  transform: translateY(-5px) scale(1.1); /* يكبر شويه عند hover */
+}
+
+
+
+
+
+
+
+.business-header h1 {
+  font-size: 52px;
+  color: var(--text-title);
+  margin-bottom: 8px;
+   text-align: center;
+}
+
+.business-header p {
+  color: var(--text-description);
+  font-size: 24px;
+  text-align: center;
+}
+
+/* SUMMARY */
+.summary-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.summary-card {
+  background: var(--background-glass);
+  border-radius: 24px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--card-shadow);
+  color: var(--text-title);
+  transition: transform 0.25s ease;
+  width: 100%;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+}
+
+
+.summary-card i {
+  font-size: 66px;
+  color: var(--price-color);
+  
+}
+
+.summary-card p {
+  color: var(--text-description);
+  font-size: 26px;
+
+}
+
+.summary-card h2 {
+  color: var(--price-color);
+  font-size: 32px;
+}
+
+/* MAIN GRID */
+.business-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+ 
+}
+
+/* GLASS CARD */
+.glass-card {
+  background: var(--background-glass);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  color: var(--text-title);
+ 
+}
+
+.glass-card.wide {
+  grid-column: span 2;
+ 
+}
+
+
+
+
+
+/* FUNNEL */
+.funnel {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+   height: 70%;
+}
+.funnel-card h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+/* STEP */
+.funnel-step {
+  position: relative;
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.02)
+  );
+  border-radius: 20px;
+  padding: 25px 15px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+   flex: 1;              /* يخلي الكروت تتمدد/تصغر مع الشاشة */
+  max-width: 160px;    /* أقصى عرض */
+  margin: 0 5px;      
+ 
+}
+
+/* Hover effect */
+.funnel-step:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Label */
+.funnel-label {
+  display: block;
+  font-size: 26px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-description);
+  margin-bottom: 10px;
+}
+/* Value */
+.funnel-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--price-color);
+}
+
+/* Progress illusion (gradient overlay) */
+.funnel-step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.15),
+    transparent
+  );
+  pointer-events: none;
+}
+
+
+
+
+
+
+/* PRODUCTS TABLE */
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+.products-table th,
+.products-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--text-description);
+  
+}
+
+.products-table th {
+  color: var(--text-title);
+  
+}
+/* CUSTOMERS */
+.customer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.customer-box {
+  background: linear-gradient(135deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.03)
+  );
+  padding: 22px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.customer-box:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.customer-box {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-title);
+ 
+}
+
+/* ALERT */
+.alert {
+  background: linear-gradient(135deg,
+    rgba(255,0,0,0.15),
+    rgba(255,0,0,0.05)
+  );
+  border-left: none;
+  border-radius: 22px;
+  position: relative;
+   
+}
+
+.alert::before {
+  content: "⚠";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 32px;
+ 
+}
+
+.alert h3 {
+  color: #ff4d4d;
+  font-size: 32px;
+   
+}
+
+.alert ul {
+  margin-top: 12px;
+  padding-left: 20px;
+ 
+}
+
+.alert li {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--text-title);
+ 
+}
+
+/* SUGGEST */
+.suggestion {
+  background: linear-gradient(135deg,
+    rgba(0,255,0,0.12),
+    rgba(0,255,0,0.03)
+  );
+  border-left: none;
+  border-radius: 22px;
+  position: relative;
+}
+
+.suggestion::before {
+  content: "💡";
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-size: 32px;
+}
+
+.suggestion h3 {
+  color: var(--price-color);
+  font-size: 32px;
+}
+
+.suggestion ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.suggestion li {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: var(--text-title);
+}
+@media (max-width: 1270px) {
+
+
+  /* HEADER */
+  .business-header h1 {
+    font-size: 44px;
+  }
+  .business-header p {
+    font-size: 20px;
+  }
+
+  /* SUMMARY */
+  .summary-card {
+    padding: 18px;
+    gap: 14px;
+  }
+  .summary-card i {
+    font-size: 54px;
+  }
+  .summary-card p {
+    font-size: 20px;
+  }
+  .summary-card h2 {
+    font-size: 26px;
+  }
+
+  /* GLASS CARD */
+  .glass-card {
+    padding: 16px;
+  }
+
+  /* FUNNEL */
+  .funnel-card h3 {
+    font-size: 24px;
+  }
+  .funnel-label {
+    font-size: 20px;
+  }
+  .funnel-value {
+    font-size: 26px;
+  }
+  .funnel-step {
+    padding: 18px 12px;
+    max-width: 140px;
+  }
+
+  /* CUSTOMERS */
+  .customer-box {
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  /* ALERT */
+  .alert h3 {
+    font-size: 26px;
+  }
+  .alert li {
+    font-size: 16px;
+  }
+
+  /* SUGGEST */
+  .suggestion h3 {
+    font-size: 26px;
+  }
+  .suggestion li {
+    font-size: 16px;
+  }
+}
+@media (max-width: 950px) {
+
+  /* HEADER */
+  .business-header h1 {
+    font-size: 36px;
+  }
+  .business-header p {
+    font-size: 18px;
+  }
+
+  /* SUMMARY */
+  .summary-card {
+    padding: 14px;
+    gap: 12px;
+  }
+  .summary-card i {
+    font-size: 44px;
+  }
+  .summary-card p {
+    font-size: 16px;
+  }
+  .summary-card h2 {
+    font-size: 22px;
+  }
+
+  /* MAIN GRID GAP */
+  .business-grid {
+    gap: 18px;
+  }
+
+  /* GLASS CARD */
+  .glass-card {
+    padding: 14px;
+  }
+
+  /* FUNNEL */
+  .funnel-card h3 {
+    font-size: 20px;
+  }
+  .funnel-label {
+    font-size: 16px;
+  }
+  .funnel-value {
+    font-size: 22px;
+  }
+  .funnel-step {
+    padding: 14px 10px;
+    max-width: 120px;
+  }
+
+  /* CUSTOMERS */
+  .customer-grid {
+    gap: 12px;
+  }
+  .customer-box {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  /* ALERT */
+  .alert h3 {
+    font-size: 22px;
+  }
+  .alert li {
+    font-size: 14px;
+  }
+
+  /* SUGGEST */
+  .suggestion h3 {
+    font-size: 22px;
+  }
+  .suggestion li {
+    font-size: 14px;
+  }
+}
+@media (max-width: 800px) {
+
+  /* HEADER */
+  .business-header h1 {
+    font-size: 30px;
+  }
+  .business-header p {
+    font-size: 16px;
+  }
+
+  /* SUMMARY */
+  .summary-card {
+    padding: 12px;
+    gap: 10px;
+  }
+  .summary-card i {
+    font-size: 38px;
+  }
+  .summary-card p {
+    font-size: 14px;
+  }
+  .summary-card h2 {
+    font-size: 20px;
+  }
+
+  
+  /* GRID */
+  .business-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  /* خلي الشارت هو أول واحد */
+  .business-grid .glass-card:nth-child(2) {
+    order: 1;
+    grid-column: span 3; /* ياخد عرض الصفحة */
+    
+  }
+
+  /* خلي الفانل بعده */
+  .business-grid .glass-card:nth-child(1) {
+    order: 2;
+    grid-column: span 3; /* برضه بعرض الصفحة */
+   height: 210px;
+  }
+
+  /* customers بعدهم */
+  .business-grid .glass-card:nth-child(3) {
+    order: 3;
+    grid-column: span 3;
+    
+  }
+
+/* alerts */
+.business-grid .glass-card:nth-child(4) {
+  order: 4;
+  grid-column: span 1;
+}
+
+/* suggestions */
+.business-grid .glass-card:nth-child(5) {
+  order: 4;
+  grid-column: span 1;
+}
+
+/* خلي الصف بتاعهم عمودين */
+@media (max-width: 800px) {
+  .business-grid {
+    grid-template-columns: repeat(2, 1fr);
+    
+  }
+
+  /* الشارت والفانل ياخدوا صف كامل */
+  .business-grid .glass-card:nth-child(1),
+  .business-grid .glass-card:nth-child(2),
+  .business-grid .glass-card:nth-child(3) {
+    grid-column: span 2;
+   
+  }
+}
+
+  /* تصغير شوية ستايل عام */
+  .glass-card {
+    padding: 12px;
+    
+  }
+
+  .funnel-step {
+    max-width: 110px;
+    padding: 10px 8px;
+  
+  }
+
+  .funnel-label {
+    font-size: 14px;
+  }
+
+  .funnel-value {
+    font-size: 20px;
+  }
+
+  .customer-box {
+    padding: 10px;
+    font-size: 13px;
+   box-shadow: 0 3px 6px  var(--card-shadow);
+  }
+
+  .alert h3,
+  .suggestion h3 {
+    font-size: 20px;
+  }
+
+  .alert li,
+  .suggestion li {
+    font-size: 13px;
+  }
+
+.glass-card {
+  box-shadow: 0 3px 6px  var(--card-shadow);
+}
+
+.funnel-step {
+  box-shadow: 0 3px 6px  var(--card-shadow);
+}
+  .business-page .back-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    left: 0.5rem;
+    top: 1%;
+  }
+
+}
+@media (max-width: 690px) {
+
+  /* تصغير كروت الـ SUMMARY */
+  .summary-grid {
+    gap: 10px; /* فرق أقل بين الكروت */
+    
+  }
+
+  .summary-card {
+    padding: 8px 10px;  /* أقل padding */
+    gap: 8px;           /* أقل فرق بين الأيقونة والنص */
+  }
+
+  .summary-card i {
+    font-size: 28px;    /* أصغر الأيقونات */
+  }
+
+  .summary-card p {
+    font-size: 12px;    /* أصغر النصوص */
+  }
+
+  .summary-card h2 {
+    font-size: 16px;    /* أصغر القيم */
+  }
+
+  /* لو الكارت الكبير Big محتاج تعديل خاص */
+  .summary-card.big {
+    padding: 10px 12px;
+  }
+}
+@media (max-width: 520px) {
+
+  /* الصفحة كلها */
+  .business-page {
+    padding: 15px;
+    gap: 20px;
+    width: 95vw;
+  }
+
+  /* HEADER */
+  .business-header h1 {
+    font-size: 24px;
+  }
+  .business-header p {
+    font-size: 14px;
+  }
+
+  /* SUMMARY GRID */
+  .summary-grid {
+    gap: 8px;
+  }
+
+  .summary-card {
+    padding: 6px 8px;
+    gap: 6px;
+  
+  }
+  .summary-card i {
+    font-size: 22px;
+  }
+  .summary-card p {
+    font-size: 10px;
+  }
+  .summary-card h2 {
+    font-size: 14px;
+  }
+  .summary-card.big {
+    padding: 8px 10px;
+  }
+
+  /* MAIN GRID */
+  .business-grid {
+    gap: 12px;
+    grid-template-columns: 1fr; /* كل كارت في صف واحد */
+    
+  }
+
+  .glass-card {
+    padding: 10px;
+    box-shadow: 0 2px 4px var(--card-shadow);
+    
+  }
+
+  /* FUNNEL */
+  .funnel-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    
+  }
+  .funnel {
+    gap: 4px;
+    
+  }
+  .funnel-step {
+    padding: 30px 4px;
+    max-width: 80px;
+     
+  }
+  .funnel-label {
+    font-size: 12px;
+      
+  }
+  .funnel-value {
+    font-size: 16px;
+  }
+
+  /* CUSTOMERS */
+  .customer-grid {
+    gap: 8px;
+    grid-template-columns: 1fr;
+  }
+  .customer-box {
+    padding: 8px;
+    font-size: 12px;
+    box-shadow: 0 2px 4px var(--card-shadow);
+  }
+
+  /* ALERTS & SUGGESTIONS */
+  .alert h3,
+  .suggestion h3 {
+    font-size: 16px;
+  }
+  .alert li,
+  .suggestion li {
+    font-size: 12px;
+  }
+}
+@media (max-width: 520px) {
+
+  /* SUMMARY GRID يبقى 2x2 */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* اتنين في الصف */
+    gap: 12px;                               /* فرق قليل بين الكروت */
+    margin-left: 6px;
+  }
+
+  .summary-card {
+    padding: 8px 10px;        /* أصغر padding */
+    width: 88%;              /* ياخد كل مساحة الخلية */
+    gap: 6px;                 /* فرق أقل بين الأيقونة والنص */
+  }
+
+  .summary-card.big {
+    padding: 10px 12px;
+  }
+
+  .summary-card i {
+    font-size: 20px;         /* أصغر الأيقونات */
+  }
+
+  .summary-card p {
+    font-size: 10px;         /* أصغر النصوص */
+  }
+
+  .summary-card h2 {
+    font-size: 14px;         /* أصغر القيم */
+  }
+   .business-page .back-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .business-page .back-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+}

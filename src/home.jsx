@@ -399,15 +399,17 @@ useEffect(() => {
 
 
 
-
 useEffect(() => {
-  document.body.classList.remove("cart-page", "other-page");
-  document.documentElement.classList.remove("cart-page", "other-page");
+  // 1. تنظيف أي كلاسات قديمة من صفحات أخرى
+  document.body.classList.remove("cart-page", "other-page", "dashboard-active");
+  document.documentElement.classList.remove("cart-page", "other-page", "dashboard-active");
 
+  // 2. إضافة كلاس الهوم
   document.body.classList.add("home");
   document.documentElement.classList.add("home");
 
   return () => {
+    // 3. تنظيف الهوم عند الانتقال لأي صفحة أخرى
     document.body.classList.remove("home");
     document.documentElement.classList.remove("home");
   };
@@ -429,12 +431,12 @@ return (
             ref={leftBoxRef}
             style={{ boxShadow: products[scrollIndex].leftshadow }}
           >
-           <div className="left-box-content">
+           <div className="left-box-content33">
 
-            <div className="left-box-text">
+            <div className="left-box-text33">
             {/* العنوان */}
             <div
-                className="product-title"
+                className="product-title33"
                 style={{ color: products[scrollIndex].textColors.title }}
                 ref={titleRef}
              >
@@ -443,7 +445,7 @@ return (
 
              {/* الوصف */}
                <div
-                  className="product-description"
+                  className="product-description33"
                   style={{ color: products[scrollIndex].textColors.description }}
                   ref={descRef}
                 >
@@ -453,10 +455,10 @@ return (
 
 
 
-          <div className="left-box-price">
+          <div className="left-box-price33">
               {/* السعر */}
               <div
-                  className="price"
+                  className="price33"
                   ref={priceRef}
                   style={{ color: currentProduct.textColors.title }}
                >
@@ -465,7 +467,7 @@ return (
 
 
                {/* الكونتر */}
-                 <div className="quantity-counter">
+                 <div className="quantity-counter33">
 
                 <button 
                       style={{
@@ -488,7 +490,7 @@ return (
                 </button>
 
                 <span
-                     className="quantity"
+                     className="quantity33"
                      style={{ color: currentProduct.textColors.title }}
                  >
                       {Quantities[currentProduct.id] || 1}
@@ -516,7 +518,7 @@ return (
                </div>
  
              {/* زر الإضافة */}
-                  <div className="add-to-cart">
+                  <div className="add-to-cart33">
                   <button ref={buttonRef}
                     style={{
                     backgroundColor: currentProduct.buttonColors,
@@ -545,7 +547,7 @@ return (
          <img
          ref={centerBoxRef}
            
-            src={products[scrollIndex].images}
+            src={Array.isArray(products[scrollIndex]?.images) ? products[scrollIndex].images[0] : products[scrollIndex]?.images}
             alt="Product"
             className="center-image"
            />
