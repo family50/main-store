@@ -12,6 +12,7 @@ html.dashboard, body.dashboard {
   display: flex; /* استخدام flexbox */
   overflow-x: hidden; /* منع التمرير العرضي */
   overflow-y: overlay;
+
 }
 
 /* ===== الهيدر ===== */
@@ -29,6 +30,7 @@ html.dashboard, body.dashboard {
   top: 0;
   left: 0;
   z-index: 1000;
+    
   
 
 }

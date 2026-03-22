@@ -201,7 +201,7 @@ return (
     <div className="checkout-box-lose" ref={modalRef}>
       <button className="checkout-close" onClick={closeModal}>✖</button>
       <div className="empty-checkout-lose">
-        <img src="/25T22-54-18.png" alt="Empty cart" />
+      
         <p className="empty-text">Your cart is empty. Please add some products before checkout.</p>
       </div>
     </div>
@@ -647,6 +647,36 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
 </div>
   </div>
 )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {/* ===== Header أعلى الصفحة ===== */}
       <div className="cart-header" ref={headerRef}>
         <button className="continue-shopping" onClick={() => {
@@ -772,7 +802,7 @@ if (secondPhoneInput && secondPhoneInput.value.trim() !== "") {
   <div className="empty-cart"ref={imgRef}>
   <img 
     src="/slazzer-preview-1j141.png" 
-   
+    
     alt="Empty Cart"
        className="empty-cart-img"  // نحتفظ بالكلاس عشان الـ CSS يشتغل
     draggable={false}              // منع سحب الصورة
